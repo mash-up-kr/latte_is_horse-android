@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="highlightDate">#D81B60</color>
+    <color name="colorYellow">#d9cbc0</color>
+    <color name="colorBackground">#2f4856</color>
+    <color name="colorGray">#b9b9b9</color>
 </resources>

@@ -15,6 +15,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
 
     }
 
@@ -74,6 +75,16 @@ dependencies {
     def coilVersion = "0.8.0"
     implementation "io.coil-kt:coil:$coilVersion"
 
+    //material-calendarview
+    def calenderviewVersion = "2.0.1"
+    implementation "com.github.prolificinteractive:material-calendarview:${calenderviewVersion}"
+
+    //mpandroidchard
+    def mpAndroidChartVersion = "3.1.0"
+    implementation "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}"
+
+    def multidexVersion = "1.0.3"
+    implementation "com.android.support:multidex:${multidexVersion}"
 
     implementation 'com.android.support:appcompat-v7:29.+'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
