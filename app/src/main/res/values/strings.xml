@@ -3,4 +3,10 @@
 
     <string name="bottom_action_home">홈</string>
     <string name="bottom_action_statistic">통게</string>
+    <string name="add_item_title">카페인 섭취 기록</string>
+    <string name="date">날짜</string>
+    <string name="time">시간</string>
+    <string name="caffeine_drink">카페인음료</string>
+    <string name="total">합계</string>
+    <string name="ok">완료</string>
 </resources>
