@@ -14,7 +14,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,8 +41,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    def androidXVersion = "1.0.0"
-    implementation "com.google.android.material:material:$androidXVersion"
+    def materialVersion = "1.0.0"
+    implementation "com.google.android.material:material:$materialVersion"
+    def androidXVersion = "1.1.0"
     implementation "androidx.appcompat:appcompat:$androidXVersion"
     implementation "androidx.core:core-ktx:$androidXVersion"
 
@@ -68,7 +72,7 @@ dependencies {
 
     //coil
     def coilVersion = "0.8.0"
-    implementation"io.coil-kt:coil:$coilVersion"
+    implementation "io.coil-kt:coil:$coilVersion"
 
 
     testImplementation 'junit:junit:4.12'

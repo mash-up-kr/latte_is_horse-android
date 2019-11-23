@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">latte</string>
+    
+    <string name="bottom_action_home">홈</string>
+    <string name="bottom_action_statistic">통게</string>
 </resources>
