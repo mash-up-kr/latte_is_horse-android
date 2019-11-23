@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#2f4856</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#d9cbc0</color>
+    <color name="colorWhite">#f9f9f9</color>
     <color name="highlightDate">#D81B60</color>
     <color name="colorYellow">#d9cbc0</color>
     <color name="colorBackground">#2f4856</color>

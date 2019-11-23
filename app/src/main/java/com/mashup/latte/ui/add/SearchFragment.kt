@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -22,17 +23,17 @@ class SearchFragment (
 
     init {
         list = ArrayList<Item>()
-        list.add(Item("aa"))
-        list.add(Item("aabaaa"))
-        list.add(Item("aac"))
-        list.add(Item("d"))
-        list.add(Item("e"))
-        list.add(Item("eadsasdad"))
-        list.add(Item("eaaaa"))
-        list.add(Item("eaa"))
-        list.add(Item("easdasd"))
-        list.add(Item("ewww"))
-        list.add(Item("easdsada"))
+        list.add(Item("스타벅스 아메리카노"))
+        list.add(Item("스타벅스 자바칩"))
+        list.add(Item("스타벅스 에스프레소"))
+        list.add(Item("이디야 아메리카노"))
+        list.add(Item("카페베네 라떼"))
+        list.add(Item("파스꾸찌 아메리카노"))
+        list.add(Item("탐탐 카페모카"))
+        list.add(Item("탐탐 아메리카나"))
+        list.add(Item("커피빈 커피빈"))
+        list.add(Item("맥도날드 아메리카노"))
+        list.add(Item("커피한잔 아메리카노"))
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_search, container, false)
@@ -59,6 +60,7 @@ class SearchFragment (
     }
 
     override fun onItemSelected(item: Item?) {
+        Toast.makeText(ct, "${item?.name} is selected", Toast.LENGTH_SHORT).show()
         Log.d("csh", "${item?.name} is selected")
     }
 

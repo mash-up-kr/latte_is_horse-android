@@ -1,6 +1,7 @@
 package com.mashup.latte.ui.add
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -96,6 +97,11 @@ class AddActivity : AppCompatActivity() {
             }
 
         })
+
+        add_tv_next.setOnClickListener {
+            val nextIntent = Intent(this, AddItemActivity::class.java)
+            startActivity(nextIntent)
+        }
 
 
 
