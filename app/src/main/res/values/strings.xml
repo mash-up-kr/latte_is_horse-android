@@ -8,4 +8,10 @@
     <string name="main_question_tired">힘들었어요:(</string>
     <string name="main_question_good">잘 맞았어요:(</string>
     <string name="main_recommend_caffeine">하루 카페인 %dmg \n을 추천합니다.</string>
+    <string name="add_item_title">카페인 섭취 기록</string>
+    <string name="date">날짜</string>
+    <string name="time">시간</string>
+    <string name="caffeine_drink">카페인음료</string>
+    <string name="total">합계</string>
+    <string name="ok">완료</string>
 </resources>

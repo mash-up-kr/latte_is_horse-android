@@ -10,4 +10,6 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="backGround">#2f4856</color>
+    <color name="textColor">#f9f9f9</color>
 </resources>
