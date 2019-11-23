@@ -1,7 +1,8 @@
-package com.mashup.latte
+package com.mashup.latte.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.mashup.latte.R
 
 class MainActivity : AppCompatActivity() {
 
