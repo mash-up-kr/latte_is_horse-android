@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_image_text_margin_bottom">8dp</dimen>
+    <dimen name="top">150dp</dimen>
+    <dimen name="main_fragment_bottom_margin">50dp</dimen>
+</resources>

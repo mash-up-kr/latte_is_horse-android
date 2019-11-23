@@ -4,7 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
+import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.add.AddActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,24 +22,31 @@ class MainActivity : AppCompatActivity() {
             val nextIntent = Intent(this, AddActivity::class.java)
             startActivity(nextIntent)
         }
+        init()
     }
 
 
-    private fun init(){
-
+    private fun init() {
+        initViewPager()
+        initTabLayout()
     }
 
-    private fun initView(){
-        bottomAppbar.setOnMenuItemClickListener {
-            when(it.itemId){
 
-            }
+    private fun initViewPager() {
+        val fragmentList = ArrayList<Fragment>().apply {
+            add(DrunkFragment.newInstance())
+            add(QuestionFragment.newInstance())
+        }
 
+        container.apply {
+            adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList)
+            offscreenPageLimit = 2
+            currentItem = 0
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater.inflate(R.menu.menu_bottom_app_bar,menu)
-        return true
+    private fun initTabLayout() {
+        tabLayout.setupWithViewPager(container)
     }
 }
+
