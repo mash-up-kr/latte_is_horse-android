@@ -17,6 +17,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             android:text="나의 카페인 리포트"
+            android:textColor="@color/colorYellow"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -35,7 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="당신의 한달 카페인 섭취량을 확인하세요!"
+                android:text="당신의 한 달 카페인 섭취량을 확인하세요!"
+                android:textColor="@color/colorYellow"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -111,7 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="당신의 한달 카페인 섭취량을 확인하세요!"
+                android:text="당신의 한 달 카페인 섭취량을 확인하세요!"
+                android:textColor="@color/colorYellow"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -230,13 +233,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="13일"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorBackground"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="잠못들어요."
+                    android:text=" 잠 못들어요."
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
@@ -257,7 +261,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="이번달 어떤 카페인을 제일 즐겨마셨는지 볼까요?"
+                android:text="이번 달 어떤 카페인을 즐겨마셨는지 알아볼까요?"
+                android:textColor="@color/colorYellow"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -316,7 +321,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginBottom="20dp"
-                android:text="평소에 카페인 함유량이 쎈 음료들을 즐겨드시는군요!\n평소에 카페인 함유량이 쎈 음료들을 즐겨드시는군요!\n평소에 카페인 함유량이 쎈 음료들을 즐겨드시는군요!"
+                android:text="평소에 카페인 함유량이 높은 음료들을 즐겨드시는군요!\n각성이 되는 것도 좋지만, 고카페인 음료를 한번에 드시기보단\n적은 카페인 음료부터 마셔보며 조절하시는건 어떨까요?"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>

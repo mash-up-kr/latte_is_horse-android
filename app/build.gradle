@@ -15,6 +15,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
 
     }
 
@@ -81,6 +82,9 @@ dependencies {
     //mpandroidchard
     def mpAndroidChartVersion = "3.1.0"
     implementation "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}"
+
+    def multidexVersion = "1.0.3"
+    implementation "com.android.support:multidex:${multidexVersion}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
