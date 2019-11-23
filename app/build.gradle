@@ -74,6 +74,13 @@ dependencies {
     def coilVersion = "0.8.0"
     implementation "io.coil-kt:coil:$coilVersion"
 
+    //material-calendarview
+    def calenderviewVersion = "2.0.1"
+    implementation "com.github.prolificinteractive:material-calendarview:${calenderviewVersion}"
+
+    //mpandroidchard
+    def mpAndroidChartVersion = "3.1.0"
+    implementation "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
