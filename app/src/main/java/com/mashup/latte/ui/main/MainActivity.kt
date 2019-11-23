@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.add.AddActivity
+import com.mashup.latte.ui.statistic.StatisticActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,17 +19,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        fab.setOnClickListener {
-            val nextIntent = Intent(this, AddActivity::class.java)
-            startActivity(nextIntent)
-        }
+
         init()
     }
 
 
     private fun init() {
+        initEvent()
         initViewPager()
         initTabLayout()
+    }
+
+    private fun initEvent() {
+        fab.setOnClickListener {
+            val nextIntent = Intent(this, AddActivity::class.java)
+            startActivity(nextIntent)
+        }
+        statisticLayout.setOnClickListener {
+            val nextIntent = Intent(this, StatisticActivity::class.java)
+            startActivity(nextIntent)
+        }
     }
 
 
