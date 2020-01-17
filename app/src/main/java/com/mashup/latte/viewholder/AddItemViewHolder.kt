@@ -2,7 +2,7 @@ package com.mashup.latte.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.mashup.latte.dataclass.AddListItem
+import com.mashup.latte.data.AddListItem
 import kotlinx.android.synthetic.main.add_item.view.*
 
 class AddItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

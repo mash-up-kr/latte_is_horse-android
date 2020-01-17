@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="230dp"
+    android:layout_height="371dp"
+    android:background="@drawable/all_shape_gray_corner_circle"
+    android:elevation="24dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtMainYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:text="2019"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2019" />
+
+    <TextView
+        android:id="@+id/txtMainDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12.03"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/txtMainYear"
+        app:layout_constraintTop_toBottomOf="@id/txtMainYear"
+        tools:text="12.03" />
+
+    <ImageView
+        android:id="@+id/ImgMainDrunkImage"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMainDate"
+        tools:background="@mipmap/ic_launcher" />
+
+
+    <TextView
+        android:id="@+id/txtMainTodayTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/all_double_quotes"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/txtMainYear"
+        app:layout_constraintTop_toBottomOf="@id/ImgMainDrunkImage"
+        tools:text="&quot;술이 나를 마셨다&quot;" />
+
+    <TextView
+        android:id="@+id/txtMainDrunkBottleCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_drunk_bottle_count"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/txtMainYear"
+        app:layout_constraintTop_toBottomOf="@id/txtMainTodayTitle"
+        tools:text="@string/main_drunk_bottle_count" />
+
+    <TextView
+        android:id="@+id/txtMainDrunkAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_drunk_amount"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/txtMainYear"
+        app:layout_constraintTop_toBottomOf="@id/txtMainDrunkBottleCount"
+        tools:text="@string/main_drunk_amount" />
+
+
+    <TextView
+        android:id="@+id/txtMainDrunkAfterAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_drunk_after_action"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/txtMainYear"
+        app:layout_constraintTop_toBottomOf="@id/txtMainDrunkAmount"
+        tools:text="@string/main_drunk_after_action" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

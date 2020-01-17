@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.record.RecordActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutRecordActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/ImgRecordBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/all_ic_back_arrow_white_24dp" />
+
+        <TextView
+            android:id="@+id/txtRecordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gmarket_sans_ttf_medium"
+            android:text="@string/record_title"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/ImgRecordBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ImgRecordBack"
+            tools:text="@string/record_title" />
+
+        <TextView
+            android:id="@+id/txtRecordNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/gmarket_sans_ttf_medium"
+            android:text="@string/all_next"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutRecordProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:weightSum="0.3"
+        app:layout_constraintTop_toBottomOf="@+id/layoutRecordActionBar">
+
+        <View
+            android:id="@+id/viewRecordProgressColored"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_weight="0.1"
+            android:background="@color/colorPrimary" />
+
+        <View
+            android:id="@+id/viewRecordProgressNone"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_weight="0.2"
+            android:background="@color/gray" />
+
+    </LinearLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutRecordProgressBar" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

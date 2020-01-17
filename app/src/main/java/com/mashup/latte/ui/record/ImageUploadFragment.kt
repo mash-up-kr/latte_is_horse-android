@@ -1,4 +1,4 @@
-package com.mashup.latte.ui.main
+package com.mashup.latte.ui.record
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,17 +10,17 @@ import com.mashup.latte.R
 /**
  * Created by Namget on 2019.11.23.
  */
-class DrunkFragment : Fragment() {
+class ImageUploadFragment : Fragment() {
 
     companion object {
-        lateinit var drunkFragment: DrunkFragment
+        lateinit var imageUploadFragment: ImageUploadFragment
 
-        fun newInstance(): DrunkFragment {
-            synchronized(DrunkFragment::class) {
-                drunkFragment = DrunkFragment()
+        fun newInstance(): ImageUploadFragment {
+            synchronized(ImageUploadFragment::class) {
+                imageUploadFragment = ImageUploadFragment()
                 val args = Bundle()
-                drunkFragment.arguments = args
-                return drunkFragment
+                imageUploadFragment.arguments = args
+                return imageUploadFragment
             }
         }
     }

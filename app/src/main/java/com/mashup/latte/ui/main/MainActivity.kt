@@ -1,62 +1,57 @@
 package com.mashup.latte.ui.main
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
+import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
-import com.mashup.latte.ui.add.AddActivity
-import com.mashup.latte.ui.statistic.StatisticActivity
+import com.mashup.latte.ui.record.RecordActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var viewPagerFragment: ArrayList<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         init()
     }
-
 
     private fun init() {
         initEvent()
         initViewPager()
-        initTabLayout()
+        requestDrunkItem()
     }
 
     private fun initEvent() {
-        fab.setOnClickListener {
-            val nextIntent = Intent(this, AddActivity::class.java)
-            startActivity(nextIntent)
-        }
-        statisticLayout.setOnClickListener {
-            val nextIntent = Intent(this, StatisticActivity::class.java)
-            startActivity(nextIntent)
+        txtMainRecord.setOnClickListener {
+            startActivity<RecordActivity>()
         }
     }
 
 
+    private fun requestDrunkItem() {
+        initViewPager()
+    }
+
     private fun initViewPager() {
+
+        //서버로 부터 받아온 페이지수 추가
         val fragmentList = ArrayList<Fragment>().apply {
             add(DrunkFragment.newInstance())
-            add(QuestionFragment.newInstance())
+            add(DrunkFragment.newInstance())
+            add(DrunkFragment.newInstance())
+            add(DrunkFragment.newInstance())
         }
-
-        container.apply {
+        viewPagerMain.apply {
             adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList)
             offscreenPageLimit = 2
             currentItem = 0
         }
-    }
-
-    private fun initTabLayout() {
-        tabLayout.setupWithViewPager(container)
     }
 }
 

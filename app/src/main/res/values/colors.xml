@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2f4856</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#33c182</color>
+    <color name="colorPrimaryDark">#33c182</color>
     <color name="colorAccent">#d9cbc0</color>
     <color name="colorWhite">#f9f9f9</color>
     <color name="highlightDate">#D81B60</color>
@@ -11,6 +11,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="gray">#cecece</color>
     <color name="backGround">#2f4856</color>
     <color name="textColor">#f9f9f9</color>
 </resources>

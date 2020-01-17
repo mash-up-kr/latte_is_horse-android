@@ -1,4 +1,4 @@
-package com.mashup.latte.dataclass
+package com.mashup.latte.data
 
 data class AddListItem (
     //val imageUrl: String,

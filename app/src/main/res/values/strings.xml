@@ -1,17 +1,36 @@
 <resources>
     <string name="app_name">latte</string>
-
+    <string name="app_title_today">오늘의</string>
+    <string name="app_title_drunk_count">술,셈</string>
     <string name="bottom_action_home">홈</string>
     <string name="bottom_action_statistic">통계</string>
 
+    <string name="all_double_quotes">&quot;%s&quot;</string>
+    <string name="all_next">다음</string>
+
+
+    <string name="main_drunk_bottle_count">나는 <font color='#33c182'>%s</font>정도 마셨어요 </string>
+    <string name="main_drunk_amount">취한 정도는 <font color='#33c182'>%s</font></string>
+    <string name="main_drunk_after_action">술마시고 <font color='#33c182'>%s</font></string>
+
+
+
     <string name="main_drunk_caffeine">섭취 음료 카페인</string>
-    <string name="main_question_tired">힘들었어요:(</string>
+    <string name="main_question_ti1red">힘들었어요:(</string>
     <string name="main_question_good">잘 맞았어요:(</string>
     <string name="main_recommend_caffeine">하루 카페인 %dmg \n을 추천합니다.</string>
+    <string name="main_record">기록하기</string>
+
+    <string name="record_title">기록하기</string>
+    <string name="record_image_mood">1. 그날의 분위기가 궁금해요.</string>
+
+
     <string name="add_item_title">카페인 섭취 기록</string>
     <string name="date">날짜</string>
     <string name="time">시간</string>
     <string name="caffeine_drink">카페인음료</string>
     <string name="total">합계</string>
     <string name="ok">완료</string>
+
+
 </resources>

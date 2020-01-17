@@ -1,4 +1,4 @@
-package com.mashup.latte.ui.main.adapter
+package com.mashup.latte.ui.record.adapter
 
 import androidx.fragment.app.Fragment
 import java.util.*
@@ -6,7 +6,7 @@ import java.util.*
 /**
  * Created by Namget on 2019.11.23.
  */
-class MainViewPagerAdapter(
+class RecordViewPagerAdapter(
     fm: androidx.fragment.app.FragmentManager,
     private val fragmentList: ArrayList<Fragment>
 ) : androidx.fragment.app.FragmentStatePagerAdapter(
@@ -14,11 +14,4 @@ class MainViewPagerAdapter(
 ) {
     override fun getItem(position: Int): Fragment = fragmentList[position]
     override fun getCount(): Int = fragmentList.size
-    override fun getPageWidth(position: Int): Float {
-        return pageWidth
-    }
-
-    companion object {
-        const val pageWidth = 0.8f
-    }
 }
