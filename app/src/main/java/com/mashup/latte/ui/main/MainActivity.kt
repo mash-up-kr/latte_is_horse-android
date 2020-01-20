@@ -49,9 +49,17 @@ class MainActivity : AppCompatActivity() {
         }
         viewPagerMain.apply {
             adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList)
-            offscreenPageLimit = 2
-            currentItem = 0
+            offscreenPageLimit = PAGE_LIMIT
+            currentItem = PAGE_INITIAL_ITEM
+            pageMargin = PAGE_MARGIN
         }
+    }
+
+
+    companion object{
+        const val PAGE_LIMIT = 2
+        const val PAGE_MARGIN = 50
+        const val PAGE_INITIAL_ITEM = 0
     }
 }
 

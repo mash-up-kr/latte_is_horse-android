@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
-import com.mashup.latte.ui.main.DrunkFragment
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_record.*
 import java.util.*
@@ -15,7 +14,7 @@ import java.util.*
 
 class RecordActivity : AppCompatActivity() {
 
-    private var progressPosition = 1
+    private var progressCurrentPage = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,21 +29,33 @@ class RecordActivity : AppCompatActivity() {
     }
 
     private fun initEvent() {
+        ImgRecordBack.setOnClickListener {
+            finish()
+        }
+        txtRecordNext.setOnClickListener {
+            val currentCount = viewPagerRecord.currentItem
+            if (PROGRESS_PAGE_COUNT == (currentCount + 1)) {
+                //서버 전송
+            } else {
+                viewPagerRecord.currentItem = currentCount + 1
+            }
+        }
+
     }
 
 
     private fun initViewPager() {
         //서버로 부터 받아온 페이지수 추가
         val fragmentList = ArrayList<Fragment>().apply {
-            add(DrunkFragment.newInstance())
-            add(DrunkFragment.newInstance())
-            add(DrunkFragment.newInstance())
+            add(RecordImageFragment.newInstance())
+            add(RecordDetailFragment.newInstance())
+            add(RecordDrunkenFragment.newInstance())
         }
 
 
         viewPagerRecord.apply {
             adapter = RecordViewPagerAdapter(supportFragmentManager, fragmentList)
-            offscreenPageLimit = 3
+            offscreenPageLimit = PROGRESS_PAGE_COUNT
             currentItem = 0
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) {}
@@ -57,18 +68,25 @@ class RecordActivity : AppCompatActivity() {
 
                 override fun onPageSelected(position: Int) {
                     animateProgress(position)
+                    updateUI(position)
                 }
             })
         }
     }
 
+    private fun updateUI(position: Int) {
+        if (PROGRESS_PAGE_COUNT == (position + 1)) txtRecordNext.text =
+            getString(R.string.all_complete)
+        else txtRecordNext.text = getString(R.string.all_next)
+    }
+
     //progressAnimate
-    fun animateProgress(position: Int) {
+    private fun animateProgress(position: Int) {
         val coloredWidthProgressAnimator: ValueAnimator = ValueAnimator.ofFloat(
-            (PROGRESS_WEIGHT_STEP * progressPosition),
+            (PROGRESS_WEIGHT_STEP * progressCurrentPage),
             (PROGRESS_WEIGHT_STEP * (position + 1))
         ).apply {
-            duration = 300
+            duration = PROGRESS_DURATION
             addUpdateListener {
                 val value: Float = it.animatedValue as Float
                 (viewRecordProgressColored.layoutParams as (LinearLayout.LayoutParams)).weight =
@@ -77,11 +95,13 @@ class RecordActivity : AppCompatActivity() {
             }
         }
         coloredWidthProgressAnimator.start()
-        progressPosition = (position + 1)
+        progressCurrentPage = (position + 1)
     }
 
     companion object {
+        const val PROGRESS_PAGE_COUNT = 3
         const val PROGRESS_WEIGHT_STEP = 0.1f
+        const val PROGRESS_DURATION = 200L
     }
 
 }
