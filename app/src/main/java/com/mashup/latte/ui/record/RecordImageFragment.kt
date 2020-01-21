@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
+import com.mashup.latte.ui.record.adapter.RecordImageRecyclerViewAdapter
+import kotlinx.android.synthetic.main.fragment_record_image.*
 
 /**
  * Created by Namget on 2019.11.23.
  */
 class RecordImageFragment : Fragment() {
+
+    lateinit var recordImageRecyclerViewAdapter: RecordImageRecyclerViewAdapter
 
     companion object {
         lateinit var recordImageFragment: RecordImageFragment
@@ -35,7 +39,12 @@ class RecordImageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        recordImageRecyclerViewAdapter = RecordImageRecyclerViewAdapter(requireContext())
 
+        recyclerViewImage.apply {
+            setHasFixedSize(true)
+            adapter = recordImageRecyclerViewAdapter
+        }
     }
 
 }

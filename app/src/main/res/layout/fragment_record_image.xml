@@ -28,4 +28,14 @@
         app:layout_constraintTop_toBottomOf="@id/txtUploadMoodTitle" />
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtUploadImageSelect" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
