@@ -1,6 +1,7 @@
 package com.mashup.latte.ui.record
 
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -104,4 +105,7 @@ class RecordActivity : AppCompatActivity() {
         const val PROGRESS_DURATION = 200L
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }

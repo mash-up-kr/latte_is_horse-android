@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="230dp"
     android:layout_height="370dp"
-    android:background="@drawable/all_shape_gray_corner_circle"
+    android:background="@drawable/shape_gray_corner_circle"
     android:elevation="3dp"
     android:orientation="vertical">
 

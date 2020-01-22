@@ -1,21 +1,30 @@
 package com.mashup.latte.ui.record.viewholder
 
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.mashup.latte.R
-import com.mashup.latte.ext.e
+import com.mashup.latte.ui.base.BaseViewHolder
 import com.mashup.latte.ui.record.ImageTile
 
 /**
  * Created by Namget on 2020.01.21.
  */
-class GalleryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class GalleryViewHolder(view: View, selectedCallback: (Uri, ImageView) -> Unit) :
+    BaseViewHolder<ImageTile>(view) {
     private val recordImage: ImageView = view.findViewById(R.id.ImgRecordItemImage)
+    private lateinit var imageUri: Uri
 
-    fun bind(imageTile: ImageTile) {
-        e("GalleryViewHolder", "${imageTile.uri}")
+    init {
+        view.setOnClickListener {
+            if (::imageUri.isInitialized)
+                selectedCallback(imageUri, recordImage)
+        }
+    }
+
+    override fun bind(imageTile: ImageTile) {
+        imageUri = imageTile.uri
         recordImage.load(imageTile.uri)
     }
 }

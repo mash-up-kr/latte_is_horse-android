@@ -28,6 +28,7 @@
 
     <!--record upload image-->
     <string name="record_image_mood">1. 그날의 분위기가 궁금해요.</string>
+    <string name="record_image_max_count1">이미지 최대 갯수는 3개 입니다.</string>
 
     <!--record detail-->
     <string name="record_detail_date">2. 날짜를 선택해주세요</string>

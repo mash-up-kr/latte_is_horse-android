@@ -12,18 +12,7 @@ import com.mashup.latte.R
  */
 class RecordDrunkenFragment : Fragment() {
 
-    companion object {
-        lateinit var recordDrunkenFragment: RecordDrunkenFragment
 
-        fun newInstance(): RecordDrunkenFragment {
-            synchronized(RecordDrunkenFragment::class) {
-                recordDrunkenFragment = RecordDrunkenFragment()
-                val args = Bundle()
-                recordDrunkenFragment.arguments = args
-                return recordDrunkenFragment
-            }
-        }
-    }
 
 
     override fun onCreateView(
@@ -36,6 +25,19 @@ class RecordDrunkenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+    }
+
+    companion object {
+        lateinit var recordDrunkenFragment: RecordDrunkenFragment
+
+        fun newInstance(): RecordDrunkenFragment {
+            synchronized(RecordDrunkenFragment::class) {
+                recordDrunkenFragment = RecordDrunkenFragment()
+                val args = Bundle()
+                recordDrunkenFragment.arguments = args
+                return recordDrunkenFragment
+            }
+        }
     }
 
 }

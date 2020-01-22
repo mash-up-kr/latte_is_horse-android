@@ -1,14 +1,17 @@
-package com.mashup.latte.ui.record.viewholder
+package com.mashup.latte.ui.record
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.ImageView
+import android.widget.FrameLayout
 
-class RecordImageView @JvmOverloads constructor(
+/**
+ * Created by Namget on 2020.01.22.
+ */
+class RecordFrameLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ImageView(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)

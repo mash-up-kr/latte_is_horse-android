@@ -16,18 +16,6 @@ import java.util.*
  */
 class RecordDetailFragment : Fragment() {
 
-    companion object {
-        lateinit var recordDetailFragment: RecordDetailFragment
-
-        fun newInstance(): RecordDetailFragment {
-            synchronized(RecordDetailFragment::class) {
-                recordDetailFragment = RecordDetailFragment()
-                val args = Bundle()
-                recordDetailFragment.arguments = args
-                return recordDetailFragment
-            }
-        }
-    }
 
 
     override fun onCreateView(
@@ -57,6 +45,21 @@ class RecordDetailFragment : Fragment() {
 
     private fun initRecyclerView() {
 
+    }
+
+
+
+    companion object {
+        lateinit var recordDetailFragment: RecordDetailFragment
+
+        fun newInstance(): RecordDetailFragment {
+            synchronized(RecordDetailFragment::class) {
+                recordDetailFragment = RecordDetailFragment()
+                val args = Bundle()
+                recordDetailFragment.arguments = args
+                return recordDetailFragment
+            }
+        }
     }
 
 
