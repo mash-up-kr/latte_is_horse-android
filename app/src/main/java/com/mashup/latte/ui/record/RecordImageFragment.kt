@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.api.load
 import com.mashup.latte.R
-import com.mashup.latte.ext.e
 import com.mashup.latte.ui.record.adapter.RecordImageRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_record_image.*
 
@@ -45,6 +44,10 @@ class RecordImageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView(){
         recordImageRecyclerViewAdapter =
             RecordImageRecyclerViewAdapter(requireContext(), imageSelected, takePicture)
 

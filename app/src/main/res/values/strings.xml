@@ -38,8 +38,10 @@
 
     <!--record drunken-->
     <string name="record_detail_drunken">4. 술을 마시고 뭐했나요?</string>
+    <string name="record_detail_write_final">5. 마지막으로 한마디</string>
+    <string name="record_detail_write_final_hint">누구와 마셨는지 술은 달았는지</string>
 
-
+    <string name="record_detail_drunken_after_text">오늘밤 주인공은 나야! 나!</string>
 
 
     <string name="add_item_title">카페인 섭취 기록</string>

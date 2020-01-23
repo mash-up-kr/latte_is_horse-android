@@ -11,7 +11,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.mashup.latte.R
 import com.mashup.latte.ext.toastMakeToast
-import com.mashup.latte.ui.record.ImageTile
+import com.mashup.latte.ui.record.data.ImageTile
 import com.mashup.latte.ui.record.viewholder.GalleryViewHolder
 import com.mashup.latte.ui.record.viewholder.TakePictureViewHolder
 
@@ -68,7 +68,7 @@ class RecordImageRecyclerViewAdapter(
             //최대 추가갯수보다 적다면 추가
             if (_selectedUri.size < MAX_SELECTABLE_COUNT) {
                 recordImage.foreground =
-                    context.applicationContext.getDrawable(R.drawable.shape_corner_circle_white_transparent)
+                    context.applicationContext.getDrawable(R.drawable.shape_rectangle_white_transparent)
                 _selectedUri.add(uri)
                 // 선택된 갤러리의 사진을 보여줌
                 galleryCallback(uri)
@@ -112,7 +112,13 @@ class RecordImageRecyclerViewAdapter(
                 var count = 0
 
                 while (cursor.moveToNext() && count < PREVIEW_MAXIMUM_COUNT) {
-                    imageTiles.add(ImageTile(Uri.parse("${uri}/${cursor.getString(0)}")))
+                    imageTiles.add(
+                        ImageTile(
+                            Uri.parse(
+                                "${uri}/${cursor.getString(0)}"
+                            )
+                        )
+                    )
                     count++
                 }
             }
