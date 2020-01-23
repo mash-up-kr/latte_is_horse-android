@@ -1,4 +1,6 @@
 <resources>
+    <string name="kakao_app_key">560ac09a791a3e65b22adcbdd05880ad</string>
+
     <string name="app_name">latte</string>
     <string name="app_title_today">오늘의</string>
     <string name="app_title_drunk_count">술,셈</string>
@@ -13,7 +15,6 @@
     <string name="main_drunk_bottle_count">나는 <font color='#33c182'>%s</font>정도 마셨어요 </string>
     <string name="main_drunk_amount">취한 정도는 <font color='#33c182'>%s</font></string>
     <string name="main_drunk_after_action">술마시고 <font color='#33c182'>%s</font></string>
-
 
 
     <string name="main_drunk_caffeine">섭취 음료 카페인</string>
@@ -38,8 +39,6 @@
 
     <!--record drunken-->
     <string name="record_detail_drunken">4. 술을 마시고 뭐했나요?</string>
-
-
 
 
     <string name="add_item_title">카페인 섭취 기록</string>

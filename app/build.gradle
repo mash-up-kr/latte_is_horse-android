@@ -51,6 +51,9 @@ dependencies {
     implementation "androidx.core:core-ktx:$androidXVersion"
     implementation "androidx.fragment:fragment-ktx:$androidXVersion"
 
+    // 카카오톡 SDK 추가
+
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 
     //constraint
     def constraintVersion = "2.0.0-beta2"
