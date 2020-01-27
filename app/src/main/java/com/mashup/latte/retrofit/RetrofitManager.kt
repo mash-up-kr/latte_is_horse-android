@@ -1,17 +1,19 @@
 package com.mashup.latte.retrofit
 
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitManager {
-    private const val BASE_URL = ""
+    private val BASE_URL = "https://www.google.com"
 
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    val instance: Api by lazy {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
 
-    fun createApi() : RetrofitApi {
-        return retrofit.create(com.mashup.latte.retrofit.RetrofitApi::class.java)
+        retrofit.create(Api::class.java)
     }
 }
