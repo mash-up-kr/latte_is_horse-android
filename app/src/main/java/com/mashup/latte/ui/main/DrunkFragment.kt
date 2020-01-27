@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
+import com.mashup.latte.retrofit.model.Diary
+import kotlinx.android.synthetic.main.fragment_main_drunk.view.*
 
 /**
  * Created by Namget on 2019.11.23.
@@ -15,10 +17,9 @@ class DrunkFragment : Fragment() {
     companion object {
         lateinit var drunkFragment: DrunkFragment
 
-        fun newInstance(): DrunkFragment {
+        fun newInstance(args: Bundle?): DrunkFragment {
             synchronized(DrunkFragment::class) {
                 drunkFragment = DrunkFragment()
-                val args = Bundle()
                 drunkFragment.arguments = args
                 return drunkFragment
             }
@@ -31,7 +32,14 @@ class DrunkFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main_drunk, container, false)
+        val view =  inflater.inflate(R.layout.fragment_main_drunk, container, false)
+
+        val diary = arguments?.getSerializable("diary") as Diary?
+        diary?.apply {
+            /* TODO: View Update */
+            view.txtMainDrunkAmount.text = drunken_level
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
