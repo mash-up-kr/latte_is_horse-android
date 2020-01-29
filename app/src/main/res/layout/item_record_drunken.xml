@@ -16,7 +16,7 @@
         android:id="@+id/txtDrunkenItemTitle"
         android:layout_width="126dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/gmarket_sans_tff_bold"
+        android:fontFamily="@font/gmarket_sans_ttf_bold"
         android:maxLines="2"
         android:padding="2dp"
         android:text="@string/record_detail_drunken_after_text"

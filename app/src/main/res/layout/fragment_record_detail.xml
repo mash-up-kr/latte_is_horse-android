@@ -36,11 +36,13 @@
 
         <Button
             android:id="@+id/btnDetailDateSelector"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="40dp"
-            android:fontFamily="@font/gmarket_sans_ttf_light"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/shape_corner_circle_white"
+            android:fontFamily="@font/gmarket_sans_ttf_medium"
             android:text="@string/record_detail_date_btn_hint"
             android:textColor="@color/black"
             android:textSize="12sp"
@@ -50,17 +52,81 @@
 
 
         <TextView
-            android:id="@+id/txtDetailStatusTitle"
+            android:id="@+id/txtDetailDrunkHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/gmarket_sans_ttf_light"
-            android:text="@string/record_detail_status"
+            android:text="@string/record_detail_drunken_hint"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/txtDrunkenAfterTitle"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@id/txtDetailDateHint"
             app:layout_constraintTop_toBottomOf="@id/btnDetailDateSelector" />
 
+
+        <!--       <TextView
+                   android:id="@+id/txtDetailStatusTitle"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="70dp"
+                   android:fontFamily="@font/gmarket_sans_ttf_light"
+                   android:text="@string/record_detail_status"
+                   android:textColor="@color/black"
+                   android:textSize="16sp"
+                   app:layout_constraintStart_toStartOf="@id/txtDrunkenAfterTitle"
+                   app:layout_constraintTop_toBottomOf="@id/btnDetailDateSelector" />-->
+
+
+        <!-- 시크바 -->
+        <SeekBar
+            android:id="@+id/seekbarDetailDrunken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="4"
+            android:progress="3"
+            android:progressDrawable="@drawable/seekbar_4count"
+            android:thumb="@drawable/seekbar_4count_thumb"
+            app:layout_constraintTop_toBottomOf="@id/txtDetailDrunkHint" />
+
+
+        <TextView
+            android:id="@+id/txtDetailHangoverHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/gmarket_sans_ttf_light"
+            android:text="@string/record_detail_hangover_hint"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@id/txtDetailDateHint"
+            app:layout_constraintTop_toBottomOf="@id/seekbarDetailDrunken" />
+
+        <ImageView
+            android:id="@+id/imgDetailHangoverStatusWeak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/imgDetailHangoverStatusMedium"
+            app:layout_constraintTop_toBottomOf="@id/txtDetailHangoverHint" />
+
+        <ImageView
+            android:id="@+id/imgDetailHangoverStatusMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toRightOf="@id/imgDetailHangoverStatusWeak"
+            app:layout_constraintRight_toLeftOf="@id/imgDetailHangoverStatusStrong"
+            app:layout_constraintTop_toTopOf="@id/imgDetailHangoverStatusWeak" />
+
+        <ImageView
+            android:id="@+id/imgDetailHangoverStatusStrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toRightOf="@id/imgDetailHangoverStatusMedium"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgDetailHangoverStatusWeak" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

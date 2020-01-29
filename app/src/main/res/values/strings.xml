@@ -33,7 +33,9 @@
 
     <!--record detail-->
     <string name="record_detail_date">2. 날짜를 선택해주세요</string>
-    <string name="record_detail_date_hint">(속닥속닥) 기억이 안난다면 입력하지 않으셔도 됩니다.</string>
+    <string name="record_detail_date_hint">날짜 설정</string>
+    <string name="record_detail_drunken_hint">취한 정도</string>
+    <string name="record_detail_hangover_hint">숙취 정도</string>
     <string name="record_detail_date_btn_hint">여기를 눌러 날짜를 선택하세요.</string>
     <string name="record_detail_status">3. 그 날의 상태는 어땠나요?</string>
 
