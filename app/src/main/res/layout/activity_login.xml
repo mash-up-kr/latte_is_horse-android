@@ -5,11 +5,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="140dp"
+        android:src="@drawable/img_logo" />
+    <TextView
+        android:id="@+id/btn_custom_login"
+        android:layout_width="296dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/img_login_box"
+        android:text="KAKAO 계정으로 로그인"
+        android:textSize="15sp"
+        android:textColor="#33c182"
+        android:gravity="center"
+        android:fontFamily="@font/gmarket_sans_ttf_medium"/>
 
     <com.kakao.usermgmt.LoginButton
         android:id="@+id/btn_kakao_login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/btn_next"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/invalid_name"/>
+    <ImageView
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_underbar"/>
 
 </LinearLayout>
