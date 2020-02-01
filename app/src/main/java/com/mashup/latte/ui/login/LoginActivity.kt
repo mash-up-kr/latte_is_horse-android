@@ -21,7 +21,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.mashup.latte.R.layout.activity_login)
 
-        btn_kakao_login.setOnClickListener{ btn_kakao_login.performClick()}
+        btn_custom_login.setOnClickListener{ btn_kakao_login.performClick()}
+        btn_next.setOnClickListener{redirectSignupActivity()}
 
         callback = SessionCallback()
         Session.getCurrentSession().addCallback(callback)
