@@ -65,27 +65,27 @@ class MainActivity : AppCompatActivity() {
 //            })
 //        )
 
-
         //서버로 부터 받아온 페이지수 추가
         val fragmentList = ArrayList<Fragment>().apply {
             val alcoholRecords = ArrayList<AlcoholLevel>()
             alcoholRecords.add(AlcoholLevel(2.0, 2.5, 1))
 
-//            val bundle = Bundle()
-//            bundle.putSerializable("diary", Diary(
-//                1,
-//                "굿",
-//                "18:28:56",
-//                "쏘쏘",
-//                "투뱃",
-//                "굿",
-//                alcoholRecords
-//            ))
+            val bundle = Bundle()
+            bundle.putSerializable("diary", Diary(
+                1,
+                "굿",
+                "18:28:56",
+                "쏘쏘",
+                "투뱃",
+                "굿",
+                alcoholRecords
+            ))
 
-            add(DrunkFragment.newInstance(null))
-            add(DrunkFragment.newInstance(null))
-            add(DrunkFragment.newInstance(null))
-            add(DrunkFragment.newInstance(null))
+            add(DrunkFragment.newInstance(bundle))
+            add(DrunkFragment.newInstance(bundle))
+            add(DrunkFragment.newInstance(bundle))
+            add(DrunkFragment.newInstance(bundle))
+            add(DrunkFragment.newInstance(bundle))
         }
         viewPagerMain.apply {
             adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList)

@@ -7,7 +7,7 @@ data class AlcoholLevel(
     val bottles: Double,
     val glasses: Double,
     val diary: Int
-)
+): Serializable
 
 data class Diary(
     val creator: Int,
