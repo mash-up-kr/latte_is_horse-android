@@ -15,12 +15,14 @@ import kotlinx.android.synthetic.main.fragment_main_drunk.view.*
 class DrunkFragment : Fragment() {
 
     companion object {
-        lateinit var drunkFragment: DrunkFragment
+        private lateinit var drunkFragment: DrunkFragment
 
-        fun newInstance(args: Bundle?): DrunkFragment {
+        fun newInstance(args: Bundle? = null): DrunkFragment {
             synchronized(DrunkFragment::class) {
                 drunkFragment = DrunkFragment()
-                drunkFragment.arguments = args
+                if (args != null) {
+                    drunkFragment.arguments = args
+                }
                 return drunkFragment
             }
         }
@@ -32,7 +34,7 @@ class DrunkFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_main_drunk, container, false)
+        val view = inflater.inflate(R.layout.fragment_main_drunk, container, false)
 
         val diary = arguments?.getSerializable("diary") as Diary?
         diary?.apply {
@@ -54,7 +56,6 @@ class DrunkFragment : Fragment() {
     private fun requestTodayDrunkList() {
 
     }
-
 
 
 }
