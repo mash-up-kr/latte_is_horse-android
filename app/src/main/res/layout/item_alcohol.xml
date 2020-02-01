@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drunkFillLayout"
+    android:layout_width="match_parent"
+    android:layout_height="147dp"
+    android:background="@drawable/shape_corner_circle_white"
+    android:padding="5dp">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_close_black_11dp" />
+
+    <ImageView
+        android:id="@+id/imgItemAlcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toTopOf="@id/txtItemAlcohol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:background="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/txtItemAlcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7.2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/imgItemAlcohol"
+        app:layout_constraintStart_toStartOf="@id/imgItemAlcohol"
+        app:layout_constraintTop_toBottomOf="@id/imgItemAlcohol"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="소주" />
+
+    <EditText
+        android:id="@+id/edtAlcoholBottle"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintLeft_toRightOf="@id/imgItemAlcohol"
+        app:layout_constraintRight_toLeftOf="@id/txtAlcoholBottle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtAlcoholBottle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="병"
+        android:textColor="@color/black"
+        app:layout_constraintBaseline_toBaselineOf="@id/edtAlcoholBottle"
+        app:layout_constraintLeft_toRightOf="@id/edtAlcoholBottle"
+        app:layout_constraintRight_toLeftOf="@id/edtAlcoholCup"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtAlcoholCup"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/edtAlcoholBottle"
+        app:layout_constraintLeft_toRightOf="@id/txtAlcoholBottle"
+        app:layout_constraintRight_toLeftOf="@id/txtAlcoholCup" />
+
+    <TextView
+        android:id="@+id/txtAlcoholCup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="잔"
+        android:textColor="@color/black"
+        app:layout_constraintBaseline_toBaselineOf="@id/edtAlcoholBottle"
+        app:layout_constraintHorizontal_chainStyle=""
+        app:layout_constraintLeft_toRightOf="@id/edtAlcoholCup"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/edtAlcoholBottle"
+        app:layout_constraintRight_toRightOf="@id/txtAlcoholCup"
+        app:layout_constraintTop_toBottomOf="@id/edtAlcoholBottle" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

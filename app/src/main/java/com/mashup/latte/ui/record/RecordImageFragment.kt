@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_record_image.*
  */
 class RecordImageFragment : Fragment() {
 
-    lateinit var recordImageRecyclerViewAdapter: RecordImageRecyclerViewAdapter
+    private lateinit var recordImageRecyclerViewAdapter: RecordImageRecyclerViewAdapter
 
 
     private val imageSelected: (Uri) -> Unit = {

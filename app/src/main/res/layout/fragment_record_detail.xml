@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,11 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="38dp"
             android:fontFamily="@font/gmarket_sans_ttf_light"
             android:text="@string/record_detail_date_hint"
-            android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textColor="@color/gray979797"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/txtDrunkenAfterTitle"
             app:layout_constraintTop_toBottomOf="@id/txtDrunkenAfterTitle" />
 
@@ -58,53 +59,116 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/gmarket_sans_ttf_light"
             android:text="@string/record_detail_drunken_hint"
-            android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textColor="@color/gray979797"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/txtDetailDateHint"
             app:layout_constraintTop_toBottomOf="@id/btnDetailDateSelector" />
 
 
-        <!--       <TextView
-                   android:id="@+id/txtDetailStatusTitle"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="70dp"
-                   android:fontFamily="@font/gmarket_sans_ttf_light"
-                   android:text="@string/record_detail_status"
-                   android:textColor="@color/black"
-                   android:textSize="16sp"
-                   app:layout_constraintStart_toStartOf="@id/txtDrunkenAfterTitle"
-                   app:layout_constraintTop_toBottomOf="@id/btnDetailDateSelector" />-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameDetailDrunken"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtDetailDrunkHint">
 
 
-        <!-- 시크바 -->
-        <SeekBar
-            android:id="@+id/seekbarDetailDrunken"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="4"
-            android:progress="3"
-            android:progressDrawable="@drawable/seekbar_4count"
-            android:thumb="@drawable/seekbar_4count_thumb"
-            app:layout_constraintTop_toBottomOf="@id/txtDetailDrunkHint" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideNothing"
+                style="@style/drunkenGuideLine"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideNothing2"
+                style="@style/drunkenGuideLine"
+                app:layout_constraintGuide_percent="0.20" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLittle"
+                style="@style/drunkenGuideLine"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLittle2"
+                style="@style/drunkenGuideLine"
+                app:layout_constraintGuide_percent="0.45" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideMuch"
+                style="@style/drunkenGuideLine"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideMuch2"
+                style="@style/drunkenGuideLine"
+                app:layout_constraintGuide_percent="0.70" />
+
+
+            <TextView
+                android:id="@+id/txtDetailDrunkenDog"
+                style="@style/drunkenDetailTextStyle"
+                android:gravity="center"
+                android:text="@string/record_detail_drunken_dog"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideMuch2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtDetailDrunkenMuch"
+                style="@style/drunkenDetailTextStyle"
+                android:gravity="center"
+                android:text="@string/record_detail_drunken_much"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideMuch"
+                app:layout_constraintStart_toStartOf="@id/guideLittle2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtDetailDrunkenlittle"
+                style="@style/drunkenDetailTextStyle"
+                android:gravity="center"
+                android:text="@string/record_detail_drunken_little"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideLittle"
+                app:layout_constraintStart_toStartOf="@id/guideNothing2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtDetailDrunkenNothing"
+                style="@style/drunkenDetailTextStyle"
+                android:text="@string/record_detail_drunken_nothing"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideNothing"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <TextView
             android:id="@+id/txtDetailHangoverHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="43dp"
             android:fontFamily="@font/gmarket_sans_ttf_light"
             android:text="@string/record_detail_hangover_hint"
-            android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textColor="@color/gray979797"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/txtDetailDateHint"
-            app:layout_constraintTop_toBottomOf="@id/seekbarDetailDrunken" />
+            app:layout_constraintTop_toBottomOf="@id/frameDetailDrunken" />
 
         <ImageView
             android:id="@+id/imgDetailHangoverStatusWeak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/imgDetailHangoverStatusMedium"
@@ -127,6 +191,82 @@
             app:layout_constraintLeft_toRightOf="@id/imgDetailHangoverStatusMedium"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgDetailHangoverStatusWeak" />
+
+        <TextView
+            android:id="@+id/txtDetailSortAlcohol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:fontFamily="@font/gmarket_sans_ttf_light"
+            android:text="@string/record_detail_sort_alcohol_hint"
+            android:textColor="@color/gray979797"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/txtDetailDateHint"
+            app:layout_constraintTop_toBottomOf="@id/imgDetailHangoverStatusStrong" />
+
+
+        <ScrollView
+            android:id="@+id/scrollDetailAlcohol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:orientation="horizontal"
+            android:paddingStart="29dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtDetailSortAlcohol">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgDetailSoju"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/imgDetailBeer"
+                    style="@style/detailAlcoholImage"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/imgDetailWine"
+                    style="@style/detailAlcoholImage"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/imgDetailRiceWine"
+                    style="@style/detailAlcoholImage"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/imgDetailLiquor"
+                    style="@style/detailAlcoholImage"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/imgDetailEtc"
+                    style="@style/detailAlcoholImage"
+                    android:src="@mipmap/ic_launcher" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewDetailAlcohol"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollDetailAlcohol"
+            tools:listitem="@layout/item_alcohol" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -12,6 +12,7 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="gray">#cecece</color>
+    <color name="gray979797">#979797</color>
     <color name="garyTransparent">#63bebebe</color>
     <color name="whiteTransparent">#88ffffff</color>
     <color name="backGround">#2f4856</color>

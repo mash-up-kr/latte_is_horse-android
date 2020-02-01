@@ -28,7 +28,7 @@ class RecordDrunkenFragment : Fragment() {
     }
 
     companion object {
-        lateinit var recordDrunkenFragment: RecordDrunkenFragment
+        private lateinit var recordDrunkenFragment: RecordDrunkenFragment
 
         fun newInstance(): RecordDrunkenFragment {
             synchronized(RecordDrunkenFragment::class) {

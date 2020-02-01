@@ -12,4 +12,24 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
+    <style name="drunkenDetailTextStyle">
+        <item name="android:background">@drawable/shape_corner_circle_white</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/gmarket_sans_ttf_medium</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="drunkenGuideLine">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="detailAlcoholImage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

@@ -19,15 +19,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDrunken"
+
+    <EditText
+        android:id="@+id/txtDetailStatusTitle"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        tools:listitem=""
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/txtDrunkenAfterTitle" />
+        android:layout_marginEnd="20dp"
+        android:background="@null"
+        android:fontFamily="@font/gmarket_sans_ttf_light"
+        android:gravity="top"
+        android:hint="@string/record_detail_write_final_hint"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/txtDrunkenAfterTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtDrunkenAfterTitle"
+        tools:hint="@string/record_detail_write_final_hint" />
 
 
     <TextView
@@ -39,26 +48,19 @@
         android:text="@string/record_detail_write_final"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/txtDrunkenAfterTitle"
-        app:layout_constraintTop_toBottomOf="@id/recyclerViewDrunken" />
+        app:layout_constraintStart_toStartOf="@id/txtDetailStatusTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtDetailStatusTitle" />
 
 
-    <EditText
-        android:id="@+id/txtDetailStatusTitle"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDrunken"
         android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:layout_marginStart="20dp"
+        android:layout_height="200dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/shape_corner_circle_gray_transparent"
-        android:fontFamily="@font/gmarket_sans_ttf_light"
-        android:gravity="top"
-        android:hint="@string/record_detail_write_final_hint"
-        android:padding="12dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/txtDrunkenAfterTitle"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/txtDrunkenFinalTitle"
-        tools:hint="@string/record_detail_write_final_hint" />
+        tools:listitem="@layout/item_drunken" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

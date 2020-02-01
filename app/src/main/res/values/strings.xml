@@ -36,14 +36,19 @@
     <string name="record_detail_date_hint">날짜 설정</string>
     <string name="record_detail_drunken_hint">취한 정도</string>
     <string name="record_detail_hangover_hint">숙취 정도</string>
+    <string name="record_detail_sort_alcohol_hint">술 종류 &amp; 양</string>
     <string name="record_detail_date_btn_hint">여기를 눌러 날짜를 선택하세요.</string>
     <string name="record_detail_status">3. 그 날의 상태는 어땠나요?</string>
+    
+    <string name="record_detail_drunken_nothing">멀쩡함</string>
+    <string name="record_detail_drunken_little">조금취함</string>
+    <string name="record_detail_drunken_much">많이취함</string>
+    <string name="record_detail_drunken_dog">댕댕이</string>
 
     <!--record drunken-->
-    <string name="record_detail_drunken">4. 술을 마시고 뭐했나요?</string>
-    <string name="record_detail_write_final">5. 마지막으로 한마디</string>
-    <string name="record_detail_write_final_hint">누구와 마셨는지 술은 달았는지</string>
-
+    <string name="record_detail_drunken">3. 후기를 써주세요!</string>
+    <string name="record_detail_write_final">4. 그 날의 주사를 골라주세요!</string>
+    <string name="record_detail_write_final_hint">ex. 누구와..마셨는지..(˵͡°͜ʖ͡°˵), 술은..달았는지..</string>
     <string name="record_detail_drunken_after_text">오늘밤 주인공은 나야! 나!</string>
 
     <string name="add_item_title">카페인 섭취 기록</string>
