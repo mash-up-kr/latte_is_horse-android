@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mashup.latte.ui.record.RecordFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mashup.latte.ui.record.view.RecordFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="#ccc"
     android:layout_height="wrap_content">
 
 
-    <com.mashup.latte.ui.record.RecordImageView
+    <com.mashup.latte.ui.record.view.RecordImageView
         android:id="@+id/ImgRecordItemImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"/>
 
-</com.mashup.latte.ui.record.RecordFrameLayout>
+</com.mashup.latte.ui.record.view.RecordFrameLayout>

@@ -1,4 +1,4 @@
-package com.mashup.latte.ui.record
+package com.mashup.latte.ui.record.view
 
 import android.content.Context
 import android.util.AttributeSet

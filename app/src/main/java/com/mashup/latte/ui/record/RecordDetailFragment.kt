@@ -42,6 +42,7 @@ class RecordDetailFragment : Fragment() {
         }
         initRecyclerView()
         initHangoverStatusImageView()
+        initAlcoholImageView()
     }
 
     private fun initRecyclerView() {
@@ -66,6 +67,18 @@ class RecordDetailFragment : Fragment() {
                     imgDetailHangoverStatusMedium.isSelected = false
                     imgDetailHangoverStatusStrong.isSelected = true
                 }
+            }
+        }
+        imgDetailHangoverStatusWeak.setOnClickListener(statusClickListener)
+        imgDetailHangoverStatusWeak.isSelected = true
+        imgDetailHangoverStatusMedium.setOnClickListener(statusClickListener)
+        imgDetailHangoverStatusStrong.setOnClickListener(statusClickListener)
+    }
+
+    private fun initAlcoholImageView() {
+        val statusClickListener: View.OnClickListener = View.OnClickListener {
+            when (it.id) {
+
             }
         }
         imgDetailHangoverStatusWeak.setOnClickListener(statusClickListener)

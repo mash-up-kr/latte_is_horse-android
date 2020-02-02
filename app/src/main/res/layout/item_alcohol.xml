@@ -74,7 +74,7 @@
         android:text="잔"
         android:textColor="@color/black"
         app:layout_constraintBaseline_toBaselineOf="@id/edtAlcoholBottle"
-        app:layout_constraintHorizontal_chainStyle=""
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintLeft_toRightOf="@id/edtAlcoholCup"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
