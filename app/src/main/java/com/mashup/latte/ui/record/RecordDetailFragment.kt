@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.ext.showDateDialog
+import com.mashup.latte.ui.record.adapter.RecordDetailRecyclerViewAdapter
+import com.mashup.latte.ui.record.data.*
 import kotlinx.android.synthetic.main.fragment_record_detail.*
 import kotlinx.android.synthetic.main.fragment_record_image.*
 import java.util.*
@@ -17,6 +19,9 @@ import java.util.*
  */
 class RecordDetailFragment : Fragment() {
 
+    private val recordDetailRecyclerViewAdapter: RecordDetailRecyclerViewAdapter by lazy {
+        RecordDetailRecyclerViewAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +51,10 @@ class RecordDetailFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-
+        recyclerViewDetailAlcohol.apply {
+            adapter = recordDetailRecyclerViewAdapter
+            setHasFixedSize(true)
+        }
     }
 
     private fun initHangoverStatusImageView() {
@@ -76,14 +84,24 @@ class RecordDetailFragment : Fragment() {
     }
 
     private fun initAlcoholImageView() {
-        val statusClickListener: View.OnClickListener = View.OnClickListener {
-            when (it.id) {
-
-            }
+        imgDetailSoju.setOnClickListener {
+            recordDetailRecyclerViewAdapter.addAlcohol(Soju())
         }
-        imgDetailHangoverStatusWeak.setOnClickListener(statusClickListener)
-        imgDetailHangoverStatusMedium.setOnClickListener(statusClickListener)
-        imgDetailHangoverStatusStrong.setOnClickListener(statusClickListener)
+        imgDetailBeer.setOnClickListener{
+            recordDetailRecyclerViewAdapter.addAlcohol(Beer())
+        }
+        imgDetailWine.setOnClickListener{
+            recordDetailRecyclerViewAdapter.addAlcohol(Wine())
+        }
+        imgDetailRiceWine.setOnClickListener{
+            recordDetailRecyclerViewAdapter.addAlcohol(RiceWine())
+        }
+        imgDetailLiquor.setOnClickListener{
+            recordDetailRecyclerViewAdapter.addAlcohol(Liquor())
+        }
+        imgDetailEtc.setOnClickListener{
+            recordDetailRecyclerViewAdapter.addAlcohol(AlcoholEtc())
+        }
     }
 
 

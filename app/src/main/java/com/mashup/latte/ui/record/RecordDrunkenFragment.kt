@@ -12,9 +12,6 @@ import com.mashup.latte.R
  */
 class RecordDrunkenFragment : Fragment() {
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

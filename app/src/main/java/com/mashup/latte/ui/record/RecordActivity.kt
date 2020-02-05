@@ -1,7 +1,9 @@
 package com.mashup.latte.ui.record
 
+import android.Manifest
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
+import com.mashup.latte.util.PermissionManager
 import kotlinx.android.synthetic.main.activity_record.*
+import org.koin.android.logger.AndroidLogger
 import java.util.*
 
 
@@ -25,8 +29,13 @@ class RecordActivity : AppCompatActivity() {
 
 
     private fun init() {
+        initPermissionCheck()
         initEvent()
         initViewPager()
+    }
+
+    private fun initPermissionCheck() {
+        PermissionManager.checkPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
     }
 
     private fun initEvent() {
@@ -108,4 +117,22 @@ class RecordActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            PermissionManager.REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    //TODO
+                } else {
+                    finish()
+                }
+                return
+            }
+        }
+    }
+
 }
