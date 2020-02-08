@@ -17,4 +17,14 @@
     <color name="whiteTransparent">#88ffffff</color>
     <color name="backGround">#2f4856</color>
     <color name="textColor">#f9f9f9</color>
+
+
+    <color name="purple">#9c54ce</color>
+    <color name="green">#33c182</color>
+    <color name="darkgreen">#6aa7a8</color>
+    <color name="darkpurple">#8182ba</color>
+
+
+
+
 </resources>

@@ -14,12 +14,12 @@ import com.mashup.latte.ui.record.data.Soju
  * Created by Namget on 2020.01.23.
  */
 class AlcoholViewHolder(view: View) : BaseViewHolder<Alcohol>(view) {
-    val alcoholImg: ImageView = view.findViewById(R.id.imgItemAlcohol)
-    val alcoholTitle: ImageView = view.findViewById(R.id.txtItemAlcohol)
+    private val alcoholImg: ImageView = view.findViewById(R.id.imgItemAlcohol)
+    private val alcoholTitle: ImageView = view.findViewById(R.id.txtItemAlcohol)
     private val drunkenImg: ImageView = view.findViewById(R.id.imgDrunken)
     private val drunkenTitle: TextView = view.findViewById(R.id.txtDrunkenItemTitle)
 
     override fun bind(data: Alcohol) {
-
+        //TODO
     }
 }

@@ -11,7 +11,6 @@ import com.mashup.latte.ext.showDateDialog
 import com.mashup.latte.ui.record.adapter.RecordDetailRecyclerViewAdapter
 import com.mashup.latte.ui.record.data.*
 import kotlinx.android.synthetic.main.fragment_record_detail.*
-import kotlinx.android.synthetic.main.fragment_record_image.*
 import java.util.*
 
 /**
@@ -48,6 +47,7 @@ class RecordDetailFragment : Fragment() {
         initRecyclerView()
         initHangoverStatusImageView()
         initAlcoholImageView()
+        initDrunkenStatusImageView()
     }
 
     private fun initRecyclerView() {
@@ -57,30 +57,66 @@ class RecordDetailFragment : Fragment() {
         }
     }
 
-    private fun initHangoverStatusImageView() {
+    private fun initDrunkenStatusImageView(){
         val statusClickListener: View.OnClickListener = View.OnClickListener {
             when (it.id) {
-                R.id.imgDetailHangoverStatusWeak -> {
-                    imgDetailHangoverStatusWeak.isSelected = true
-                    imgDetailHangoverStatusMedium.isSelected = false
-                    imgDetailHangoverStatusStrong.isSelected = false
+                R.id.txtDetailDrunkenNothing -> {
+                    txtDetailDrunkenNothing.isSelected = true
+                    txtDetailDrunkenlittle.isSelected = false
+                    txtDetailDrunkenMuch.isSelected = false
+                    txtDetailDrunkenDog.isSelected = false
                 }
-                R.id.imgDetailHangoverStatusMedium -> {
-                    imgDetailHangoverStatusWeak.isSelected = false
-                    imgDetailHangoverStatusMedium.isSelected = true
-                    imgDetailHangoverStatusStrong.isSelected = false
+                R.id.txtDetailDrunkenlittle -> {
+                    txtDetailDrunkenNothing.isSelected = false
+                    txtDetailDrunkenlittle.isSelected = true
+                    txtDetailDrunkenMuch.isSelected = false
+                    txtDetailDrunkenDog.isSelected = false
                 }
-                R.id.imgDetailHangoverStatusStrong -> {
-                    imgDetailHangoverStatusWeak.isSelected = false
-                    imgDetailHangoverStatusMedium.isSelected = false
-                    imgDetailHangoverStatusStrong.isSelected = true
+                R.id.txtDetailDrunkenMuch -> {
+                    txtDetailDrunkenNothing.isSelected = false
+                    txtDetailDrunkenlittle.isSelected = false
+                    txtDetailDrunkenMuch.isSelected = true
+                    txtDetailDrunkenDog.isSelected = false
+                }
+                R.id.txtDetailDrunkenDog -> {
+                    txtDetailDrunkenNothing.isSelected = false
+                    txtDetailDrunkenlittle.isSelected = false
+                    txtDetailDrunkenMuch.isSelected = false
+                    txtDetailDrunkenDog.isSelected = true
                 }
             }
         }
-        imgDetailHangoverStatusWeak.setOnClickListener(statusClickListener)
-        imgDetailHangoverStatusWeak.isSelected = true
-        imgDetailHangoverStatusMedium.setOnClickListener(statusClickListener)
-        imgDetailHangoverStatusStrong.setOnClickListener(statusClickListener)
+        txtDetailDrunkenNothing.isSelected = true
+        txtDetailDrunkenNothing.setOnClickListener(statusClickListener)
+        txtDetailDrunkenlittle.setOnClickListener(statusClickListener)
+        txtDetailDrunkenMuch.setOnClickListener(statusClickListener)
+        txtDetailDrunkenDog.setOnClickListener(statusClickListener)
+    }
+
+    private fun initHangoverStatusImageView() {
+        val statusClickListener: View.OnClickListener = View.OnClickListener {
+            when (it.id) {
+                R.id.imgDetailHangoverStatusSangque -> {
+                    imgDetailHangoverStatusSangque.isSelected = true
+                    imgDetailHangoverStatusEueuk.isSelected = false
+                    imgDetailHangoverStatusDeath.isSelected = false
+                }
+                R.id.imgDetailHangoverStatusEueuk -> {
+                    imgDetailHangoverStatusSangque.isSelected = false
+                    imgDetailHangoverStatusEueuk.isSelected = true
+                    imgDetailHangoverStatusDeath.isSelected = false
+                }
+                R.id.imgDetailHangoverStatusDeath -> {
+                    imgDetailHangoverStatusSangque.isSelected = false
+                    imgDetailHangoverStatusEueuk.isSelected = false
+                    imgDetailHangoverStatusDeath.isSelected = true
+                }
+            }
+        }
+        imgDetailHangoverStatusSangque.setOnClickListener(statusClickListener)
+        imgDetailHangoverStatusSangque.isSelected = true
+        imgDetailHangoverStatusEueuk.setOnClickListener(statusClickListener)
+        imgDetailHangoverStatusDeath.setOnClickListener(statusClickListener)
     }
 
     private fun initAlcoholImageView() {

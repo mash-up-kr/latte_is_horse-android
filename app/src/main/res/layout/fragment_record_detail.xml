@@ -109,10 +109,10 @@
                 style="@style/drunkenGuideLine"
                 app:layout_constraintGuide_percent="0.70" />
 
-
             <TextView
                 android:id="@+id/txtDetailDrunkenDog"
                 style="@style/drunkenDetailTextStyle"
+                android:background="@drawable/selector_drunken_dog"
                 android:gravity="center"
                 android:text="@string/record_detail_drunken_dog"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -123,6 +123,7 @@
             <TextView
                 android:id="@+id/txtDetailDrunkenMuch"
                 style="@style/drunkenDetailTextStyle"
+                android:background="@drawable/selector_drunken_much"
                 android:gravity="center"
                 android:text="@string/record_detail_drunken_much"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -130,9 +131,11 @@
                 app:layout_constraintStart_toStartOf="@id/guideLittle2"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <TextView
                 android:id="@+id/txtDetailDrunkenlittle"
                 style="@style/drunkenDetailTextStyle"
+                android:background="@drawable/selector_drunken_little"
                 android:gravity="center"
                 android:text="@string/record_detail_drunken_little"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -143,12 +146,12 @@
             <TextView
                 android:id="@+id/txtDetailDrunkenNothing"
                 style="@style/drunkenDetailTextStyle"
+                android:background="@drawable/selector_drunken_nothing"
                 android:text="@string/record_detail_drunken_nothing"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guideNothing"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -166,32 +169,32 @@
             app:layout_constraintTop_toBottomOf="@id/frameDetailDrunken" />
 
         <ImageView
-            android:id="@+id/imgDetailHangoverStatusWeak"
+            android:id="@+id/imgDetailHangoverStatusSangque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
-            android:src="@drawable/selector_hangover_status_weak"
+            android:src="@drawable/selector_hangover_status_sangque"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/imgDetailHangoverStatusMedium"
+            app:layout_constraintRight_toLeftOf="@id/imgDetailHangoverStatusEueuk"
             app:layout_constraintTop_toBottomOf="@id/txtDetailHangoverHint" />
 
         <ImageView
-            android:id="@+id/imgDetailHangoverStatusMedium"
+            android:id="@+id/imgDetailHangoverStatusEueuk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/selector_hangover_status_strong"
-            app:layout_constraintLeft_toRightOf="@id/imgDetailHangoverStatusWeak"
-            app:layout_constraintRight_toLeftOf="@id/imgDetailHangoverStatusStrong"
-            app:layout_constraintTop_toTopOf="@id/imgDetailHangoverStatusWeak" />
+            android:src="@drawable/selector_hangover_status_eueuk"
+            app:layout_constraintLeft_toRightOf="@id/imgDetailHangoverStatusSangque"
+            app:layout_constraintRight_toLeftOf="@id/imgDetailHangoverStatusDeath"
+            app:layout_constraintTop_toTopOf="@id/imgDetailHangoverStatusSangque" />
 
         <ImageView
-            android:id="@+id/imgDetailHangoverStatusStrong"
+            android:id="@+id/imgDetailHangoverStatusDeath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/selector_hangover_status_weak"
-            app:layout_constraintLeft_toRightOf="@id/imgDetailHangoverStatusMedium"
+            android:src="@drawable/selector_hangover_status_death"
+            app:layout_constraintLeft_toRightOf="@id/imgDetailHangoverStatusEueuk"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imgDetailHangoverStatusWeak" />
+            app:layout_constraintTop_toTopOf="@id/imgDetailHangoverStatusSangque" />
 
         <TextView
             android:id="@+id/txtDetailSortAlcohol"
@@ -203,7 +206,7 @@
             android:textColor="@color/gray979797"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/txtDetailDateHint"
-            app:layout_constraintTop_toBottomOf="@id/imgDetailHangoverStatusStrong" />
+            app:layout_constraintTop_toBottomOf="@id/imgDetailHangoverStatusSangque" />
 
 
         <ScrollView
