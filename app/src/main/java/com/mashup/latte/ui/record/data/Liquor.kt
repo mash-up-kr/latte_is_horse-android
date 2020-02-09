@@ -7,9 +7,9 @@ import com.mashup.latte.R
  * Created by Namget on 2020.02.05.
  */
 data class Liquor(
-    @DrawableRes override val imageResource: Int = R.drawable.selector_alcohol_soju,
+    @DrawableRes override val imageResource: Int = R.drawable.img_spirits,
     override val typeList: MutableList<String> = arrayListOf(
-        "처음처럼", "참이슬", "진로"
+        "보드카", "럼", "데킬라"
     ),
     override val name :String = "양주",
     override val cup: Int = 0,

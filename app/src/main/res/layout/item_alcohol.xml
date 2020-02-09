@@ -32,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7.2dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/imgItemAlcohol"
         app:layout_constraintStart_toStartOf="@id/imgItemAlcohol"
@@ -39,12 +40,23 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="소주" />
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/alcohoGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
     <EditText
         android:id="@+id/edtAlcoholBottle"
         android:layout_width="64dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintLeft_toRightOf="@id/imgItemAlcohol"
+        android:includeFontPadding="false"
+        android:inputType="number"
+        android:maxLines="1"
+        app:layout_constraintLeft_toRightOf="@id/alcohoGuideLine"
         app:layout_constraintRight_toLeftOf="@id/txtAlcoholBottle"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,6 +75,9 @@
         android:id="@+id/edtAlcoholCup"
         android:layout_width="64dp"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:inputType="number"
+        android:maxLines="1"
         app:layout_constraintBaseline_toBaselineOf="@id/edtAlcoholBottle"
         app:layout_constraintLeft_toRightOf="@id/txtAlcoholBottle"
         app:layout_constraintRight_toLeftOf="@id/txtAlcoholCup" />
@@ -84,6 +99,9 @@
         android:id="@+id/spinnerAlcoholType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:background="@drawable/shape_corner_circle_white"
         app:layout_constraintLeft_toLeftOf="@id/edtAlcoholBottle"
         app:layout_constraintRight_toRightOf="@id/txtAlcoholCup"
         app:layout_constraintTop_toBottomOf="@id/edtAlcoholBottle" />
