@@ -209,13 +209,14 @@
             app:layout_constraintTop_toBottomOf="@id/imgDetailHangoverStatusSangque" />
 
 
-        <ScrollView
+        <HorizontalScrollView
             android:id="@+id/scrollDetailAlcohol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
-            android:orientation="horizontal"
+            android:fillViewport="true"
             android:paddingStart="29dp"
+            android:scrollbars="none"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtDetailSortAlcohol">
 
@@ -262,7 +263,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewDetailAlcohol"

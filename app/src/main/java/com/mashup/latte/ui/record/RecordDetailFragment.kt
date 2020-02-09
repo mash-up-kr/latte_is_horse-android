@@ -10,6 +10,7 @@ import com.mashup.latte.R
 import com.mashup.latte.ext.showDateDialog
 import com.mashup.latte.ui.record.adapter.RecordDetailRecyclerViewAdapter
 import com.mashup.latte.ui.record.data.*
+import com.mashup.latte.ui.record.decoration.RecyclerViewDivHeightDecoration
 import kotlinx.android.synthetic.main.fragment_record_detail.*
 import java.util.*
 
@@ -53,11 +54,12 @@ class RecordDetailFragment : Fragment() {
     private fun initRecyclerView() {
         recyclerViewDetailAlcohol.apply {
             adapter = recordDetailRecyclerViewAdapter
+            addItemDecoration(RecyclerViewDivHeightDecoration(20))
             setHasFixedSize(true)
         }
     }
 
-    private fun initDrunkenStatusImageView(){
+    private fun initDrunkenStatusImageView() {
         val statusClickListener: View.OnClickListener = View.OnClickListener {
             when (it.id) {
                 R.id.txtDetailDrunkenNothing -> {
@@ -95,23 +97,7 @@ class RecordDetailFragment : Fragment() {
 
     private fun initHangoverStatusImageView() {
         val statusClickListener: View.OnClickListener = View.OnClickListener {
-            when (it.id) {
-                R.id.imgDetailHangoverStatusSangque -> {
-                    imgDetailHangoverStatusSangque.isSelected = true
-                    imgDetailHangoverStatusEueuk.isSelected = false
-                    imgDetailHangoverStatusDeath.isSelected = false
-                }
-                R.id.imgDetailHangoverStatusEueuk -> {
-                    imgDetailHangoverStatusSangque.isSelected = false
-                    imgDetailHangoverStatusEueuk.isSelected = true
-                    imgDetailHangoverStatusDeath.isSelected = false
-                }
-                R.id.imgDetailHangoverStatusDeath -> {
-                    imgDetailHangoverStatusSangque.isSelected = false
-                    imgDetailHangoverStatusEueuk.isSelected = false
-                    imgDetailHangoverStatusDeath.isSelected = true
-                }
-            }
+            changeHangoverSelected(it.id)
         }
         imgDetailHangoverStatusSangque.setOnClickListener(statusClickListener)
         imgDetailHangoverStatusSangque.isSelected = true
@@ -119,23 +105,43 @@ class RecordDetailFragment : Fragment() {
         imgDetailHangoverStatusDeath.setOnClickListener(statusClickListener)
     }
 
+    private fun changeHangoverSelected(id: Int) {
+        when (id) {
+            R.id.imgDetailHangoverStatusSangque -> {
+                imgDetailHangoverStatusSangque.isSelected = true
+                imgDetailHangoverStatusEueuk.isSelected = false
+                imgDetailHangoverStatusDeath.isSelected = false
+            }
+            R.id.imgDetailHangoverStatusEueuk -> {
+                imgDetailHangoverStatusSangque.isSelected = false
+                imgDetailHangoverStatusEueuk.isSelected = true
+                imgDetailHangoverStatusDeath.isSelected = false
+            }
+            R.id.imgDetailHangoverStatusDeath -> {
+                imgDetailHangoverStatusSangque.isSelected = false
+                imgDetailHangoverStatusEueuk.isSelected = false
+                imgDetailHangoverStatusDeath.isSelected = true
+            }
+        }
+    }
+
     private fun initAlcoholImageView() {
         imgDetailSoju.setOnClickListener {
             recordDetailRecyclerViewAdapter.addAlcohol(Soju())
         }
-        imgDetailBeer.setOnClickListener{
+        imgDetailBeer.setOnClickListener {
             recordDetailRecyclerViewAdapter.addAlcohol(Beer())
         }
-        imgDetailWine.setOnClickListener{
+        imgDetailWine.setOnClickListener {
             recordDetailRecyclerViewAdapter.addAlcohol(Wine())
         }
-        imgDetailRiceWine.setOnClickListener{
+        imgDetailRiceWine.setOnClickListener {
             recordDetailRecyclerViewAdapter.addAlcohol(RiceWine())
         }
-        imgDetailLiquor.setOnClickListener{
+        imgDetailLiquor.setOnClickListener {
             recordDetailRecyclerViewAdapter.addAlcohol(Liquor())
         }
-        imgDetailEtc.setOnClickListener{
+        imgDetailEtc.setOnClickListener {
             recordDetailRecyclerViewAdapter.addAlcohol(AlcoholEtc())
         }
     }

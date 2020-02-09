@@ -32,7 +32,7 @@
     <string name="record_image_max_count1">이미지 최대 갯수는 3개 입니다.</string>
 
     <!--record detail-->
-    <string name="record_detail_date">2. 날짜를 선택해주세요</string>
+    <string name="record_detail_date">2. 날짜 및 그날의 음주상태를 설정해주세요</string>
     <string name="record_detail_date_hint">날짜 설정</string>
     <string name="record_detail_drunken_hint">취한 정도</string>
     <string name="record_detail_hangover_hint">숙취 정도</string>

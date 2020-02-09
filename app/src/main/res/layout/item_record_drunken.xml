@@ -11,7 +11,8 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         tools:background="@mipmap/ic_launcher" />
-   <TextView
+
+    <TextView
         android:id="@+id/txtDrunkenItemTitle"
         android:layout_width="126dp"
         android:layout_height="wrap_content"
