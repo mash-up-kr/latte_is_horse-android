@@ -35,6 +35,13 @@ class RecordImageRecyclerViewAdapter(
         return if (position == 0) TAKE_PICTURE_TYPE else IMAGE_TILE_TYPE
     }
 
+    fun clearSelectedUri(){
+//        for(imageTile in imageTiles){
+//            imageTile.
+//        }
+        _selectedUri.clear()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TAKE_PICTURE_TYPE -> {
@@ -73,7 +80,7 @@ class RecordImageRecyclerViewAdapter(
                 // 선택된 갤러리의 사진을 보여줌
                 galleryCallback(uri)
             } else {
-                context.toastMakeToast(R.string.record_image_max_count1)
+                context.toastMakeToast(String.format(context.getString(R.string.record_image_max_count1),1))
             }
         }
         //이미 선택된 이미지
@@ -133,7 +140,7 @@ class RecordImageRecyclerViewAdapter(
 
 
     companion object {
-        const val PREVIEW_MAXIMUM_COUNT = 100
+        const val PREVIEW_MAXIMUM_COUNT = 300
         const val MAX_SELECTABLE_COUNT = 3
         const val TAG = "RecordImageRecyclerViewAdapter"
         const val TAKE_PICTURE_TYPE = 1

@@ -9,7 +9,7 @@ import com.mashup.latte.R
 data class Beer(
     @DrawableRes override val imageResource: Int = R.drawable.img_beer,
     override val typeList: MutableList<String> = arrayListOf(
-        "카스", "하이트", "테라"
+        "생맥주 300ml", "생맥주 500ml", "카스", "하이트", "테라"
     ),
     override val name: String = "맥주",
     override val cup: Int = 0,

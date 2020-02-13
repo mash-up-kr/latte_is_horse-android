@@ -45,9 +45,10 @@ class RecordImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
+        initMultipleSelectable()
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerView() {
         recordImageRecyclerViewAdapter =
             RecordImageRecyclerViewAdapter(requireContext(), imageSelected, takePicture)
 
@@ -68,6 +69,13 @@ class RecordImageFragment : Fragment() {
 
     }
 
+    private fun initMultipleSelectable() {
+        imgMultiSelcectEnabled.setOnClickListener {
+            it.isSelected = !it.isSelected
+            recordImageRecyclerViewAdapter.clearSelectedUri()
+        }
+    }
+
 
     companion object {
 
@@ -81,6 +89,8 @@ class RecordImageFragment : Fragment() {
                 return recordImageFragment
             }
         }
+
+        var MAX_IMAGE_SELECTABLE = 1
     }
 
 
