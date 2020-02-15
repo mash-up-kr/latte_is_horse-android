@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".ui.login.GlobalApplication">
+        android:name=".ui.GlobalApplication">
 
         <!--카카오톡 메타데이터-->
         <meta-data

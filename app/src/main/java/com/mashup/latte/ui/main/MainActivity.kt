@@ -5,14 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.ext.startActivity
-import com.mashup.latte.retrofit.RetrofitManager
-import com.mashup.latte.retrofit.model.AlcoholLevel
-import com.mashup.latte.retrofit.model.Diary
+import com.mashup.latte.data.AlcoholLevel
+import com.mashup.latte.data.Diary
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -79,7 +76,8 @@ class MainActivity : AppCompatActivity() {
                 "투뱃",
                 "굿",
                 alcoholRecords
-            ))
+            )
+            )
 
             add(DrunkFragment.newInstance(bundle))
             add(DrunkFragment.newInstance(bundle))

@@ -1,4 +1,4 @@
-package com.mashup.latte.retrofit.model
+package com.mashup.latte.data
 
 import java.io.Serializable
 

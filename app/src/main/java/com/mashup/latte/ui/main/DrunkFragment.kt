@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
-import com.mashup.latte.retrofit.model.Diary
+import com.mashup.latte.data.Diary
 import kotlinx.android.synthetic.main.fragment_main_drunk.view.*
 
 /**

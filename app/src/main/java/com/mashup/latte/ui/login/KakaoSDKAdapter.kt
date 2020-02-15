@@ -5,6 +5,7 @@ import com.kakao.auth.ApprovalType
 import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionConfig
 import com.kakao.auth.KakaoAdapter
+import com.mashup.latte.ui.GlobalApplication
 
 
 class KakaoSDKAdapter : KakaoAdapter() {
@@ -50,7 +51,7 @@ class KakaoSDKAdapter : KakaoAdapter() {
 
     // Application이 가지고 있는 정보를 얻기 위한 인터페이스 입니다.
     override fun getApplicationConfig(): IApplicationConfig {
-        return IApplicationConfig {GlobalApplication.getGlobalApplicationContext()}
+        return IApplicationConfig { GlobalApplication.getGlobalApplicationContext()}
     }
 
 }

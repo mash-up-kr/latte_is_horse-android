@@ -1,6 +1,6 @@
 package com.mashup.latte.retrofit
 
-import com.mashup.latte.retrofit.model.Diary
+import com.mashup.latte.data.Diary
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
