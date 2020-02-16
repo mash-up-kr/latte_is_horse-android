@@ -73,7 +73,7 @@ class RecordDrunkenFragment : Fragment() {
             adapter = recordDrunkenRecyclerViewAdapter
             addItemDecoration(RecyclerViewDivWidthDecoration(20))
             setHasFixedSize(true)
-            animation = null
+            itemAnimator = null
         }
     }
 
