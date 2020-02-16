@@ -45,7 +45,6 @@ class RecordActivity : AppCompatActivity() {
         txtRecordNext.setOnClickListener {
             val currentCount = viewPagerRecord.currentItem
             if (PROGRESS_PAGE_COUNT == (currentCount + 1)) {
-                //서버 전송
             } else {
                 viewPagerRecord.currentItem = currentCount + 1
             }

@@ -43,6 +43,7 @@ class RecordDrunkenRecyclerViewAdapter : RecyclerView.Adapter<DrunkenAfterViewHo
         if (selectedPosition == beforeSelectedPosition) {
             return
         }
+
         drunkenAfters[selectedPosition].isChecked = true
         drunkenAfters[beforeSelectedPosition].isChecked = false
         notifyItemChanged(selectedPosition)
@@ -54,6 +55,8 @@ class RecordDrunkenRecyclerViewAdapter : RecyclerView.Adapter<DrunkenAfterViewHo
     }
 
     override fun getItemCount(): Int = drunkenAfters.size
+
+
 
     override fun onBindViewHolder(holder: DrunkenAfterViewHolder, position: Int) {
         holder.bind(drunkenAfters[position])
