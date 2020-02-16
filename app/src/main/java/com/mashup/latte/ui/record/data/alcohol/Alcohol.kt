@@ -1,4 +1,4 @@
-package com.mashup.latte.ui.record.data
+package com.mashup.latte.ui.record.data.alcohol
 
 import androidx.annotation.DrawableRes
 

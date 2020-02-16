@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.ext.showDateDialog
 import com.mashup.latte.ui.record.adapter.RecordDetailRecyclerViewAdapter
-import com.mashup.latte.ui.record.data.*
+import com.mashup.latte.ui.record.data.alcohol.*
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivHeightDecoration
 import kotlinx.android.synthetic.main.fragment_record_detail.*
 import java.util.*
@@ -148,7 +148,7 @@ class RecordDetailFragment : Fragment() {
 
 
     companion object {
-        lateinit var recordDetailFragment: RecordDetailFragment
+        private lateinit var recordDetailFragment: RecordDetailFragment
 
         fun newInstance(): RecordDetailFragment {
             synchronized(RecordDetailFragment::class) {

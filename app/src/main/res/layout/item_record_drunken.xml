@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="126dp"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imgDrunken"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        tools:background="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/txtDrunkenItemTitle"
-        android:layout_width="126dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/gmarket_sans_ttf_bold"
-        android:maxLines="2"
-        android:padding="2dp"
-        android:text="@string/record_detail_drunken_after_text"
-        android:textColor="@color/black"
-        tools:text="@string/record_detail_drunken_after_text" />
-
-    <ImageView
-        android:id="@+id/imgDrunkenSelectBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        tools:background="@drawable/shape_circle_checked" />
+        tools:src="@drawable/ic_drunken_alddalddal"
+        />
 
-</LinearLayout>
+
+</FrameLayout>

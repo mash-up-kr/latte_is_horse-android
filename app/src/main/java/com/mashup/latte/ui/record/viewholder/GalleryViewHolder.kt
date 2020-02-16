@@ -11,7 +11,7 @@ import com.mashup.latte.ui.record.data.ImageTile
 /**
  * Created by Namget on 2020.01.21.
  */
-class GalleryViewHolder(view: View, selectedCallback: (Uri, ImageView) -> Unit) :
+class GalleryViewHolder(view: View, selectedCallback: (Uri) -> Unit) :
     BaseViewHolder<ImageTile>(view) {
     private val recordImage: ImageView = view.findViewById(R.id.ImgRecordItemImage)
     private lateinit var imageUri: Uri
@@ -19,7 +19,7 @@ class GalleryViewHolder(view: View, selectedCallback: (Uri, ImageView) -> Unit) 
     init {
         view.setOnClickListener {
             if (::imageUri.isInitialized)
-                selectedCallback(imageUri, recordImage)
+                selectedCallback(imageUri)
         }
     }
 

@@ -7,11 +7,13 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.mashup.latte.R
 import com.mashup.latte.ext.toastMakeToast
 import com.mashup.latte.ui.record.data.ImageTile
+import com.mashup.latte.ui.record.view.RecordFrameLayout
 import com.mashup.latte.ui.record.viewholder.GalleryViewHolder
 import com.mashup.latte.ui.record.viewholder.TakePictureViewHolder
 
@@ -35,7 +37,7 @@ class RecordImageRecyclerViewAdapter(
         return if (position == 0) TAKE_PICTURE_TYPE else IMAGE_TILE_TYPE
     }
 
-    fun clearSelectedUri(){
+    fun clearSelectedUri() {
 //        for(imageTile in imageTiles){
 //            imageTile.
 //        }
@@ -56,8 +58,8 @@ class RecordImageRecyclerViewAdapter(
                 val view =
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.item_record_gallery, parent, false)
-                GalleryViewHolder(view) { uri, recordImage ->
-                    setSelected(uri, recordImage)
+                GalleryViewHolder(view) { uri ->
+                    setSelected(uri, view as RecordFrameLayout)
                 }
             }
             else -> {
@@ -67,7 +69,7 @@ class RecordImageRecyclerViewAdapter(
     }
 
     @SuppressLint("NewApi")
-    private fun setSelected(uri: Uri, recordImage: ImageView) {
+    private fun setSelected(uri: Uri, recordImage: FrameLayout) {
 
         //document bug
         //선택되지 않은 이미지
@@ -80,7 +82,12 @@ class RecordImageRecyclerViewAdapter(
                 // 선택된 갤러리의 사진을 보여줌
                 galleryCallback(uri)
             } else {
-                context.toastMakeToast(String.format(context.getString(R.string.record_image_max_count1),1))
+                context.toastMakeToast(
+                    String.format(
+                        context.getString(R.string.record_image_max_count1),
+                        1
+                    )
+                )
             }
         }
         //이미 선택된 이미지

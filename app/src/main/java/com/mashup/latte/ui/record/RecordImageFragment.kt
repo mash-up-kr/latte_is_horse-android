@@ -70,10 +70,10 @@ class RecordImageFragment : Fragment() {
     }
 
     private fun initMultipleSelectable() {
-        imgMultiSelcectEnabled.setOnClickListener {
-            it.isSelected = !it.isSelected
-            recordImageRecyclerViewAdapter.clearSelectedUri()
-        }
+//        imgMultiSelcectEnabled.setOnClickListener {
+//            it.isSelected = !it.isSelected
+//            recordImageRecyclerViewAdapter.clearSelectedUri()
+//        }
     }
 
 

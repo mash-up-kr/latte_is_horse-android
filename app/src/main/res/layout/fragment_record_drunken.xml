@@ -19,6 +19,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txtDrunkenAfterTextLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/gmarket_sans_ttf_light"
+        android:text="(0 / 300)"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/txtDrunkenAfterTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/txtDetailStatusTitle"
@@ -31,6 +44,7 @@
         android:fontFamily="@font/gmarket_sans_ttf_light"
         android:gravity="top"
         android:hint="@string/record_detail_write_final_hint"
+        android:maxLength="300"
         android:padding="12dp"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -60,7 +74,7 @@
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/txtDrunkenFinalTitle"
-        tools:listitem="@layout/item_drunken" />
+        tools:listitem="@layout/item_record_drunken" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

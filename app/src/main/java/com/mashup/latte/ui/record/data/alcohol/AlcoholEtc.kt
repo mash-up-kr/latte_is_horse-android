@@ -1,7 +1,8 @@
-package com.mashup.latte.ui.record.data
+package com.mashup.latte.ui.record.data.alcohol
 
 import androidx.annotation.DrawableRes
 import com.mashup.latte.R
+import com.mashup.latte.ui.record.data.alcohol.Alcohol
 
 /**
  * Created by Namget on 2020.02.05.

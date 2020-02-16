@@ -1,11 +1,11 @@
-package com.mashup.latte.retrofit
+package com.mashup.latte.data.datasource.remote
 
 import com.mashup.latte.data.Diary
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface Api {
+interface ApiService {
 
     @GET("/api/v1/diaries")
     fun requestDiaries(

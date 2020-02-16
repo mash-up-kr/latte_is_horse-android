@@ -52,7 +52,7 @@
         android:id="@+id/edtAlcoholBottle"
         android:layout_width="64dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:includeFontPadding="false"
         android:inputType="number"
         android:maxLines="1"
@@ -100,11 +100,40 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-
         android:background="@drawable/shape_corner_circle_white"
         app:layout_constraintLeft_toLeftOf="@id/edtAlcoholBottle"
         app:layout_constraintRight_toRightOf="@id/txtAlcoholCup"
         app:layout_constraintTop_toBottomOf="@id/edtAlcoholBottle" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAlcoholType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="@id/edtAlcoholBottle"
+        app:layout_constraintRight_toRightOf="@id/txtAlcoholCup"
+        app:layout_constraintTop_toBottomOf="@id/edtAlcoholBottle">
+
+        <TextView
+            android:id="@+id/textViewAlcoholType"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/record_detail_specific"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/editTextAlcoholType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:paddingBottom="4dp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

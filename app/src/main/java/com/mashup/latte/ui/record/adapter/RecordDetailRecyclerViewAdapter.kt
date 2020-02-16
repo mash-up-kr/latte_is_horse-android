@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mashup.latte.R
-import com.mashup.latte.ui.record.data.Alcohol
+import com.mashup.latte.ui.record.data.alcohol.Alcohol
 import com.mashup.latte.ui.record.viewholder.AlcoholViewHolder
 
 /**
