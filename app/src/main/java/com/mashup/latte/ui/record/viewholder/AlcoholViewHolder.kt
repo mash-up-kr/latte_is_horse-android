@@ -12,6 +12,7 @@ import com.mashup.latte.ui.record.data.alcohol.Alcohol
  */
 class AlcoholViewHolder(view: View) : BaseViewHolder<Alcohol>(view) {
     private val alcoholImg: ImageView = view.findViewById(R.id.imgItemAlcohol)
+    val close: ImageView = view.findViewById(R.id.imgAlcoholClose)
     private val alcoholTitle: TextView = view.findViewById(R.id.txtItemAlcohol)
     private val alcoholBottle: TextView = view.findViewById(R.id.edtAlcoholBottle)
     private val alcoholCup: TextView = view.findViewById(R.id.edtAlcoholCup)

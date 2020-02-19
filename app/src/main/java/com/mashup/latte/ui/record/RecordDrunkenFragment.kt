@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.ext.showDateDialog
 import com.mashup.latte.ui.record.adapter.RecordDrunkenRecyclerViewAdapter
+import com.mashup.latte.ui.record.data.result.DrunkenResult
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivHeightDecoration
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivWidthDecoration
 import kotlinx.android.synthetic.main.fragment_record_detail.*
@@ -25,6 +26,8 @@ class RecordDrunkenFragment : Fragment() {
     private val recordDrunkenRecyclerViewAdapter: RecordDrunkenRecyclerViewAdapter by lazy {
         RecordDrunkenRecyclerViewAdapter()
     }
+
+    private val drunkenResult = DrunkenResult()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +49,16 @@ class RecordDrunkenFragment : Fragment() {
     private fun initView() {
         initRecyclerView()
         initTextWatcher()
+    }
+
+    fun giveDrunkenData(): DrunkenResult? {
+        if (txtDetailStatusTitle.text.isNullOrEmpty()) {
+            return null
+        }
+        return DrunkenResult(
+            txtDetailStatusTitle.text.toString(),
+            recordDrunkenRecyclerViewAdapter.getSelectedText()
+        )
     }
 
     private fun initTextWatcher() {
@@ -73,7 +86,6 @@ class RecordDrunkenFragment : Fragment() {
             adapter = recordDrunkenRecyclerViewAdapter
             addItemDecoration(RecyclerViewDivWidthDecoration(20))
             setHasFixedSize(true)
-            itemAnimator = null
         }
     }
 

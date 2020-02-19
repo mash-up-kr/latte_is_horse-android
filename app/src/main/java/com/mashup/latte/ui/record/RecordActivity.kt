@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
+import com.mashup.latte.ui.record.data.DrunkenAfter
 import com.mashup.latte.util.PermissionManager
 import kotlinx.android.synthetic.main.activity_record.*
 import org.koin.android.logger.AndroidLogger
@@ -20,6 +21,11 @@ import java.util.*
 class RecordActivity : AppCompatActivity() {
 
     private var progressCurrentPage = 1
+    private val fragmentList = ArrayList<Fragment>().apply {
+        add(RecordImageFragment.newInstance())
+        add(RecordDetailFragment.newInstance())
+        add(RecordDrunkenFragment.newInstance())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,22 +51,34 @@ class RecordActivity : AppCompatActivity() {
         txtRecordNext.setOnClickListener {
             val currentCount = viewPagerRecord.currentItem
             if (PROGRESS_PAGE_COUNT == (currentCount + 1)) {
+                //TODO 완료처리
+                onComplete()
+
             } else {
                 viewPagerRecord.currentItem = currentCount + 1
             }
         }
+    }
 
+    private fun onComplete() {
+
+    }
+
+    private fun bringImageData() {
+        (fragmentList[0] as RecordImageFragment).giveImageData()
+    }
+
+    private fun bringDrunkenData() {
+        (fragmentList[1] as RecordDrunkenFragment).giveDrunkenData()
+    }
+
+    private fun bringDetailData() {
+        (fragmentList[2] as RecordDetailFragment).giveDetailData()
     }
 
 
     private fun initViewPager() {
         //서버로 부터 받아온 페이지수 추가
-        val fragmentList = ArrayList<Fragment>().apply {
-            add(RecordImageFragment.newInstance())
-            add(RecordDetailFragment.newInstance())
-            add(RecordDrunkenFragment.newInstance())
-        }
-
 
         viewPagerRecord.apply {
             adapter = RecordViewPagerAdapter(supportFragmentManager, fragmentList)
@@ -113,9 +131,6 @@ class RecordActivity : AppCompatActivity() {
         const val PROGRESS_DURATION = 200L
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

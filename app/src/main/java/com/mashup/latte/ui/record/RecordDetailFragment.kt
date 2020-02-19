@@ -5,11 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.ext.showDateDialog
+import com.mashup.latte.ext.toastMakeToast
 import com.mashup.latte.ui.record.adapter.RecordDetailRecyclerViewAdapter
+import com.mashup.latte.ui.record.data.result.DetailResult
 import com.mashup.latte.ui.record.data.alcohol.*
+import com.mashup.latte.ui.record.data.result.DrunkenAmount
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivHeightDecoration
 import kotlinx.android.synthetic.main.fragment_record_detail.*
 import java.util.*
@@ -22,6 +28,7 @@ class RecordDetailFragment : Fragment() {
     private val recordDetailRecyclerViewAdapter: RecordDetailRecyclerViewAdapter by lazy {
         RecordDetailRecyclerViewAdapter()
     }
+    private val detailData = DetailResult()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,9 +47,11 @@ class RecordDetailFragment : Fragment() {
     }
 
     private fun initView() {
+
         btnDetailDateSelector.setOnClickListener {
             Calendar.getInstance().showDateDialog(requireContext(), { result ->
                 (it as Button).text = result
+                detailData.date = result
             })
         }
         initRecyclerView()
@@ -59,28 +68,64 @@ class RecordDetailFragment : Fragment() {
         }
     }
 
+    fun giveDetailData(): DetailResult? {
+        if (btnDetailDateSelector.text.contains("날짜")) {
+            context?.toastMakeToast("날짜를 입력하세요")
+            return null
+        }
+
+        if(recyclerViewDetailAlcohol.childCount == 0){
+            context?.toastMakeToast("마신 술 종류를 입력하세요")
+            return null
+        }
+
+        val list: MutableList<DrunkenAmount> = arrayListOf()
+
+        for (i in 0 until recyclerViewDetailAlcohol.childCount) {
+            val view =
+                recyclerViewDetailAlcohol.getChildViewHolder(recyclerViewDetailAlcohol.getChildAt(i))
+            val bottle = view.itemView.findViewById<EditText>(R.id.edtAlcoholBottle).text.toString()
+            val cup = view.itemView.findViewById<EditText>(R.id.edtAlcoholBottle).text.toString()
+            val name = view.itemView.findViewById<TextView>(R.id.txtItemAlcohol).text.toString()
+            val type: String = if (name != "기타") {
+                view.itemView.findViewById<Spinner>(R.id.spinnerAlcoholType)
+                    .selectedItem.toString()
+            } else {
+                view.itemView.findViewById<EditText>(R.id.editTextAlcoholType).text.toString()
+            }
+            list.add(DrunkenAmount(name, type, cup, bottle))
+        }
+        detailData.drunkenAmounts = list
+
+        return detailData
+    }
+
     private fun initDrunkenStatusImageView() {
         val statusClickListener: View.OnClickListener = View.OnClickListener {
             when (it.id) {
                 R.id.txtDetailDrunkenNothing -> {
+                    detailData.drunkenStatus = "멀쩡함"
                     txtDetailDrunkenNothing.isSelected = true
                     txtDetailDrunkenlittle.isSelected = false
                     txtDetailDrunkenMuch.isSelected = false
                     txtDetailDrunkenDog.isSelected = false
                 }
                 R.id.txtDetailDrunkenlittle -> {
+                    detailData.drunkenStatus = "조금취함"
                     txtDetailDrunkenNothing.isSelected = false
                     txtDetailDrunkenlittle.isSelected = true
                     txtDetailDrunkenMuch.isSelected = false
                     txtDetailDrunkenDog.isSelected = false
                 }
                 R.id.txtDetailDrunkenMuch -> {
+                    detailData.drunkenStatus = "많이취함"
                     txtDetailDrunkenNothing.isSelected = false
                     txtDetailDrunkenlittle.isSelected = false
                     txtDetailDrunkenMuch.isSelected = true
                     txtDetailDrunkenDog.isSelected = false
                 }
                 R.id.txtDetailDrunkenDog -> {
+                    detailData.drunkenStatus = "댕댕이"
                     txtDetailDrunkenNothing.isSelected = false
                     txtDetailDrunkenlittle.isSelected = false
                     txtDetailDrunkenMuch.isSelected = false
@@ -88,6 +133,7 @@ class RecordDetailFragment : Fragment() {
                 }
             }
         }
+        detailData.drunkenStatus = "멀쩡함"
         txtDetailDrunkenNothing.isSelected = true
         txtDetailDrunkenNothing.setOnClickListener(statusClickListener)
         txtDetailDrunkenlittle.setOnClickListener(statusClickListener)
@@ -97,32 +143,32 @@ class RecordDetailFragment : Fragment() {
 
     private fun initHangoverStatusImageView() {
         val statusClickListener: View.OnClickListener = View.OnClickListener {
-            changeHangoverSelected(it.id)
+            when (it.id) {
+                R.id.imgDetailHangoverStatusSangque -> {
+                    detailData.drunkenStatus = "상쾌"
+                    imgDetailHangoverStatusSangque.isSelected = true
+                    imgDetailHangoverStatusEueuk.isSelected = false
+                    imgDetailHangoverStatusDeath.isSelected = false
+                }
+                R.id.imgDetailHangoverStatusEueuk -> {
+                    detailData.drunkenStatus = "으윽"
+                    imgDetailHangoverStatusSangque.isSelected = false
+                    imgDetailHangoverStatusEueuk.isSelected = true
+                    imgDetailHangoverStatusDeath.isSelected = false
+                }
+                R.id.imgDetailHangoverStatusDeath -> {
+                    detailData.drunkenStatus = "죽음"
+                    imgDetailHangoverStatusSangque.isSelected = false
+                    imgDetailHangoverStatusEueuk.isSelected = false
+                    imgDetailHangoverStatusDeath.isSelected = true
+                }
+            }
         }
+        detailData.drunkenStatus = "상쾌"
         imgDetailHangoverStatusSangque.setOnClickListener(statusClickListener)
         imgDetailHangoverStatusSangque.isSelected = true
         imgDetailHangoverStatusEueuk.setOnClickListener(statusClickListener)
         imgDetailHangoverStatusDeath.setOnClickListener(statusClickListener)
-    }
-
-    private fun changeHangoverSelected(id: Int) {
-        when (id) {
-            R.id.imgDetailHangoverStatusSangque -> {
-                imgDetailHangoverStatusSangque.isSelected = true
-                imgDetailHangoverStatusEueuk.isSelected = false
-                imgDetailHangoverStatusDeath.isSelected = false
-            }
-            R.id.imgDetailHangoverStatusEueuk -> {
-                imgDetailHangoverStatusSangque.isSelected = false
-                imgDetailHangoverStatusEueuk.isSelected = true
-                imgDetailHangoverStatusDeath.isSelected = false
-            }
-            R.id.imgDetailHangoverStatusDeath -> {
-                imgDetailHangoverStatusSangque.isSelected = false
-                imgDetailHangoverStatusEueuk.isSelected = false
-                imgDetailHangoverStatusDeath.isSelected = true
-            }
-        }
     }
 
     private fun initAlcoholImageView() {

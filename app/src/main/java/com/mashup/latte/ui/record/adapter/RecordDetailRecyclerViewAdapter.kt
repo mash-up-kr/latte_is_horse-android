@@ -33,6 +33,9 @@ class RecordDetailRecyclerViewAdapter : RecyclerView.Adapter<AlcoholViewHolder>(
 
     override fun onBindViewHolder(holder: AlcoholViewHolder, position: Int) {
         holder.bind(alcohols[position])
+        holder.close.setOnClickListener {
+            deleteAlcohol(position)
+        }
     }
-
 }
+

@@ -38,6 +38,15 @@ class RecordDrunkenRecyclerViewAdapter : RecyclerView.Adapter<DrunkenAfterViewHo
         }
     }
 
+    fun getSelectedText(): String {
+        for (drunkenAfter in drunkenAfters) {
+            if (drunkenAfter.isChecked) {
+                return drunkenAfter.text
+            }
+        }
+        return ""
+    }
+
     private fun setSelected(selectedPosition: Int) {
         //선택되지 않은 이미지
         if (selectedPosition == beforeSelectedPosition) {
@@ -46,16 +55,12 @@ class RecordDrunkenRecyclerViewAdapter : RecyclerView.Adapter<DrunkenAfterViewHo
 
         drunkenAfters[selectedPosition].isChecked = true
         drunkenAfters[beforeSelectedPosition].isChecked = false
-        notifyItemChanged(selectedPosition)
-        notifyItemChanged(beforeSelectedPosition)
-
+        notifyDataSetChanged()
 
         beforeSelectedPosition = selectedPosition
-
     }
 
     override fun getItemCount(): Int = drunkenAfters.size
-
 
 
     override fun onBindViewHolder(holder: DrunkenAfterViewHolder, position: Int) {

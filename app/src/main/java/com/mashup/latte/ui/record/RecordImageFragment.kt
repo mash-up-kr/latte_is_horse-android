@@ -76,6 +76,10 @@ class RecordImageFragment : Fragment() {
 //        }
     }
 
+    fun giveImageData(){
+
+    }
+
 
     companion object {
 
