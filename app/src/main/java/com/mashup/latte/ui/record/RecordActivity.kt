@@ -61,7 +61,9 @@ class RecordActivity : AppCompatActivity() {
     }
 
     private fun onComplete() {
+        if (bringImageData() != null && bringDetailData() != null && bringDrunkenData() != null) {
 
+        }
     }
 
     private fun bringImageData() {
@@ -69,11 +71,11 @@ class RecordActivity : AppCompatActivity() {
     }
 
     private fun bringDrunkenData() {
-        (fragmentList[1] as RecordDrunkenFragment).giveDrunkenData()
+        (fragmentList[1] as RecordDetailFragment).giveDetailData()
     }
 
     private fun bringDetailData() {
-        (fragmentList[2] as RecordDetailFragment).giveDetailData()
+        (fragmentList[2] as RecordDrunkenFragment).giveDrunkenData()
     }
 
 

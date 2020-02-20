@@ -44,6 +44,10 @@ class RecordImageRecyclerViewAdapter(
         _selectedUri.clear()
     }
 
+    fun getUriList(): List<Uri> {
+        return _selectedUri
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TAKE_PICTURE_TYPE -> {

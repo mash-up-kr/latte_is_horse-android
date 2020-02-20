@@ -6,17 +6,16 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView.ItemAnimator
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mashup.latte.R
-import com.mashup.latte.ext.showDateDialog
+import com.mashup.latte.ext.e
 import com.mashup.latte.ui.record.adapter.RecordDrunkenRecyclerViewAdapter
 import com.mashup.latte.ui.record.data.result.DrunkenResult
-import com.mashup.latte.ui.record.decoration.RecyclerViewDivHeightDecoration
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivWidthDecoration
-import kotlinx.android.synthetic.main.fragment_record_detail.*
 import kotlinx.android.synthetic.main.fragment_record_drunken.*
-import java.util.*
+
 
 /**
  * Created by Namget on 2020.01.20.
@@ -82,10 +81,14 @@ class RecordDrunkenFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
+        val animator: ItemAnimator? = recyclerViewDrunken.itemAnimator
+        recyclerViewDrunken.itemAnimator = null
+
+        recordDrunkenRecyclerViewAdapter.setHasStableIds(true)
         recyclerViewDrunken.apply {
+
             adapter = recordDrunkenRecyclerViewAdapter
             addItemDecoration(RecyclerViewDivWidthDecoration(20))
-            setHasFixedSize(true)
         }
     }
 
