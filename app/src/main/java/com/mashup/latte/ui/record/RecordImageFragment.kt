@@ -14,7 +14,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.api.load
 import com.mashup.latte.R
+import com.mashup.latte.ext.toastMakeToast
 import com.mashup.latte.ui.record.adapter.RecordImageRecyclerViewAdapter
+import com.mashup.latte.ui.record.data.result.ImageResult
 import kotlinx.android.synthetic.main.fragment_record_image.*
 import java.io.File
 import java.io.FileOutputStream
@@ -81,25 +83,35 @@ class RecordImageFragment : Fragment() {
 //        }
     }
 
-    fun giveImageData(){
+    fun giveImageData(): ImageResult? {
 
         val uriList = recordImageRecyclerViewAdapter.getUriList()
-        for(i in uriList.indices) {
+
+        var imageResult = ImageResult()
+        val pathArray = arrayOfNulls<String?>(3)
+        for (i in uriList.indices) {
             val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 ImageDecoder.decodeBitmap(
                     ImageDecoder.createSource(
                         requireContext().contentResolver,
-                        uriList[0]
+                        uriList[i]
                     )
                 )
             } else {
-                MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uriList[0])
+                MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uriList[i])
             }
-            SaveImage(bitmap,i)
+            pathArray[i] = saveImage(bitmap, i)
         }
+        if (pathArray[0] == null) {
+            context?.toastMakeToast("적어도 하나의 사진을 선택해주세요")
+            return null
+        }
+
+        imageResult.imagePath = pathArray
+        return imageResult
     }
 
-    private fun SaveImage(finalBitmap: Bitmap, index : Int) {
+    private fun saveImage(finalBitmap: Bitmap, index: Int): String {
         val file = File(context?.filesDir, "image_${System.currentTimeMillis()}_${index}.jpg")
 
         try {
@@ -110,9 +122,8 @@ class RecordImageFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        return file.path
     }
-
-
 
 
     companion object {

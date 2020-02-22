@@ -10,10 +10,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
+import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
 import com.mashup.latte.ui.record.data.DrunkenAfter
+import com.mashup.latte.ui.record.data.result.DetailResult
+import com.mashup.latte.ui.record.data.result.DrunkenResult
+import com.mashup.latte.ui.record.data.result.ImageResult
 import com.mashup.latte.util.PermissionManager
 import kotlinx.android.synthetic.main.activity_record.*
+import org.koin.android.ext.android.inject
 import org.koin.android.logger.AndroidLogger
 import java.util.*
 
@@ -21,6 +26,7 @@ import java.util.*
 class RecordActivity : AppCompatActivity() {
 
     private var progressCurrentPage = 1
+    private val repository : ApiRepository by inject()
     private val fragmentList = ArrayList<Fragment>().apply {
         add(RecordImageFragment.newInstance())
         add(RecordDetailFragment.newInstance())
@@ -53,7 +59,6 @@ class RecordActivity : AppCompatActivity() {
             if (PROGRESS_PAGE_COUNT == (currentCount + 1)) {
                 //TODO 완료처리
                 onComplete()
-
             } else {
                 viewPagerRecord.currentItem = currentCount + 1
             }
@@ -66,17 +71,14 @@ class RecordActivity : AppCompatActivity() {
         }
     }
 
-    private fun bringImageData() {
+    private fun bringImageData(): ImageResult? =
         (fragmentList[0] as RecordImageFragment).giveImageData()
-    }
 
-    private fun bringDrunkenData() {
+    private fun bringDetailData(): DetailResult? =
         (fragmentList[1] as RecordDetailFragment).giveDetailData()
-    }
 
-    private fun bringDetailData() {
+    private fun bringDrunkenData(): DrunkenResult? =
         (fragmentList[2] as RecordDrunkenFragment).giveDrunkenData()
-    }
 
 
     private fun initViewPager() {
