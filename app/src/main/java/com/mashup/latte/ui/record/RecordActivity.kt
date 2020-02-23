@@ -8,8 +8,11 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
+import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
 import com.mashup.latte.ui.record.data.DrunkenAfter
@@ -18,6 +21,9 @@ import com.mashup.latte.ui.record.data.result.DrunkenResult
 import com.mashup.latte.ui.record.data.result.ImageResult
 import com.mashup.latte.util.PermissionManager
 import kotlinx.android.synthetic.main.activity_record.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.logger.AndroidLogger
 import java.util.*
@@ -26,7 +32,7 @@ import java.util.*
 class RecordActivity : AppCompatActivity() {
 
     private var progressCurrentPage = 1
-    private val repository : ApiRepository by inject()
+    private val repository: ApiRepository by inject()
     private val fragmentList = ArrayList<Fragment>().apply {
         add(RecordImageFragment.newInstance())
         add(RecordDetailFragment.newInstance())
@@ -58,7 +64,10 @@ class RecordActivity : AppCompatActivity() {
             val currentCount = viewPagerRecord.currentItem
             if (PROGRESS_PAGE_COUNT == (currentCount + 1)) {
                 //TODO 완료처리
-                onComplete()
+
+                lifecycleScope.launch(Dispatchers.IO) {
+                    onComplete()
+                }
             } else {
                 viewPagerRecord.currentItem = currentCount + 1
             }
@@ -66,8 +75,22 @@ class RecordActivity : AppCompatActivity() {
     }
 
     private fun onComplete() {
-        if (bringImageData() != null && bringDetailData() != null && bringDrunkenData() != null) {
-
+        val imageData = bringImageData()
+        val detailData = bringDetailData()
+        val drunkenData = bringDrunkenData()
+        if (detailData != null && drunkenData != null) {
+            val alcoholDiary = AlcoholDiary(
+                null,
+                detailData.date,
+                detailData.drunkenStatus,
+                detailData.hanoverStatus,
+                detailData.drunkenAmounts,
+                drunkenData.drunken,
+                drunkenData.content,
+                imageData?.imagePath
+            )
+            repository.insetAlcoholDiary(alcoholDiary)
+            finish()
         }
     }
 

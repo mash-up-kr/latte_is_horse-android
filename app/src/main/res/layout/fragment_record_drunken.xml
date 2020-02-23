@@ -35,7 +35,7 @@
 
 
     <EditText
-        android:id="@+id/txtDetailStatusTitle"
+        android:id="@+id/txtDetailDiary"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="20dp"
@@ -63,8 +63,8 @@
         android:text="@string/record_detail_write_final"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/txtDetailStatusTitle"
-        app:layout_constraintTop_toBottomOf="@id/txtDetailStatusTitle" />
+        app:layout_constraintStart_toStartOf="@id/txtDetailDiary"
+        app:layout_constraintTop_toBottomOf="@id/txtDetailDiary" />
 
 
     <androidx.recyclerview.widget.RecyclerView

@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView.ItemAnimator
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mashup.latte.R
-import com.mashup.latte.ext.e
 import com.mashup.latte.ui.record.adapter.RecordDrunkenRecyclerViewAdapter
 import com.mashup.latte.ui.record.data.result.DrunkenResult
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivWidthDecoration
@@ -51,11 +49,14 @@ class RecordDrunkenFragment : Fragment() {
     }
 
     fun giveDrunkenData(): DrunkenResult? {
-        if (txtDetailStatusTitle.text.isNullOrEmpty()) {
-            return null
-        }
-        return DrunkenResult(
-            txtDetailStatusTitle.text.toString(),
+
+        return if (txtDetailDiary.text.isNullOrEmpty()) {
+            DrunkenResult(
+                "-",
+                recordDrunkenRecyclerViewAdapter.getSelectedText()
+            )
+        } else DrunkenResult(
+            txtDetailDiary.text.toString(),
             recordDrunkenRecyclerViewAdapter.getSelectedText()
         )
     }
@@ -63,7 +64,7 @@ class RecordDrunkenFragment : Fragment() {
     private fun initTextWatcher() {
         txtDrunkenAfterTextLength.text =
             (String.format(getString(R.string.record_detail_drunken_after_text_watch), 0))
-        txtDetailStatusTitle.addTextChangedListener(object : TextWatcher {
+        txtDetailDiary.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -74,7 +75,7 @@ class RecordDrunkenFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 txtDrunkenAfterTextLength.text = (String.format(
                     getString(R.string.record_detail_drunken_after_text_watch),
-                    txtDetailStatusTitle.length()
+                    txtDetailDiary.length()
                 ))
             }
         })

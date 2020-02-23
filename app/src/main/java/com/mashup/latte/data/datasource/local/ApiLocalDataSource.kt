@@ -1,6 +1,7 @@
 package com.mashup.latte.data.datasource.local
 
 import com.mashup.latte.data.datasource.local.dao.AppDao
+import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 
 /**
@@ -8,5 +9,6 @@ import com.mashup.latte.data.repository.ApiRepository
  */
 class ApiLocalDataSource(val appDao: AppDao) : ApiRepository {
 
-
+    override fun insetAlcoholDiary(alcoholDiary: AlcoholDiary) =
+        appDao.insertAlcoholDiary(alcoholDiary)
 }

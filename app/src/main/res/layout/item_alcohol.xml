@@ -53,9 +53,11 @@
         android:layout_width="64dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:inputType="number"
         android:maxLines="1"
+        android:text="0"
         app:layout_constraintLeft_toRightOf="@id/alcohoGuideLine"
         app:layout_constraintRight_toLeftOf="@id/txtAlcoholBottle"
         app:layout_constraintTop_toTopOf="parent" />
@@ -75,9 +77,11 @@
         android:id="@+id/edtAlcoholCup"
         android:layout_width="64dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:inputType="number"
         android:maxLines="1"
+        android:text="0"
         app:layout_constraintBaseline_toBaselineOf="@id/edtAlcoholBottle"
         app:layout_constraintLeft_toRightOf="@id/txtAlcoholBottle"
         app:layout_constraintRight_toLeftOf="@id/txtAlcoholCup" />

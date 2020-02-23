@@ -102,10 +102,6 @@ class RecordImageFragment : Fragment() {
             }
             pathArray[i] = saveImage(bitmap, i)
         }
-        if (pathArray[0] == null) {
-            context?.toastMakeToast("적어도 하나의 사진을 선택해주세요")
-            return null
-        }
 
         imageResult.imagePath = pathArray
         return imageResult
