@@ -14,33 +14,66 @@
         app:layout_constraintTop_toTopOf="parent"
          />
 
-
-    <TextView
-        android:id="@+id/txtMainRecord"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="118dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/shape_corner_circle_s"
-        android:drawableEnd="@drawable/ic_add_white_24dp"
-        android:fontFamily="@font/gmarket_sans_ttf_medium"
+    <ImageButton
+        android:id="@+id/btnCalendar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="2dp"
         android:gravity="center"
-        android:paddingStart="15dp"
-        android:paddingEnd="10dp"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:text="@string/main_record"
+        android:src="@drawable/img_calendar"
+        app:layout_constraintEnd_toStartOf="@+id/btnMyPage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnMyPage"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:src="@drawable/img_my_page"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/main_record" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnMainRecord"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:src="@drawable/img_add_diary"
+        android:background="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtMainRecord"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="118dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:background="@drawable/shape_corner_circle_s"-->
+<!--        android:drawableEnd="@drawable/ic_add_white_24dp"-->
+<!--        android:fontFamily="@font/gmarket_sans_ttf_medium"-->
+<!--        android:gravity="center"-->
+<!--        android:paddingStart="15dp"-->
+<!--        android:paddingEnd="10dp"-->
+<!--        android:textColor="#ffffff"-->
+<!--        android:textSize="18sp"-->
+<!--        android:text="@string/main_record"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:text="@string/main_record" />-->
 
 
     <TextView
         android:id="@+id/txtMainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="73dp"
         android:fontFamily="@font/gmarket_sans_ttf_light"
         android:text="@string/app_title_today"
         android:textColor="@android:color/black"

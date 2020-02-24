@@ -39,7 +39,7 @@ class DrunkFragment : Fragment() {
         val diary = arguments?.getSerializable("diary") as Diary?
         diary?.apply {
             /* TODO: View Update */
-            view.txtMainDrunkAmount.text = drunken_level
+            //view.txtMainDrunkAmount.text = drunken_level
         }
         return view
     }

@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="230dp"
-    android:layout_height="370dp"
-    android:background="@drawable/shape_gray_corner_circle"
+    android:layout_width="232dp"
+    android:layout_height="360dp"
+    android:background="@drawable/img_sketchbook_small"
     android:elevation="3dp"
     android:orientation="vertical">
 
@@ -12,14 +12,15 @@
         android:id="@+id/txtMainYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:text="2019"
-        android:textColor="@color/black"
-        android:textSize="12sp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="33dp"
+        android:text="2020"
+        android:textColor="@color/textYear"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="2019" />
+        tools:text="2020" />
 
     <TextView
         android:id="@+id/txtMainDate"
@@ -29,75 +30,132 @@
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
         app:layout_constraintStart_toStartOf="@id/txtMainYear"
         app:layout_constraintTop_toBottomOf="@id/txtMainYear"
         tools:text="12.03" />
 
     <ImageView
         android:id="@+id/ImgMainDrunkImage"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="20dp"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:background="@drawable/img_card_dancing_enabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtMainDate"
         tools:background="@mipmap/ic_launcher" />
 
+    <ImageView
+        android:id="@+id/imgMainCheckDrunkBottleCount"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/img_check_no_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ImgMainDrunkImage" />
 
     <TextView
-        android:id="@+id/txtMainTodayTitle"
+        android:id="@+id/txtMainDrunkBottleCountComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/all_double_quotes"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="2.5dp"
+        android:text="주량"
         android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/txtMainYear"
-        app:layout_constraintTop_toBottomOf="@id/ImgMainDrunkImage"
-        tools:text="&quot;술이 나를 마셨다&quot;" />
+        android:textColor="@color/colorPrimary"
+        tools:text="주량"
+        app:layout_constraintStart_toEndOf="@+id/imgMainCheckDrunkBottleCount"
+        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkBottleCount"/>
 
     <TextView
         android:id="@+id/txtMainDrunkBottleCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_drunk_bottle_count"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginStart="16dp"
+        android:text="소주 2병"
         android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/txtMainYear"
-        app:layout_constraintTop_toBottomOf="@id/txtMainTodayTitle"
-        tools:text="@string/main_drunk_bottle_count" />
+        android:textColor="@color/textYear"
+        tools:text="소주 2병"
+        app:layout_constraintStart_toEndOf="@+id/txtMainDrunkBottleCountComment"
+        app:layout_constraintTop_toTopOf="@+id/txtMainDrunkBottleCountComment"
+        />
+
+
+    <ImageView
+        android:id="@+id/imgMainCheckDrunkHangover"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/img_check_no_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgMainCheckDrunkBottleCount" />
+
+    <TextView
+        android:id="@+id/txtMainDrunkHangoverComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2.5dp"
+        android:text="숙취"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        tools:text="숙취"
+        app:layout_constraintStart_toEndOf="@+id/imgMainCheckDrunkHangover"
+        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkHangover"/>
+
+    <TextView
+        android:id="@+id/txtMainDrunkHangover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="상쾌"
+        android:textSize="14sp"
+        android:textColor="@color/textYear"
+        tools:text="상쾌"
+        app:layout_constraintStart_toEndOf="@+id/txtMainDrunkHangoverComment"
+        app:layout_constraintTop_toTopOf="@+id/txtMainDrunkHangoverComment"
+        />
+
+    <ImageView
+        android:id="@+id/imgMainCheckDrunkAmount"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/img_check_no_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgMainCheckDrunkHangover" />
+
+
+    <TextView
+        android:id="@+id/txtMainDrunkAmountComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2.5dp"
+        android:text="취함"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        tools:text="취함"
+        app:layout_constraintStart_toEndOf="@+id/imgMainCheckDrunkAmount"
+        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkAmount"/>
 
     <TextView
         android:id="@+id/txtMainDrunkAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_drunk_amount"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginStart="16dp"
+        android:text="많이 취함"
         android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/txtMainYear"
-        app:layout_constraintTop_toBottomOf="@id/txtMainDrunkBottleCount"
-        tools:text="@string/main_drunk_amount" />
-
-
-    <TextView
-        android:id="@+id/txtMainDrunkAfterAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_drunk_after_action"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/txtMainYear"
-        app:layout_constraintTop_toBottomOf="@id/txtMainDrunkAmount"
-        tools:text="@string/main_drunk_after_action" />
-
+        android:textColor="@color/textYear"
+        tools:text="많이 취함"
+        app:layout_constraintStart_toEndOf="@+id/txtMainDrunkAmountComment"
+        app:layout_constraintTop_toTopOf="@+id/txtMainDrunkAmountComment"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

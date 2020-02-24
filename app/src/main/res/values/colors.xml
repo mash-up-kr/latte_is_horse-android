@@ -17,6 +17,7 @@
     <color name="whiteTransparent">#88ffffff</color>
     <color name="backGround">#2f4856</color>
     <color name="textColor">#f9f9f9</color>
+    <color name="textYear">#373737</color>
 
 
     <color name="purple">#9c54ce</color>
