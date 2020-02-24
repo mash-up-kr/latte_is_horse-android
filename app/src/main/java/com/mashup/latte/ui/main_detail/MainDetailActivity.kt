@@ -56,6 +56,7 @@ class MainDetailActivity : AppCompatActivity(), MainDetailRecyclerViewAdapter.On
         viewPagerMainDetail.apply {
             adapter = mainDetailViewPagerAdapter
         }
+        springDotsIndicator.setViewPager(viewPagerMainDetail)
     }
 
     private fun initEvent() {

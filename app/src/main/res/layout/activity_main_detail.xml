@@ -319,16 +319,6 @@
         android:background="#99000000"
         android:visibility="gone">
 
-        <!--
-        <View
-            android:id="@+id/viewMainDetail1"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-            -->
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerMainDetail"
             android:layout_width="0dp"
@@ -338,6 +328,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:id="@+id/springDotsIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dampingRatio="0.5"
+            app:dotsColor="@color/colorPrimary"
+            app:dotsCornerRadius="2dp"
+            app:dotsSize="7dp"
+            app:dotsSpacing="7dp"
+            app:dotsStrokeColor="#ffffff"
+            app:dotsStrokeWidth="3.5dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewPagerMainDetail"
+            app:stiffness="300" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
