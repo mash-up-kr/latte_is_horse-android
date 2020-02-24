@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initEvent() {
-        txtMainRecord.setOnClickListener {
+        btnMainRecord.setOnClickListener {
             startActivity<RecordActivity>()
         }
     }
