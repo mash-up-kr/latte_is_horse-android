@@ -5,14 +5,21 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.mashup.latte.R
 import com.mashup.latte.ui.main_detail.adapter.MainDetailRecyclerViewAdapter
+import com.mashup.latte.ui.main_detail.adapter.MainDetailViewPagerAdapter
 import com.mashup.latte.ui.main_detail.data.MainDetailImages
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivWidthDecoration
 import kotlinx.android.synthetic.main.activity_main_detail.*
 
 class MainDetailActivity : AppCompatActivity(), MainDetailRecyclerViewAdapter.OnImageClickListener{
 
+    private var photoNum = 0
+
     private val mainDetailRecyclerViewAdapter: MainDetailRecyclerViewAdapter by lazy {
         MainDetailRecyclerViewAdapter(this)
+    }
+
+    private val mainDetailViewPagerAdapter: MainDetailViewPagerAdapter by lazy {
+        MainDetailViewPagerAdapter(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +30,8 @@ class MainDetailActivity : AppCompatActivity(), MainDetailRecyclerViewAdapter.On
 
     private fun init() {
         initRecyclerView()
+        initViewPager()
+        initEvent()
     }
 
     private fun initRecyclerView() {
@@ -31,12 +40,27 @@ class MainDetailActivity : AppCompatActivity(), MainDetailRecyclerViewAdapter.On
             addItemDecoration(RecyclerViewDivWidthDecoration(20))
             setHasFixedSize(true)
         }
-        mainDetailRecyclerViewAdapter.addImages(MainDetailImages())
-        mainDetailRecyclerViewAdapter.addImages(MainDetailImages())
-        mainDetailRecyclerViewAdapter.addImages(MainDetailImages())
+
+        for(i in 1..3){
+            mainDetailRecyclerViewAdapter.addImages(MainDetailImages())
+            photoNum++
+        }
     }
 
     override fun onImageClick(position: Int) {
         layoutMainDetailBackground.visibility = View.VISIBLE
+        viewPagerMainDetail.currentItem = position
+    }
+
+    private fun initViewPager() {
+        viewPagerMainDetail.apply {
+            adapter = mainDetailViewPagerAdapter
+        }
+    }
+
+    private fun initEvent() {
+        layoutMainDetailBackground.setOnClickListener{
+            layoutMainDetailBackground.visibility = View.GONE
+        }
     }
 }
