@@ -7,7 +7,6 @@ import com.mashup.latte.data.datasource.AppDatabase
 import com.mashup.latte.data.datasource.local.ApiLocalDataSource
 import com.mashup.latte.data.datasource.remote.ApiRemoteDataSource
 import com.mashup.latte.data.datasource.remote.ApiService
-import io.reactivex.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,6 +22,7 @@ import java.util.concurrent.TimeUnit
  * Created by Namget on 2020.02.15.
  */
 private const val LOGIN_BASEURL = "https://naver.com"
+private const val BASEURL = "http://ec2-54-180-89-116.ap-northeast-2.compute.amazonaws.com"
 private const val TIMEOUT: Long = 10L
 
 val remoteModule = module {
@@ -61,17 +61,17 @@ val remoteModule = module {
 
     //apiService naming을 통해 여러 BaseUrl을 가진 apiService 생성
     //동작의 경우
-    single(named("loginApi")) {
+    single(named("diaryApi")) {
         Retrofit.Builder()
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-            .addConverterFactory(GsonConverterFactory.create(get()))
-            .client(get())
-            .baseUrl(LOGIN_BASEURL)
+            .baseUrl(BASEURL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 
     single(named("ApiService")) {
-        get<Retrofit>(named("loginApi")).create(ApiService::class.java)
+        //get<Retrofit>(named("loginApi")).create(ApiService::class.java)
+        get<Retrofit>(named("diaryApi")).create(ApiService::class.java)
     }
     single {
         ApiRemoteDataSource(get(named("ApiService")))
