@@ -18,3 +18,10 @@ data class Diary(
     val action_type: String,
     val alcohol_records: List<AlcoholLevel>
 ): Serializable
+
+data class DiariesResponse(
+    val count: Int,
+    val next: String?,
+    val previous: String?,
+    val results: List<Diary>
+): Serializable

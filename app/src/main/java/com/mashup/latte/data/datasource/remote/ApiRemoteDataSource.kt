@@ -1,7 +1,9 @@
 package com.mashup.latte.data.datasource.remote
 
+import com.mashup.latte.data.DiariesResponse
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
+import io.reactivex.Single
 import java.lang.Exception
 
 /**
@@ -10,5 +12,8 @@ import java.lang.Exception
 class ApiRemoteDataSource(val apiService : ApiService) : ApiRepository{
     override fun insetAlcoholDiary(alcoholDiary: AlcoholDiary) {
         Exception("Api Remote not suppoted")
+    }
+    override fun getDiaries(token: String): Single<DiariesResponse> {
+        return apiService.requestDiaries(token)
     }
 }

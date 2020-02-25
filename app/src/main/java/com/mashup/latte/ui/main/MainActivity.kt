@@ -1,16 +1,21 @@
 package com.mashup.latte.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.ext.startActivity
 import com.mashup.latte.data.AlcoholLevel
 import com.mashup.latte.data.Diary
+import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
 import java.util.*
 
 
@@ -18,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var viewPagerFragment: ArrayList<Fragment>
     lateinit var compositeDisposable: CompositeDisposable
+    private val repository: ApiRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         compositeDisposable = CompositeDisposable()
         initEvent()
         initViewPager()
-        requestDrunkItem()
+        //requestDrunkItem()
     }
 
     private fun initEvent() {
@@ -49,18 +55,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewPager() {
-
-        // 서버와 통신~~~ 하지만 서버가 아직 배포가 안되었으므로 주석
-//        compositeDisposable.add(
-//            RetrofitManager.instance.requestDiaries("toto")
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeOn(Schedulers.newThread())
-//            .subscribe({ diaryList ->
-//
-//            }, {
-//
-//            })
-//        )
+        compositeDisposable.add(
+            repository.getDiaries("Token 04fd7fb6bcfdc7499c8b1a6b578fd9edd7f6d375")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe({diariesResponse ->
+                    Log.d("getDiaries", diariesResponse.toString())
+                    // TODO: ViewPager 반영
+                }, {
+                })
+        )
 
         //서버로 부터 받아온 페이지수 추가
         val fragmentList = ArrayList<Fragment>().apply {

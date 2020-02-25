@@ -13,4 +13,6 @@ class ApiRepositoryImpl(
 ) : ApiRepository {
     override fun insetAlcoholDiary(alcoholDiary: AlcoholDiary) =
         apiLocalDataSource.appDao.insertAlcoholDiary(alcoholDiary)
+    override fun getDiaries(token: String) =
+        apiRemoteDataSource.apiService.requestDiaries(token)
 }
