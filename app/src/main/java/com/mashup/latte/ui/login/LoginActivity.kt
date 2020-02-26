@@ -3,11 +3,7 @@ package com.mashup.latte.ui.login
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_login.*
-import android.content.pm.PackageInstaller
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.util.Base64
-import android.util.Log
 import com.kakao.util.exception.KakaoException
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
@@ -15,7 +11,6 @@ import com.kakao.util.helper.log.Logger
 import com.mashup.latte.ext.startActivity
 import com.mashup.latte.pref.UserPref
 import com.mashup.latte.ui.main.MainActivity
-import java.security.MessageDigest
 
 
 class LoginActivity : AppCompatActivity() {
@@ -36,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
     private fun initView() {
         btn_custom_login.setOnClickListener { btn_kakao_login.performClick() }
         btn_next.setOnClickListener {
-            UserPref.setLogin(false)
+            UserPref.setSNSLogin(false)
             startMainActivity()
         }
     }
@@ -95,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun redirectSignupActivity() {
-        UserPref.setLogin(true)
+        UserPref.setSNSLogin(true)
         startMainActivity()
         finish()
     }

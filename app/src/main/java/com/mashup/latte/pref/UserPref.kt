@@ -1,12 +1,12 @@
 package com.mashup.latte.pref
 
 object UserPref {
-    private var isLogined = false
+    private var isSNSLogined = false
 
-    fun setLogin(isLogin: Boolean) {
-        isLogined = isLogin
+    fun setSNSLogin(isLogin: Boolean) {
+        isSNSLogined = isLogin
     }
 
-    fun isLogin(): Boolean =
-        isLogined
+    fun isSNSLogin(): Boolean =
+        isSNSLogined
 }
