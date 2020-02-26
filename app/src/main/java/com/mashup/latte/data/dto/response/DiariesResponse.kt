@@ -1,4 +1,4 @@
-package com.mashup.latte.data
+package com.mashup.latte.data.dto.response
 
 import java.io.Serializable
 

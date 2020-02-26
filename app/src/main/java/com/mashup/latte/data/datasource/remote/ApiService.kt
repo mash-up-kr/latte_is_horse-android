@@ -1,6 +1,6 @@
 package com.mashup.latte.data.datasource.remote
 
-import com.mashup.latte.data.DiariesResponse
+import com.mashup.latte.data.dto.response.DiariesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Header
