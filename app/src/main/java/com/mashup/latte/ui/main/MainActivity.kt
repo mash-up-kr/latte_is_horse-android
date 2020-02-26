@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.ext.startActivity
-import com.mashup.latte.data.AlcoholLevel
-import com.mashup.latte.data.Diary
+import com.mashup.latte.data.dto.response.AlcoholLevel
+import com.mashup.latte.data.dto.response.Diary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
@@ -69,18 +69,25 @@ class MainActivity : AppCompatActivity() {
         //서버로 부터 받아온 페이지수 추가
         val fragmentList = ArrayList<Fragment>().apply {
             val alcoholRecords = ArrayList<AlcoholLevel>()
-            alcoholRecords.add(AlcoholLevel(2.0, 2.5, 1))
+            alcoholRecords.add(
+                AlcoholLevel(
+                    2.0,
+                    2.5,
+                    1
+                )
+            )
 
             val bundle = Bundle()
-            bundle.putSerializable("diary", Diary(
-                1,
-                "굿",
-                "18:28:56",
-                "쏘쏘",
-                "투뱃",
-                "굿",
-                alcoholRecords
-            )
+            bundle.putSerializable("diary",
+                Diary(
+                    1,
+                    "굿",
+                    "18:28:56",
+                    "쏘쏘",
+                    "투뱃",
+                    "굿",
+                    alcoholRecords
+                )
             )
 
             add(DrunkFragment.newInstance(bundle))

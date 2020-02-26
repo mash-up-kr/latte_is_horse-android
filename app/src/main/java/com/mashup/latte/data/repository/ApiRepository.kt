@@ -1,6 +1,6 @@
 package com.mashup.latte.data.repository
 
-import com.mashup.latte.data.DiariesResponse
+import com.mashup.latte.data.dto.response.DiariesResponse
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import io.reactivex.Single
 

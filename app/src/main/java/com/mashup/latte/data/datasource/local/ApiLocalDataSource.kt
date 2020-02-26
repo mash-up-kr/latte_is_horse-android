@@ -1,6 +1,6 @@
 package com.mashup.latte.data.datasource.local
 
-import com.mashup.latte.data.DiariesResponse
+import com.mashup.latte.data.dto.response.DiariesResponse
 import com.mashup.latte.data.datasource.local.dao.AppDao
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
@@ -16,11 +16,13 @@ class ApiLocalDataSource(val appDao: AppDao) : ApiRepository {
         appDao.insertAlcoholDiary(alcoholDiary)
     override fun getDiaries(token: String): Single<DiariesResponse> {
         Exception("Api Local not suppoted")
-        return Single.just(DiariesResponse(
-            0,
-            null,
-            null,
-            ArrayList()
-        ))
+        return Single.just(
+            DiariesResponse(
+                0,
+                null,
+                null,
+                ArrayList()
+            )
+        )
     }
 }
