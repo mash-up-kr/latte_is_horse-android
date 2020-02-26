@@ -13,6 +13,7 @@ import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.util.helper.log.Logger
 import com.mashup.latte.ext.startActivity
+import com.mashup.latte.pref.UserPref
 import com.mashup.latte.ui.main.MainActivity
 import java.security.MessageDigest
 
@@ -24,18 +25,29 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.mashup.latte.R.layout.activity_login)
+        init()
+    }
 
-        btn_custom_login.setOnClickListener{ btn_kakao_login.performClick()}
-        btn_next.setOnClickListener{redirectSignupActivity()}
+    private fun init() {
+        initView()
+        initSession()
+    }
 
+    private fun initView() {
+        btn_custom_login.setOnClickListener { btn_kakao_login.performClick() }
+        btn_next.setOnClickListener {
+            UserPref.setLogin(false)
+            startMainActivity()
+        }
+    }
+
+    private fun initSession() {
         callback = SessionCallback()
         Session.getCurrentSession().addCallback(callback)
         Session.getCurrentSession().checkAndImplicitOpen()
-
-
     }
 
-    private fun getHashkey(){
+    private fun getHashkey() {
         //hash key 얻기
 //        try {
 //            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES)
@@ -69,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
         override fun onSessionOpened() {
             redirectSignupActivity()
         }
+
         override fun onSessionOpenFailed(exception: KakaoException?) {
             if (exception != null) {
                 Logger.e(exception)
@@ -76,8 +89,14 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun redirectSignupActivity() {
+    private fun startMainActivity() {
         startActivity<MainActivity>()
+        finish()
+    }
+
+    private fun redirectSignupActivity() {
+        UserPref.setLogin(true)
+        startMainActivity()
         finish()
     }
 }
