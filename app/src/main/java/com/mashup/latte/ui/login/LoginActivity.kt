@@ -7,15 +7,18 @@ import android.content.Intent
 import com.kakao.util.exception.KakaoException
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
+import com.kakao.usermgmt.response.model.User
 import com.kakao.util.helper.log.Logger
 import com.mashup.latte.ext.startActivity
 import com.mashup.latte.pref.UserPref
 import com.mashup.latte.ui.main.MainActivity
+import org.koin.android.ext.android.inject
 
 
 class LoginActivity : AppCompatActivity() {
 
     private var callback: SessionCallback? = null
+    private val userPref : UserPref by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
     private fun initView() {
         btn_custom_login.setOnClickListener { btn_kakao_login.performClick() }
         btn_next.setOnClickListener {
-            UserPref.setSNSLogin(false)
+            userPref.setSNSLogin(false)
             startMainActivity()
         }
     }
@@ -90,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun redirectSignupActivity() {
-        UserPref.setSNSLogin(true)
+        userPref.setSNSLogin(true)
         startMainActivity()
         finish()
     }

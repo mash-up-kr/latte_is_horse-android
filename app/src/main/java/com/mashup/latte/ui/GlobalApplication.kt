@@ -6,6 +6,7 @@ import com.mashup.latte.BuildConfig
 import com.mashup.latte.module.localModule
 import com.mashup.latte.module.remoteModule
 import com.mashup.latte.module.repositoryModule
+import com.mashup.latte.module.sharedModule
 import com.mashup.latte.ui.login.KakaoSDKAdapter
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.logger.AndroidLogger
@@ -33,7 +34,7 @@ class GlobalApplication : Application() {
         startKoin {
             logger(if (BuildConfig.DEBUG) AndroidLogger() else EmptyLogger())
             androidContext(this@GlobalApplication)
-            modules(listOf(localModule, repositoryModule, remoteModule))
+            modules(listOf(localModule, repositoryModule, remoteModule, sharedModule))
         }
     }
 

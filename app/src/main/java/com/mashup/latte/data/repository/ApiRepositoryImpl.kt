@@ -4,6 +4,9 @@ import com.mashup.latte.data.datasource.local.ApiLocalDataSource
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.datasource.remote.ApiRemoteDataSource
 import com.mashup.latte.pref.UserPref
+import org.koin.android.ext.android.inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 /**
  * Created by Namget on 2020.02.15.
@@ -11,12 +14,12 @@ import com.mashup.latte.pref.UserPref
 class ApiRepositoryImpl(
     private val apiLocalDataSource: ApiLocalDataSource,
     private val apiRemoteDataSource: ApiRemoteDataSource
-) : ApiRepository{
+) : ApiRepository, KoinComponent{
+    private val userPref : UserPref by inject()
 
 
     override fun insetAlcoholDiary(alcoholDiary: AlcoholDiary) {
-
-        if(UserPref.isSNSLogin()) {
+        if(userPref.isSNSLogin()) {
             apiLocalDataSource.appDao.insertAlcoholDiary(alcoholDiary)
         }else{
             apiLocalDataSource.appDao.insertAlcoholDiary(alcoholDiary)
