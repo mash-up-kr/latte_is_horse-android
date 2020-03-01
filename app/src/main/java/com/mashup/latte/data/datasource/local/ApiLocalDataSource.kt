@@ -13,8 +13,9 @@ import java.lang.Exception
  */
 class ApiLocalDataSource(val appDao: AppDao) : ApiRepository {
 
-    override fun insetAlcoholDiary(alcoholDiary: AlcoholDiary) =
+    override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) =
         appDao.insertAlcoholDiary(alcoholDiary)
+
     override fun getDiaries(token: String): Single<DiariesResponse> {
         Exception("Api Local not suppoted")
         return Single.just(

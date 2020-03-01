@@ -24,14 +24,14 @@ class ApiRepositoryImpl(
         apiRemoteDataSource.getLoginToken()
 
 
-    override fun insetAlcoholDiary(alcoholDiary: AlcoholDiary) {
+    override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) {
         if (userPref.isSNSLogin()) {
-            apiLocalDataSource.appDao.insertAlcoholDiary(alcoholDiary)
+            apiRemoteDataSource.insertAlcoholDiary(alcoholDiary)
         } else {
-            apiLocalDataSource.appDao.insertAlcoholDiary(alcoholDiary)
+            apiLocalDataSource.insertAlcoholDiary(alcoholDiary)
         }
     }
 
     override fun getDiaries(token: String) =
-        apiRemoteDataSource.apiService.requestDiaries(token)
+        apiRemoteDataSource.getDiaries(token)
 }

@@ -11,15 +11,18 @@ import java.lang.Exception
 /**
  * Created by Namget on 2020.02.15.
  */
-class ApiRemoteDataSource(val apiService: ApiService, val kaKaoApiService: KaKaoApiService) :
+class ApiRemoteDataSource(
+    private val apiService: ApiService,
+    private val kaKaoApiService: KaKaoApiService
+) :
     ApiRepository {
 
     override fun getLoginToken(): Single<TokenResponse> =
         kaKaoApiService.getLoginToken()
 
 
-    override fun insetAlcoholDiary(alcoholDiary: AlcoholDiary) {
-        Exception("Api Remote not suppoted")
+    override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) {
+        apiService.postDiary()
     }
 
     override fun getDiaries(token: String): Single<DiariesResponse> {

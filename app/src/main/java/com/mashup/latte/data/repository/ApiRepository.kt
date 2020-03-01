@@ -10,7 +10,7 @@ import io.reactivex.Single
  * Created by Namget on 2020.02.15.
  */
 interface ApiRepository{
-    fun insetAlcoholDiary(alcoholDiary: AlcoholDiary)
+    fun insertAlcoholDiary(alcoholDiary: AlcoholDiary)
     fun getLoginToken() : Single<TokenResponse>
     fun getDiaries(token: String) : Single<DiariesResponse>
 }

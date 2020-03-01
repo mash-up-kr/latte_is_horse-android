@@ -2,7 +2,6 @@ package com.mashup.latte.ui.record
 
 import android.Manifest
 import android.animation.ValueAnimator
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -16,17 +15,14 @@ import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.pref.UserPref
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
-import com.mashup.latte.ui.record.data.DrunkenAfter
 import com.mashup.latte.ui.record.data.result.DetailResult
 import com.mashup.latte.ui.record.data.result.DrunkenResult
 import com.mashup.latte.ui.record.data.result.ImageResult
 import com.mashup.latte.util.PermissionManager
 import kotlinx.android.synthetic.main.activity_record.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import org.koin.android.logger.AndroidLogger
 import java.util.*
 
 
@@ -82,9 +78,7 @@ class RecordActivity : AppCompatActivity() {
         val drunkenData = bringDrunkenData()
 
         if (detailData != null && drunkenData != null) {
-            if (userPref.isSNSLogin()) {
-
-            } else {
+            lifecycleScope.launch(Dispatchers.IO) {
                 val alcoholDiary = AlcoholDiary(
                     null,
                     detailData.date,
@@ -95,9 +89,9 @@ class RecordActivity : AppCompatActivity() {
                     drunkenData.content,
                     imageData?.imagePath
                 )
-                repository.insetAlcoholDiary(alcoholDiary)
+                repository.insertAlcoholDiary(alcoholDiary)
+                finish()
             }
-            finish()
         }
     }
 
