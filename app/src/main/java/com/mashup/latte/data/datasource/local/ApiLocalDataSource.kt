@@ -3,6 +3,7 @@ package com.mashup.latte.data.datasource.local
 import com.mashup.latte.data.dto.response.DiariesResponse
 import com.mashup.latte.data.datasource.local.dao.AppDao
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
+import com.mashup.latte.data.dto.response.TokenResponse
 import com.mashup.latte.data.repository.ApiRepository
 import io.reactivex.Single
 import java.lang.Exception
@@ -24,5 +25,9 @@ class ApiLocalDataSource(val appDao: AppDao) : ApiRepository {
                 ArrayList()
             )
         )
+    }
+
+    override fun getLoginToken(): Single<TokenResponse> {
+        throw IllegalAccessException("local api not supported")
     }
 }
