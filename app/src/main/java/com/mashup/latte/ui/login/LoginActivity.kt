@@ -9,16 +9,22 @@ import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.usermgmt.response.model.User
 import com.kakao.util.helper.log.Logger
+import com.mashup.latte.data.repository.ApiRepository
+import com.mashup.latte.ext.e
+import com.mashup.latte.ext.plusAssign
 import com.mashup.latte.ext.startActivity
+import com.mashup.latte.ext.withScheduler
 import com.mashup.latte.pref.UserPref
+import com.mashup.latte.ui.base.BaseActivity
 import com.mashup.latte.ui.main.MainActivity
 import org.koin.android.ext.android.inject
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private var callback: SessionCallback? = null
-    private val userPref : UserPref by inject()
+    private val userPref: UserPref by inject()
+    private val repository: ApiRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
     private fun init() {
         initView()
         initSession()
+        checkLogin()
     }
 
     private fun initView() {
@@ -70,8 +77,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         Session.getCurrentSession().removeCallback(callback)
+        super.onDestroy()
     }
 
     private inner class SessionCallback : ISessionCallback {
@@ -87,14 +94,43 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun checkLogin() {
+        if (!userPref.isFirstLogined()) {
+            if (userPref.isSNSLogin()) {
+                redirectSignupActivity()
+            } else {
+                startActivity<MainActivity>()
+                finish()
+            }
+        }
+    }
+
     private fun startMainActivity() {
         startActivity<MainActivity>()
         finish()
     }
 
     private fun redirectSignupActivity() {
-        userPref.setSNSLogin(true)
-        startMainActivity()
-        finish()
+        disposable += repository.getLoginToken()
+            .withScheduler()
+            .subscribe({
+                e(TAG, "success $it")
+                if (it != null) {
+                    //TODO 로그인 부분 테스트 필요
+                    userPref.setSNSLogin(true)
+                    userPref.setAceessToken(it.token)
+                    startMainActivity()
+                    finish()
+                }
+            }, {
+                e(TAG, "error", it)
+            })
+
+    }
+
+
+    companion object {
+        const val TAG = "LoginActivity"
     }
 }

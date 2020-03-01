@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
+import com.mashup.latte.pref.UserPref
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
 import com.mashup.latte.ui.record.data.DrunkenAfter
 import com.mashup.latte.ui.record.data.result.DetailResult
@@ -33,6 +34,7 @@ class RecordActivity : AppCompatActivity() {
 
     private var progressCurrentPage = 1
     private val repository: ApiRepository by inject()
+    private val userPref: UserPref by inject()
     private val fragmentList = ArrayList<Fragment>().apply {
         add(RecordImageFragment.newInstance())
         add(RecordDetailFragment.newInstance())
@@ -78,18 +80,23 @@ class RecordActivity : AppCompatActivity() {
         val imageData = bringImageData()
         val detailData = bringDetailData()
         val drunkenData = bringDrunkenData()
+
         if (detailData != null && drunkenData != null) {
-            val alcoholDiary = AlcoholDiary(
-                null,
-                detailData.date,
-                detailData.drunkenStatus,
-                detailData.hanoverStatus,
-                detailData.drunkenAmounts,
-                drunkenData.drunken,
-                drunkenData.content,
-                imageData?.imagePath
-            )
-            repository.insetAlcoholDiary(alcoholDiary)
+            if (userPref.isSNSLogin()) {
+
+            } else {
+                val alcoholDiary = AlcoholDiary(
+                    null,
+                    detailData.date,
+                    detailData.drunkenStatus,
+                    detailData.hanoverStatus,
+                    detailData.drunkenAmounts,
+                    drunkenData.drunken,
+                    drunkenData.content,
+                    imageData?.imagePath
+                )
+                repository.insetAlcoholDiary(alcoholDiary)
+            }
             finish()
         }
     }
