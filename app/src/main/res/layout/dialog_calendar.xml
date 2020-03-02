@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="422dp"
+    android:background="@drawable/shape_corner_circle">
+
+    <ImageView
+        android:id="@+id/imgCalendarPrevArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@id/txtCalendarDate"
+        app:layout_constraintRight_toLeftOf="@id/txtCalendarDate"
+        app:layout_constraintTop_toTopOf="@id/txtCalendarDate"
+        app:srcCompat="@drawable/ic_back_arrow" />
+
+    <TextView
+        android:id="@+id/txtCalendarDate"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/gmarket_sans_ttf_medium"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2020 . 02" />
+
+    <ImageView
+        android:id="@+id/imgCalendarNextArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@id/txtCalendarDate"
+        app:layout_constraintLeft_toRightOf="@id/txtCalendarDate"
+        app:layout_constraintTop_toTopOf="@id/txtCalendarDate"
+        app:srcCompat="@drawable/ic_next_arrow" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="43dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/viewCalendarDivide"
+        app:spanCount="7"
+        app:layout_constraintTop_toBottomOf="@id/txtCalendarDate"
+        tools:listitem="@layout/item_calendar_row" />
+
+    <TextView
+        android:id="@+id/txtCalendarOk"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/noto_sans_display_medium"
+        android:gravity="center"
+        android:text="@string/ok"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/viewCalendarDivide"
+        app:layout_constraintLeft_toRightOf="@id/viewCalendarDivide"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewCalendarDivide" />
+
+    <View
+        android:id="@+id/viewCalendarDivide"
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="25dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCalendarCancel"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/noto_sans_display_medium"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/viewCalendarDivide"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/viewCalendarDivide"
+        app:layout_constraintTop_toTopOf="@id/viewCalendarDivide" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

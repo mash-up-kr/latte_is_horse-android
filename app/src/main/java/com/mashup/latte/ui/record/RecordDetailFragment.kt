@@ -49,10 +49,13 @@ class RecordDetailFragment : Fragment() {
     private fun initView() {
 
         btnDetailDateSelector.setOnClickListener {
-            Calendar.getInstance().showDateDialog(requireContext(), { result ->
-                (it as Button).text = result
-                detailData.date = result
-            })
+            RecordCalendarDialog(context = context!!) {
+
+            }.show()
+//            Calendar.getInstance().showDateDialog(requireContext(), { result ->
+//                (it as Button).text = result
+//                detailData.date = result
+//            })
         }
         initRecyclerView()
         initHangoverStatusImageView()
@@ -74,7 +77,7 @@ class RecordDetailFragment : Fragment() {
             return null
         }
 
-        if(recyclerViewDetailAlcohol.childCount == 0){
+        if (recyclerViewDetailAlcohol.childCount == 0) {
             context?.toastMakeToast("마신 술 종류를 입력하세요")
             return null
         }
