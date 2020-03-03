@@ -8,15 +8,19 @@ import androidx.fragment.app.DialogFragment
 import com.mashup.latte.R
 import com.mashup.latte.ui.record.adapter.CalendarAdapter
 import kotlinx.android.synthetic.main.dialog_calendar.*
+import org.koin.android.ext.android.inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 /**
  * Created by Namget on 2020.03.02.
  */
 class RecordCalendarDialog(context: Context, cancelCallback: (DialogInterface) -> Unit) :
-    Dialog(context, false, cancelCallback) {
+    Dialog(context, false, cancelCallback), KoinComponent {
 
+    private val calendarManager: CalendarManager by inject()
     private val calendarAdapter: CalendarAdapter by lazy {
-        CalendarAdapter()
+        CalendarAdapter(calendarManager)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +39,20 @@ class RecordCalendarDialog(context: Context, cancelCallback: (DialogInterface) -
     private fun initListener() {
         imgCalendarPrevArrow.setOnClickListener {
             calendarAdapter.prevArrow()
+            txtCalendarDate.text = calendarManager.nowDate
         }
         imgCalendarNextArrow.setOnClickListener {
             calendarAdapter.nextArrow()
+            txtCalendarDate.text = calendarManager.nowDate
         }
-        //TODO 날짜 지정 및 날짜 변경
-        txtCalendarDate.text = "2020.03"
+        txtCalendarDate.text = calendarManager.nowDate
+
+        txtCalendarCancel.setOnClickListener {
+            dismiss()
+        }
+        txtCalendarOk.setOnClickListener {
+            //TODO 날짜 선택한것이 있도록
+        }
 
     }
-
 }

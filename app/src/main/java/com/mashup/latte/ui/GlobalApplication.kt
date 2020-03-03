@@ -3,10 +3,7 @@ package com.mashup.latte.ui
 import com.kakao.auth.KakaoSDK
 import android.app.Application
 import com.mashup.latte.BuildConfig
-import com.mashup.latte.module.localModule
-import com.mashup.latte.module.remoteModule
-import com.mashup.latte.module.repositoryModule
-import com.mashup.latte.module.sharedModule
+import com.mashup.latte.module.*
 import com.mashup.latte.ui.login.KakaoSDKAdapter
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.logger.AndroidLogger
@@ -34,7 +31,7 @@ class GlobalApplication : Application() {
         startKoin {
             logger(if (BuildConfig.DEBUG) AndroidLogger() else EmptyLogger())
             androidContext(this@GlobalApplication)
-            modules(listOf(localModule, repositoryModule, remoteModule, sharedModule))
+            modules(listOf(localModule, repositoryModule, remoteModule, sharedModule, utilModule))
         }
     }
 

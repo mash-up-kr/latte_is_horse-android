@@ -168,6 +168,7 @@ class RecordActivity : AppCompatActivity() {
         when (requestCode) {
             PermissionManager.REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    (fragmentList[0] as RecordImageFragment).onReload()
                     //TODO
                 } else {
                     finish()

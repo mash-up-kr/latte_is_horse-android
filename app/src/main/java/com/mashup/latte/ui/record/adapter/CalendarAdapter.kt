@@ -13,33 +13,30 @@ import com.mashup.latte.ui.record.data.CalendarRow
 /**
  * Created by Namget on 2020.03.02.
  */
-class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.CalenderViewHolder>() {
+class CalendarAdapter(private val calendarManager : CalendarManager) : RecyclerView.Adapter<CalendarAdapter.CalenderViewHolder>() {
     private val calendarRows: MutableList<CalendarRow> = mutableListOf()
-    private val calendarManager = CalendarManager()
+
 
     init {
-        replaceData()
+        replaceData(calendarManager.buildCalendar())
     }
 
     //TODO row 클릭시 click 한 날 동그라미로
-    
-    private fun replaceData() {
+
+    private fun replaceData(list: List<CalendarRow>) {
         calendarRows.clear()
-        calendarRows.addAll(calendarManager.buildCalendar())
+        calendarRows.addAll(list)
         notifyDataSetChanged()
     }
 
     fun nextArrow() {
-        calendarRows.clear()
-        calendarRows.addAll(calendarManager.nextMonth())
-        notifyDataSetChanged()
+        replaceData(calendarManager.nextMonth())
     }
 
     fun prevArrow() {
-        calendarRows.clear()
-        calendarRows.addAll(calendarManager.prevMonth())
-        notifyDataSetChanged()
+        replaceData(calendarManager.prevMonth())
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalenderViewHolder {
         val view =

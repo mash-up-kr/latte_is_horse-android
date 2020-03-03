@@ -73,7 +73,10 @@ class RecordImageFragment : Fragment() {
 //            imageSelected(imageUri)
             txtUploadImageSelect.load(imageUri)
         }
+    }
 
+    fun onReload(){
+        initRecyclerView()
     }
 
     private fun initMultipleSelectable() {
@@ -84,9 +87,7 @@ class RecordImageFragment : Fragment() {
     }
 
     fun giveImageData(): ImageResult? {
-
         val uriList = recordImageRecyclerViewAdapter.getUriList()
-
         var imageResult = ImageResult()
         val pathArray = arrayOfNulls<String?>(3)
         for (i in uriList.indices) {

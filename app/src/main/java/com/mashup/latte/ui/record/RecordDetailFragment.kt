@@ -18,16 +18,17 @@ import com.mashup.latte.ui.record.data.alcohol.*
 import com.mashup.latte.ui.record.data.result.DrunkenAmount
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivHeightDecoration
 import kotlinx.android.synthetic.main.fragment_record_detail.*
+import org.koin.android.ext.android.inject
 import java.util.*
 
 /**
  * Created by Namget on 2019.11.23.
  */
 class RecordDetailFragment : Fragment() {
-
     private val recordDetailRecyclerViewAdapter: RecordDetailRecyclerViewAdapter by lazy {
         RecordDetailRecyclerViewAdapter()
     }
+
     private val detailData = DetailResult()
 
     override fun onCreateView(

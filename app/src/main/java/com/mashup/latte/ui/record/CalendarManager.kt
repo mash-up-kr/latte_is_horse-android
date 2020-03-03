@@ -1,8 +1,9 @@
 package com.mashup.latte.ui.record
 
-import android.location.Criteria
 import com.mashup.latte.R
+import com.mashup.latte.ext.e
 import com.mashup.latte.ui.record.data.CalendarRow
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -12,7 +13,14 @@ class CalendarManager {
     private val calendarRows = mutableListOf<CalendarRow>()
     private val firstDate = GregorianCalendar(Locale.KOREA).also {
         it.set(Calendar.DATE, 1)
+        e("CalendarManager", "YEAR ${it.get(Calendar.YEAR)}")
+        e("CalendarManager", "MONTH ${it.get(Calendar.MONTH)}")
+        e("CalendarManager", "DATE ${it.get(Calendar.DATE)}")
+        e("CalendarManager", "DAY_OF_WEEK ${it.get(Calendar.DAY_OF_WEEK)}")
     }
+    private val format = SimpleDateFormat("yyyy.MM", Locale.KOREA)
+    val nowDate get() = format.format(Date(firstDate.timeInMillis))
+
 
     fun prevMonth(): List<CalendarRow> {
         firstDate.set(Calendar.MONTH, firstDate.get(Calendar.MONTH) - 1)
@@ -55,22 +63,30 @@ class CalendarManager {
             calendarRows.add(
                 CalendarRow(
                     i.toString(),
-                    if (isSunday(sunday, dayOfMonth)) {
-                        R.color.red
-                    } else {
-                        R.color.black
+                    when {
+                        isSunday(i) -> {
+                            R.color.red
+                        }
+                        isSaturday(i) -> {
+                            R.color.blue
+                        }
+                        else -> {
+                            R.color.black
+                        }
                     }
                 )
             )
         }
     }
 
-    private fun isSunday(day: Int, criteria: Int): Boolean = (day % criteria == 1)
+    private val sundayCriteria: IntArray = intArrayOf(1, 7, 6, 5, 4, 3, 2)
+    private val saturdayCriteria: IntArray = intArrayOf(0, 6, 5, 4, 3, 2, 1)
+    private fun isSunday(day: Int): Boolean = (day % 7 == sundayCriteria[getBalnkCount()])
+    private fun isSaturday(day: Int): Boolean = (day % 7 == saturdayCriteria[getBalnkCount()])
 
-    private fun getBalnkCount(): Int = firstDate.get(Calendar.DAY_OF_WEEK)
+    private fun getBalnkCount(): Int = firstDate.get(Calendar.DAY_OF_WEEK) - 1
 
     private fun clear() {
         calendarRows.clear()
     }
-
 }
