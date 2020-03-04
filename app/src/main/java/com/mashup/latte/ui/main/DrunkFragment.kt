@@ -1,5 +1,6 @@
 package com.mashup.latte.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.data.dto.response.Diary
+import com.mashup.latte.ui.main_detail.MainDetailActivity
 
 /**
  * Created by Namget on 2019.11.23.
@@ -34,6 +36,11 @@ class DrunkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main_drunk, container, false)
+
+        view.setOnClickListener{
+            val intent = Intent(activity, MainDetailActivity::class.java)
+            startActivity(intent)
+        }
 
         val diary = arguments?.getSerializable("diary") as Diary?
         diary?.apply {
