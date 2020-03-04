@@ -10,26 +10,7 @@ import com.mashup.latte.R
 import com.mashup.latte.ui.main_detail.data.MainDetailImages
 import kotlinx.android.synthetic.main.fragment_main_detail_image.view.*
 
-/*
-class MainDetailViewPagerAdapter(
-    fm: androidx.fragment.app.FragmentManager,
-    private val fragmentList: ArrayList<Fragment>
-) : androidx.fragment.app.FragmentStatePagerAdapter(
-    fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-) {
-    override fun getItem(position: Int): Fragment = fragmentList[position]
-    override fun getCount(): Int = fragmentList.size
-    override fun getPageWidth(position: Int): Float {
-        return pageWidth
-    }
-
-    companion object {
-        const val pageWidth = 0.8f
-    }
-}
-*/
-
-class MainDetailViewPagerAdapter(context: Context) : PagerAdapter() {
+class MainDetailViewPagerAdapter(context: Context, private val imageList: ArrayList<String>) : PagerAdapter() {
     private val mContext = context
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -46,7 +27,7 @@ class MainDetailViewPagerAdapter(context: Context) : PagerAdapter() {
     }
 
     override fun getCount(): Int {
-        return 4
+        return imageList.size
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
