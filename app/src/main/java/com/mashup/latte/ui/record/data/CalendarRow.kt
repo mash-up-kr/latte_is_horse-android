@@ -10,5 +10,7 @@ import com.mashup.latte.R
  */
 data class CalendarRow(
     val text: String = "",
-    @ColorRes val textColor: Int = R.color.black
+    @ColorRes val textColor: Int = R.color.black,
+    val isSelectable : Boolean = true,
+    val isSelected : Boolean = false
 )

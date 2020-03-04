@@ -1,5 +1,6 @@
 package com.mashup.latte.ui.record.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,9 @@ import com.mashup.latte.ui.record.data.CalendarRow
 /**
  * Created by Namget on 2020.03.02.
  */
-class CalendarAdapter(private val calendarManager : CalendarManager) : RecyclerView.Adapter<CalendarAdapter.CalenderViewHolder>() {
+class CalendarAdapter(private val calendarManager: CalendarManager) :
+    RecyclerView.Adapter<CalendarAdapter.CalenderViewHolder>() {
     private val calendarRows: MutableList<CalendarRow> = mutableListOf()
-
 
     init {
         replaceData(calendarManager.buildCalendar())
@@ -55,7 +56,11 @@ class CalendarAdapter(private val calendarManager : CalendarManager) : RecyclerV
 
         override fun bind(data: CalendarRow) {
             calendarText.text = data.text
-            calendarText.setTextColor(view.context.resources.getColor(data.textColor, null))
+            if (android.os.Build.VERSION.SDK_INT >= 23) {
+                calendarText.setTextColor(view.context.resources.getColor(data.textColor, null))
+            } else {
+                calendarText.setTextColor(view.context.resources.getColor(data.textColor))
+            }
         }
     }
 }

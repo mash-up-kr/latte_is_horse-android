@@ -1,7 +1,6 @@
 package com.mashup.latte.ui.record
 
 import com.mashup.latte.R
-import com.mashup.latte.ext.e
 import com.mashup.latte.ui.record.data.CalendarRow
 import java.text.SimpleDateFormat
 import java.util.*
@@ -13,13 +12,14 @@ class CalendarManager {
     private val calendarRows = mutableListOf<CalendarRow>()
     private val firstDate = GregorianCalendar(Locale.KOREA).also {
         it.set(Calendar.DATE, 1)
-        e("CalendarManager", "YEAR ${it.get(Calendar.YEAR)}")
-        e("CalendarManager", "MONTH ${it.get(Calendar.MONTH)}")
-        e("CalendarManager", "DATE ${it.get(Calendar.DATE)}")
-        e("CalendarManager", "DAY_OF_WEEK ${it.get(Calendar.DAY_OF_WEEK)}")
     }
-    private val format = SimpleDateFormat("yyyy.MM", Locale.KOREA)
-    val nowDate get() = format.format(Date(firstDate.timeInMillis))
+    private val selectdDate = GregorianCalendar(Locale.KOREA)
+
+    private val formatForResult = SimpleDateFormat("yyyy. MM. dd", Locale.KOREA)
+    val selectedDate get() = formatForResult.format(Date(selectdDate.timeInMillis))
+
+    private val formatForCalendarSelect = SimpleDateFormat("yyyy.MM", Locale.KOREA)
+    val nowDate get() = formatForCalendarSelect.format(Date(firstDate.timeInMillis))
 
 
     fun prevMonth(): List<CalendarRow> {
@@ -41,18 +41,18 @@ class CalendarManager {
     }
 
     private fun setDateList() {
-        calendarRows.add(CalendarRow(text = "S", textColor = R.color.red))
-        calendarRows.add(CalendarRow(text = "M"))
-        calendarRows.add(CalendarRow(text = "T"))
-        calendarRows.add(CalendarRow(text = "W"))
-        calendarRows.add(CalendarRow(text = "T"))
-        calendarRows.add(CalendarRow(text = "F"))
-        calendarRows.add(CalendarRow(text = "S", textColor = R.color.blue))
+        calendarRows.add(CalendarRow(text = "S", textColor = R.color.red, isSelectable = false))
+        calendarRows.add(CalendarRow(text = "M", isSelectable = false))
+        calendarRows.add(CalendarRow(text = "T", isSelectable = false))
+        calendarRows.add(CalendarRow(text = "W", isSelectable = false))
+        calendarRows.add(CalendarRow(text = "T", isSelectable = false))
+        calendarRows.add(CalendarRow(text = "F", isSelectable = false))
+        calendarRows.add(CalendarRow(text = "S", textColor = R.color.blue, isSelectable = false))
     }
 
     private fun setBlankDateList() {
         for (i in 0 until getBalnkCount()) {
-            calendarRows.add(CalendarRow())
+            calendarRows.add(CalendarRow(isSelectable = false))
         }
     }
 
