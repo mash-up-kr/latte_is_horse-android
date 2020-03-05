@@ -6,5 +6,6 @@ import com.google.gson.annotations.SerializedName
  * Created by Namget on 2020.02.27.
  */
 data class TokenResponse(
-    @SerializedName("token")
-    val token: String)
+    @SerializedName("access_token")
+    val token: String
+)

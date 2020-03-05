@@ -3,11 +3,10 @@ package com.mashup.latte.data.repository
 import com.mashup.latte.data.datasource.local.ApiLocalDataSource
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.datasource.remote.ApiRemoteDataSource
+import com.mashup.latte.data.dto.request.TokenRequest
 import com.mashup.latte.data.dto.response.TokenResponse
-import com.mashup.latte.data.model.Token
 import com.mashup.latte.pref.UserPref
 import io.reactivex.Single
-import org.koin.android.ext.android.inject
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -20,8 +19,8 @@ class ApiRepositoryImpl(
 ) : ApiRepository, KoinComponent {
     private val userPref: UserPref by inject()
 
-    override fun getLoginToken(): Single<TokenResponse> =
-        apiRemoteDataSource.getLoginToken()
+    override fun getLoginToken(tokenRequest: TokenRequest): Single<TokenResponse> =
+        apiRemoteDataSource.getLoginToken(tokenRequest)
 
 
     override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) {

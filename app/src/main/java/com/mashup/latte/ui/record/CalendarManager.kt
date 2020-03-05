@@ -13,13 +13,13 @@ class CalendarManager {
     private val firstDate = GregorianCalendar(Locale.KOREA).also {
         it.set(Calendar.DATE, 1)
     }
-    private val selectdDate = GregorianCalendar(Locale.KOREA)
-
-    private val formatForResult = SimpleDateFormat("yyyy. MM. dd", Locale.KOREA)
-    val selectedDate get() = formatForResult.format(Date(selectdDate.timeInMillis))
-
     private val formatForCalendarSelect = SimpleDateFormat("yyyy.MM", Locale.KOREA)
-    val nowDate get() = formatForCalendarSelect.format(Date(firstDate.timeInMillis))
+    val nowDate: String get() = formatForCalendarSelect.format(Date(firstDate.timeInMillis))
+
+
+    private val selectdDate = GregorianCalendar(Locale.KOREA)
+    private val formatForResult = SimpleDateFormat("yyyy. MM. dd", Locale.KOREA)
+    val selectedDate: String get() = formatForResult.format(Date(selectdDate.timeInMillis))
 
 
     fun prevMonth(): List<CalendarRow> {

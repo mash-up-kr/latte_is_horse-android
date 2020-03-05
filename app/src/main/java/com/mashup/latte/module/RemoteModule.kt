@@ -4,7 +4,7 @@ import com.google.gson.GsonBuilder
 import com.mashup.latte.BuildConfig
 import com.mashup.latte.data.datasource.remote.ApiRemoteDataSource
 import com.mashup.latte.data.datasource.remote.ApiService
-import com.mashup.latte.data.datasource.remote.KaKaoApiService
+import com.mashup.latte.pref.UserPref
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,16 +22,19 @@ import java.util.concurrent.TimeUnit
 private const val BASEURL = "http://ec2-54-180-89-116.ap-northeast-2.compute.amazonaws.com"
 private const val KAKAOURL = "https://kauth.kakao.com"
 private const val TIMEOUT: Long = 10L
-
 val remoteModule = module {
     single(named("headerInterceptor")) {
         Interceptor {
+            val userPref: UserPref by inject()
+
             val original = it.request()
             val request = original.newBuilder()
                 .method(original.method(), original.body())
-                .addHeader("Content-Type","application/json")
-                .build()
-            it.proceed(request)
+                .addHeader("Content-Type", "application/json")
+            if (userPref.getAccessToken().isNotEmpty()) {
+                request.addHeader("Authorization", "Bearer ${userPref.getAccessToken()}")
+            }
+            it.proceed(request.build())
         }
     }
 
@@ -83,12 +86,8 @@ val remoteModule = module {
         //get<Retrofit>(named("loginApi")).create(ApiService::class.java)
         get<Retrofit>(named("diaryApi")).create(ApiService::class.java)
     }
-    single(named("KakaoApiService")) {
-        //get<Retrofit>(named("loginApi")).create(ApiService::class.java)
-        get<Retrofit>(named("KakaoApi")).create(KaKaoApiService::class.java)
-    }
 
     single {
-        ApiRemoteDataSource(get(named("ApiService")),get(named("KakaoApiService")))
+        ApiRemoteDataSource(get(named("ApiService")))
     }
 }

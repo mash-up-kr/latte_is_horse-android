@@ -149,26 +149,26 @@ class RecordDetailFragment : Fragment() {
         val statusClickListener: View.OnClickListener = View.OnClickListener {
             when (it.id) {
                 R.id.imgDetailHangoverStatusSangque -> {
-                    detailData.drunkenStatus = "상쾌"
+                    detailData.hanoverStatus = "상쾌"
                     imgDetailHangoverStatusSangque.isSelected = true
                     imgDetailHangoverStatusEueuk.isSelected = false
                     imgDetailHangoverStatusDeath.isSelected = false
                 }
                 R.id.imgDetailHangoverStatusEueuk -> {
-                    detailData.drunkenStatus = "으윽"
+                    detailData.hanoverStatus = "으윽"
                     imgDetailHangoverStatusSangque.isSelected = false
                     imgDetailHangoverStatusEueuk.isSelected = true
                     imgDetailHangoverStatusDeath.isSelected = false
                 }
                 R.id.imgDetailHangoverStatusDeath -> {
-                    detailData.drunkenStatus = "죽음"
+                    detailData.hanoverStatus = "죽음"
                     imgDetailHangoverStatusSangque.isSelected = false
                     imgDetailHangoverStatusEueuk.isSelected = false
                     imgDetailHangoverStatusDeath.isSelected = true
                 }
             }
         }
-        detailData.drunkenStatus = "상쾌"
+        detailData.hanoverStatus = "상쾌"
         imgDetailHangoverStatusSangque.setOnClickListener(statusClickListener)
         imgDetailHangoverStatusSangque.isSelected = true
         imgDetailHangoverStatusEueuk.setOnClickListener(statusClickListener)

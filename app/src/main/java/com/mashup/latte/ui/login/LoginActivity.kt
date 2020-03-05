@@ -1,14 +1,18 @@
 package com.mashup.latte.ui.login
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_login.*
 import android.content.Intent
+import android.util.Log
 import com.kakao.util.exception.KakaoException
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
-import com.kakao.usermgmt.response.model.User
+import com.kakao.network.ErrorResult
+import com.kakao.usermgmt.UserManagement
+import com.kakao.usermgmt.callback.MeV2ResponseCallback
+import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.helper.log.Logger
+import com.mashup.latte.data.dto.request.TokenRequest
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ext.e
 import com.mashup.latte.ext.plusAssign
@@ -84,7 +88,19 @@ class LoginActivity : BaseActivity() {
     private inner class SessionCallback : ISessionCallback {
 
         override fun onSessionOpened() {
-            redirectSignupActivity()
+            UserManagement.getInstance().me(object : MeV2ResponseCallback() {
+                override fun onSuccess(result: MeV2Response?) {
+                    val session = Session.getCurrentSession()
+                    e("test", "accessToken : ${session.tokenInfo.accessToken}")
+                    e("test", "refreshToken : ${session.tokenInfo.refreshToken}")
+                    redirectSignupActivity(session.tokenInfo.accessToken)
+                }
+
+                override fun onSessionClosed(errorResult: ErrorResult?) {
+                    Log.d("test", "onSessionClosed.")
+                }
+            })
+
         }
 
         override fun onSessionOpenFailed(exception: KakaoException?) {
@@ -98,7 +114,7 @@ class LoginActivity : BaseActivity() {
     private fun checkLogin() {
         if (!userPref.isFirstLogined()) {
             if (userPref.isSNSLogin()) {
-                redirectSignupActivity()
+                btn_kakao_login.performClick()
             } else {
                 startActivity<MainActivity>()
                 finish()
@@ -111,8 +127,8 @@ class LoginActivity : BaseActivity() {
         finish()
     }
 
-    private fun redirectSignupActivity() {
-        disposable += repository.getLoginToken()
+    private fun redirectSignupActivity(accessToken: String) {
+        disposable += repository.getLoginToken(TokenRequest(token = accessToken))
             .withScheduler()
             .subscribe({
                 e(TAG, "success $it")
