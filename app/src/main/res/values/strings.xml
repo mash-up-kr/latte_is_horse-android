@@ -1,6 +1,5 @@
 <resources>
-<!--    <string name="kakao_app_key">560ac09a791a3e65b22adcbdd05880ad</string>-->
-    <string name="kakao_app_key">b13cf61229fbc8f86a6dd5cc8cc6fe30</string>
+    <string name="kakao_app_key">560ac09a791a3e65b22adcbdd05880ad</string>
 
     <string name="app_name">latte</string>
     <string name="app_title_today">오늘의</string>

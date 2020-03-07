@@ -77,24 +77,24 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            val bundle = Bundle()
-            bundle.putSerializable("diary",
-                Diary(
-                    1,
-                    "굿",
-                    "18:28:56",
-                    "쏘쏘",
-                    "투뱃",
-                    "굿",
-                    alcoholRecords
-                )
-            )
-
-            add(DrunkFragment.newInstance(bundle))
-            add(DrunkFragment.newInstance(bundle))
-            add(DrunkFragment.newInstance(bundle))
-            add(DrunkFragment.newInstance(bundle))
-            add(DrunkFragment.newInstance(bundle))
+//            val bundle = Bundle()
+//            bundle.putSerializable("diary",
+//                Diary(
+//                    1,
+//                    "굿",
+//                    "18:28:56",
+//                    "쏘쏘",
+//                    "투뱃",
+//                    "굿",
+//                    alcoholRecords
+//                )
+//            )
+//
+//            add(DrunkFragment.newInstance(bundle))
+//            add(DrunkFragment.newInstance(bundle))
+//            add(DrunkFragment.newInstance(bundle))
+//            add(DrunkFragment.newInstance(bundle))
+//            add(DrunkFragment.newInstance(bundle))
         }
         viewPagerMain.apply {
             adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList)
