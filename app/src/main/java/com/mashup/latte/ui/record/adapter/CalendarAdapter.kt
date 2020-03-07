@@ -17,6 +17,7 @@ import com.mashup.latte.ui.record.data.CalendarRow
 class CalendarAdapter(private val calendarManager: CalendarManager) :
     RecyclerView.Adapter<CalendarAdapter.CalenderViewHolder>() {
     private val calendarRows: MutableList<CalendarRow> = mutableListOf()
+    private val selectedDate get() = calendarManager.selectedDate
 
     init {
         replaceData(calendarManager.buildCalendar())
@@ -61,6 +62,14 @@ class CalendarAdapter(private val calendarManager: CalendarManager) :
             } else {
                 calendarText.setTextColor(view.context.resources.getColor(data.textColor))
             }
+
+            if (data.isSelected) {
+                calendarText.background =
+                    view.context.resources.getDrawable(R.drawable.shape_corner_circle_s, null)
+            }else{
+                calendarText.background = null
+            }
+
         }
     }
 }

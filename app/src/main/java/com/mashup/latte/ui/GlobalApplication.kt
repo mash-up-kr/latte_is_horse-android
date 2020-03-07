@@ -27,7 +27,7 @@ class GlobalApplication : Application() {
     }
 
 
-    fun setupKoin() {
+    private fun setupKoin() {
         startKoin {
             logger(if (BuildConfig.DEBUG) AndroidLogger() else EmptyLogger())
             androidContext(this@GlobalApplication)

@@ -10,7 +10,6 @@ data class AlcoholLevel(
 ): Serializable
 
 data class Diary(
-    val creator: Int,
     val review: String,
     val data: String,
     val drunken_level: String,

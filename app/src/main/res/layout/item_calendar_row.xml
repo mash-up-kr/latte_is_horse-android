@@ -12,6 +12,7 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="12sp"
+        tools:background="@drawable/shape_corner_circle_s"
         tools:text="w" />
 
 </com.mashup.latte.ui.record.view.RecordFrameLayout>
