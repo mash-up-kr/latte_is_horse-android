@@ -4,22 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
-import com.mashup.latte.ext.showDateDialog
 import com.mashup.latte.ext.toastMakeToast
 import com.mashup.latte.ui.record.adapter.RecordDetailRecyclerViewAdapter
-import com.mashup.latte.ui.record.data.result.DetailResult
 import com.mashup.latte.ui.record.data.alcohol.*
+import com.mashup.latte.ui.record.data.result.DetailResult
 import com.mashup.latte.ui.record.data.result.DrunkenAmount
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivHeightDecoration
 import kotlinx.android.synthetic.main.fragment_record_detail.*
-import org.koin.android.ext.android.inject
-import java.util.*
+
 
 /**
  * Created by Namget on 2019.11.23.
@@ -50,13 +48,9 @@ class RecordDetailFragment : Fragment() {
     private fun initView() {
 
         btnDetailDateSelector.setOnClickListener {
-            RecordCalendarDialog(context = context!!) {
-
+            RecordCalendarDialog(context = context!!, cancelCallback = {}) {
+                btnDetailDateSelector.text = it
             }.show()
-//            Calendar.getInstance().showDateDialog(requireContext(), { result ->
-//                (it as Button).text = result
-//                detailData.date = result
-//            })
         }
         initRecyclerView()
         initHangoverStatusImageView()
@@ -194,6 +188,12 @@ class RecordDetailFragment : Fragment() {
         imgDetailEtc.setOnClickListener {
             recordDetailRecyclerViewAdapter.addAlcohol(AlcoholEtc())
         }
+
+        val params = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        recyclerViewDetailAlcohol.layoutParams = params
     }
 
 

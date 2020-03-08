@@ -15,8 +15,12 @@ import org.koin.core.inject
 /**
  * Created by Namget on 2020.03.02.
  */
-class RecordCalendarDialog(context: Context, cancelCallback: (DialogInterface) -> Unit) :
-    Dialog(context, false, cancelCallback), KoinComponent {
+class RecordCalendarDialog(
+    context: Context,
+    cancelCallback: (DialogInterface) -> Unit,
+    private val callback: (String) -> Unit
+) :
+    Dialog(context, true, cancelCallback), KoinComponent {
 
     private val calendarManager: CalendarManager by inject()
     private val calendarAdapter: CalendarAdapter by lazy {
@@ -51,7 +55,8 @@ class RecordCalendarDialog(context: Context, cancelCallback: (DialogInterface) -
             dismiss()
         }
         txtCalendarOk.setOnClickListener {
-            //TODO 날짜 선택한것이 있도록
+            callback(calendarManager.selectedDate)
+            dismiss()
         }
 
     }

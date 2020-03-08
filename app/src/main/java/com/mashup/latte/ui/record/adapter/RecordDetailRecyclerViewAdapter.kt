@@ -7,6 +7,7 @@ import com.mashup.latte.R
 import com.mashup.latte.ui.record.data.alcohol.Alcohol
 import com.mashup.latte.ui.record.viewholder.AlcoholViewHolder
 
+
 /**
  * Created by Namget on 2020.01.23.
  */
@@ -21,6 +22,7 @@ class RecordDetailRecyclerViewAdapter : RecyclerView.Adapter<AlcoholViewHolder>(
 
     fun addAlcohol(alcohol: Alcohol) {
         alcohols.add(alcohol)
+
         notifyDataSetChanged()
     }
 

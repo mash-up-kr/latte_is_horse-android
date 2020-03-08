@@ -18,8 +18,14 @@ class CalendarManager {
 
 
     private val selectdDate = GregorianCalendar(Locale.KOREA)
-    private val formatForResult = SimpleDateFormat("yyyy. MM. dd", Locale.KOREA)
-    val selectedDate: String get() = formatForResult.format(Date(selectdDate.timeInMillis))
+    private val formatForResult = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+    var selectedDate: String
+        set(value) {
+            selectdDate.set(Calendar.YEAR, firstDate.get(Calendar.YEAR))
+            selectdDate.set(Calendar.MONTH, firstDate.get(Calendar.MONTH))
+            selectdDate.set(Calendar.DATE, value.toInt())
+        }
+        get() = formatForResult.format(Date(selectdDate.timeInMillis))
 
 
     fun prevMonth(): List<CalendarRow> {
@@ -63,6 +69,8 @@ class CalendarManager {
             calendarRows.add(
                 CalendarRow(
                     i.toString(),
+                    String.format("${nowDate}.%02d", i),
+                    textColor =
                     when {
                         isSunday(i) -> {
                             R.color.red
