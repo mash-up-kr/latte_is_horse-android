@@ -31,6 +31,5 @@ class ApiRepositoryImpl(
         }
     }
 
-    override fun getDiaries(token: String) =
-        apiRemoteDataSource.getDiaries(token)
+    override fun getDiaries() = apiRemoteDataSource.getDiaries()
 }

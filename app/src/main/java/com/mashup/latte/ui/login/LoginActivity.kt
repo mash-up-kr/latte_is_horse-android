@@ -37,9 +37,13 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun init() {
+        initToken()
         initView()
         initSession()
         checkLogin()
+    }
+    private fun initToken(){
+        userPref.setAceessToken("")
     }
 
     private fun initView() {

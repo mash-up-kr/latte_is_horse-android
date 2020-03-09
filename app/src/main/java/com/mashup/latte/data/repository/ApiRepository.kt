@@ -12,5 +12,5 @@ import io.reactivex.Single
 interface ApiRepository{
     fun insertAlcoholDiary(alcoholDiary: AlcoholDiary)
     fun getLoginToken(tokenRequest: TokenRequest): Single<TokenResponse>
-    fun getDiaries(token: String) : Single<DiariesResponse>
+    fun getDiaries() : Single<DiariesResponse>
 }

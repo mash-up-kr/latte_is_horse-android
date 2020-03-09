@@ -23,7 +23,7 @@ class ApiRemoteDataSource(
         apiService.postDiary()
     }
 
-    override fun getDiaries(token: String): Single<DiariesResponse> {
-        return apiService.requestDiaries(token)
+    override fun getDiaries(): Single<DiariesResponse> {
+        return apiService.requestDiaries()
     }
 }

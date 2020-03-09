@@ -12,9 +12,7 @@ import retrofit2.http.POST
 interface ApiService {
 
     @GET("/api/v1/diaries")
-    fun requestDiaries(
-        @Header("Authorization") token: String
-    ): Single<DiariesResponse>
+    fun requestDiaries(): Single<DiariesResponse>
 
     @POST("/auth/convert-token/")
     fun getLoginToken(@Body token: TokenRequest): Single<TokenResponse>

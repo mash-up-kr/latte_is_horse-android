@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewPager() {
         compositeDisposable.add(
-            repository.getDiaries("Token 04fd7fb6bcfdc7499c8b1a6b578fd9edd7f6d375")
+            repository.getDiaries()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({diariesResponse ->

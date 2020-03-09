@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.mashup.latte.BuildConfig
 import com.mashup.latte.data.datasource.remote.ApiRemoteDataSource
 import com.mashup.latte.data.datasource.remote.ApiService
+import com.mashup.latte.ext.e
 import com.mashup.latte.pref.UserPref
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -32,6 +33,7 @@ val remoteModule = module {
                 .method(original.method(), original.body())
                 .addHeader("Content-Type", "application/json")
             if (userPref.getAccessToken().isNotEmpty()) {
+                e("test", "${userPref.getAccessToken()}")
                 request.addHeader("Authorization", "Bearer ${userPref.getAccessToken()}")
             }
             it.proceed(request.build())

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
@@ -85,8 +84,8 @@ class RecordActivity : AppCompatActivity() {
                     detailData.drunkenStatus,
                     detailData.hanoverStatus,
                     detailData.drunkenAmounts,
-                    drunkenData.drunken,
-                    drunkenData.content,
+                    drunkenData.drunkenActionType,
+                    drunkenData.review,
                     imageData?.imagePath
                 )
                 repository.insertAlcoholDiary(alcoholDiary)
