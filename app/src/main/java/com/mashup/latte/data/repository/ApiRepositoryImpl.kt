@@ -31,5 +31,5 @@ class ApiRepositoryImpl(
         }
     }
 
-    override fun getDiaries() = apiRemoteDataSource.getDiaries()
+    override fun getDiaries(): Single<List<AlcoholDiary>> = apiLocalDataSource.getDiaries()
 }

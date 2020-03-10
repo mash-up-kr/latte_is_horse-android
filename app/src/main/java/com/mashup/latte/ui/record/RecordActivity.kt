@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_record.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -62,7 +63,7 @@ class RecordActivity : AppCompatActivity() {
             if (PROGRESS_PAGE_COUNT == (currentCount + 1)) {
                 //TODO 완료처리
 
-                lifecycleScope.launch(Dispatchers.IO) {
+                lifecycleScope.launch(Dispatchers.Main) {
                     onComplete()
                 }
             } else {
@@ -78,6 +79,9 @@ class RecordActivity : AppCompatActivity() {
 
         if (detailData != null && drunkenData != null) {
             lifecycleScope.launch(Dispatchers.IO) {
+                val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
+                val timestamp = simpleDateFormat.parse(detailData.date)
+
                 val alcoholDiary = AlcoholDiary(
                     null,
                     detailData.date,
@@ -86,7 +90,8 @@ class RecordActivity : AppCompatActivity() {
                     detailData.drunkenAmounts,
                     drunkenData.drunkenActionType,
                     drunkenData.review,
-                    imageData?.imagePath
+                    imageData?.imagePath,
+                    timestamp
                 )
                 repository.insertAlcoholDiary(alcoholDiary)
                 finish()

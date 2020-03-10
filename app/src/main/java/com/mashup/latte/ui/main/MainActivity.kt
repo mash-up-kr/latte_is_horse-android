@@ -2,13 +2,13 @@ package com.mashup.latte.ui.main
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
-import com.mashup.latte.ext.startActivity
-import com.mashup.latte.data.dto.response.AlcoholLevel
-import com.mashup.latte.data.dto.response.Diary
+import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
+import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -49,66 +49,48 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun requestDrunkItem() {
-        initViewPager()
-    }
-
     private fun initViewPager() {
         compositeDisposable.add(
             repository.getDiaries()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
-                .subscribe({diariesResponse ->
-                    Log.d("getDiaries", diariesResponse.toString())
-                    // TODO: ViewPager 반영
+                .subscribe({ alcoholDiaries ->
+                    Log.d("getDiaries", alcoholDiaries.toString())
+                    updateUI(alcoholDiaries)
                 }, {
                 })
         )
+    }
 
+    private fun updateUI(diaries: List<AlcoholDiary>) {
         //서버로 부터 받아온 페이지수 추가
-        val fragmentList = ArrayList<Fragment>().apply {
-            val alcoholRecords = ArrayList<AlcoholLevel>()
-            alcoholRecords.add(
-                AlcoholLevel(
-                    2.0,
-                    2.5,
-                    1
-                )
-            )
-
-//            val bundle = Bundle()
-//            bundle.putSerializable("diary",
-//                Diary(
-//                    1,
-//                    "굿",
-//                    "18:28:56",
-//                    "쏘쏘",
-//                    "투뱃",
-//                    "굿",
-//                    alcoholRecords
-//                )
-//            )
-//
-//            add(DrunkFragment.newInstance(bundle))
-//            add(DrunkFragment.newInstance(bundle))
-//            add(DrunkFragment.newInstance(bundle))
-//            add(DrunkFragment.newInstance(bundle))
-//            add(DrunkFragment.newInstance(bundle))
+        if (diaries.isEmpty()) {
+            imgMainNone.visibility = View.VISIBLE
+            frameMainNone.visibility = View.VISIBLE
+            viewPagerMain.visibility = View.GONE
+            return
         }
+
+        val fragmentList = ArrayList<Fragment>()
+        for(diary in diaries){
+            val bundle = Bundle()
+            bundle.putParcelable(DATA_DIARY,diary)
+            fragmentList.add(DrunkFragment.newInstance(bundle))
+        }
+
         viewPagerMain.apply {
             adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList)
-            offscreenPageLimit = PAGE_LIMIT
             currentItem = PAGE_INITIAL_ITEM
             pageMargin = PAGE_MARGIN
         }
     }
 
 
-    companion object{
-        const val PAGE_LIMIT = 2
+    companion object {
+        const val PAGE_LIMIT = 1
         const val PAGE_MARGIN = 50
         const val PAGE_INITIAL_ITEM = 0
+        const val DATA_DIARY = "data_diary"
     }
 }
 

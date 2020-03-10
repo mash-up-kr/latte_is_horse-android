@@ -17,6 +17,6 @@ val localModule = module {
     }
 
     single {
-        ApiLocalDataSource(get<AppDatabase>().getDao())
+        ApiLocalDataSource(get<AppDatabase>().appDao())
     }
 }
