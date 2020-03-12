@@ -5,6 +5,7 @@ import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.dto.request.TokenRequest
 import com.mashup.latte.data.dto.response.TokenResponse
 import io.reactivex.Single
+import java.util.*
 
 /**
  * Created by Namget on 2020.02.15.
@@ -12,5 +13,5 @@ import io.reactivex.Single
 interface ApiRepository{
     fun insertAlcoholDiary(alcoholDiary: AlcoholDiary)
     fun getLoginToken(tokenRequest: TokenRequest): Single<TokenResponse>
-    fun getDiaries() : Single<List<AlcoholDiary>>
+    fun getDiaries(from : Date, to : Date) : Single<List<AlcoholDiary>>
 }

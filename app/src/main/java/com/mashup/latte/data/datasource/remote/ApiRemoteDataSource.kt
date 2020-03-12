@@ -13,6 +13,7 @@ import okhttp3.MultipartBody
 import org.koin.core.KoinComponent
 import retrofit2.Call
 import java.io.File
+import java.util.*
 
 /**
  * Created by Namget on 2020.02.15.
@@ -43,7 +44,7 @@ class ApiRemoteDataSource(
         apiService.postDiary(alcoholDiary.toAlcoholRequest()).execute()
     }
 
-    override fun getDiaries(): Single<List<AlcoholDiary>> {
+    override fun getDiaries(from : Date, to : Date): Single<List<AlcoholDiary>> {
         throw IllegalAccessException("local api not supported")
     }
 }

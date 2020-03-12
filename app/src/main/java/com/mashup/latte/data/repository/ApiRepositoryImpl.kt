@@ -9,6 +9,7 @@ import com.mashup.latte.pref.UserPref
 import io.reactivex.Single
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.util.*
 
 /**
  * Created by Namget on 2020.02.15.
@@ -31,5 +32,5 @@ class ApiRepositoryImpl(
         }
     }
 
-    override fun getDiaries(): Single<List<AlcoholDiary>> = apiLocalDataSource.getDiaries()
+    override fun getDiaries(from : Date, to : Date): Single<List<AlcoholDiary>> = apiLocalDataSource.getDiaries(from ,to)
 }
