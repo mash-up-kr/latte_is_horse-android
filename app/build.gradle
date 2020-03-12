@@ -119,6 +119,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     // For Kotlin use kapt instead of annotationProcessor
 
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
     // optional - RxJava support for Room
     implementation "androidx.room:room-rxjava2:$room_version"
 

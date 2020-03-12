@@ -11,7 +11,7 @@ import java.util.*
 /**
  * Created by Namget on 2020.02.15.
  */
-class ApiLocalDataSource(val appDao: AppDao) : ApiRepository {
+class ApiLocalDataSource(private val appDao: AppDao) : ApiRepository {
 
     override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) =
         appDao.insertAlcoholDiary(alcoholDiary)

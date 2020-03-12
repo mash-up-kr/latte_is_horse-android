@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
+import com.mashup.latte.ext.e
 import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
@@ -21,9 +22,11 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var viewPagerFragment: ArrayList<Fragment>
-    lateinit var compositeDisposable: CompositeDisposable
+    private lateinit var viewPagerFragment: ArrayList<Fragment>
+    private lateinit var compositeDisposable: CompositeDisposable
     private val repository: ApiRepository by inject()
+    private lateinit var fromDate: Date
+    private lateinit var toDate: Date
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         compositeDisposable = CompositeDisposable()
         initEvent()
+        initDate()
         initViewPager()
         //requestDrunkItem()
     }
@@ -51,15 +55,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewPager() {
         compositeDisposable.add(
-            repository.getDiaries()
+            repository.getDiaries(fromDate, toDate)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({ alcoholDiaries ->
-                    Log.d("getDiaries", alcoholDiaries.toString())
+                    e("getDiaries", alcoholDiaries.toString())
                     updateUI(alcoholDiaries)
                 }, {
                 })
         )
+    }
+
+    private fun initDate() {
+        val calendar = Calendar.getInstance().also {
+            it.set(Calendar.YEAR, 1970)
+        }
+        fromDate = calendar.time
+        toDate = Date()
     }
 
     private fun updateUI(diaries: List<AlcoholDiary>) {
@@ -72,9 +84,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         val fragmentList = ArrayList<Fragment>()
-        for(diary in diaries){
+        for (diary in diaries) {
             val bundle = Bundle()
-            bundle.putParcelable(DATA_DIARY,diary)
+            bundle.putParcelable(DATA_DIARY, diary)
             fragmentList.add(DrunkFragment.newInstance(bundle))
         }
 

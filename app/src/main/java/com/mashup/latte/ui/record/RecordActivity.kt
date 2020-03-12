@@ -3,7 +3,10 @@ package com.mashup.latte.ui.record
 import android.Manifest
 import android.animation.ValueAnimator
 import android.content.pm.PackageManager
+import android.opengl.Visibility
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -21,6 +24,7 @@ import com.mashup.latte.util.PermissionManager
 import kotlinx.android.synthetic.main.activity_record.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,7 +34,6 @@ class RecordActivity : AppCompatActivity() {
 
     private var progressCurrentPage = 1
     private val repository: ApiRepository by inject()
-    private val userPref: UserPref by inject()
     private val fragmentList = ArrayList<Fragment>().apply {
         add(RecordImageFragment.newInstance())
         add(RecordDetailFragment.newInstance())
@@ -56,16 +59,25 @@ class RecordActivity : AppCompatActivity() {
 
     private fun initEvent() {
         ImgRecordBack.setOnClickListener {
-            finish()
+            val currentCount = viewPagerRecord.currentItem
+            if (currentCount == 0) {
+                finish()
+            } else {
+                viewPagerRecord.currentItem = currentCount - 1
+            }
         }
+        lottieLoading.visibility = View.VISIBLE
+
         txtRecordNext.setOnClickListener {
             val currentCount = viewPagerRecord.currentItem
-            if (PROGRESS_PAGE_COUNT == (currentCount + 1)) {
+            if ((currentCount + 1) == PROGRESS_PAGE_COUNT) {
                 //TODO 완료처리
 
-                lifecycleScope.launch(Dispatchers.Main) {
+                lottieLoading.visibility = View.VISIBLE
+                frameLoading.visibility = View.VISIBLE
+                Handler().postDelayed({
                     onComplete()
-                }
+                }, 300)
             } else {
                 viewPagerRecord.currentItem = currentCount + 1
             }
@@ -79,6 +91,7 @@ class RecordActivity : AppCompatActivity() {
 
         if (detailData != null && drunkenData != null) {
             lifecycleScope.launch(Dispatchers.IO) {
+
                 val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
                 val timestamp = simpleDateFormat.parse(detailData.date)
 
@@ -97,6 +110,8 @@ class RecordActivity : AppCompatActivity() {
                 finish()
             }
         }
+        lottieLoading.visibility = View.GONE
+        frameLoading.visibility = View.GONE
     }
 
     private fun bringImageData(): ImageResult? =
