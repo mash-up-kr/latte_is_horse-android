@@ -14,4 +14,5 @@ interface ApiRepository{
     fun insertAlcoholDiary(alcoholDiary: AlcoholDiary)
     fun getLoginToken(tokenRequest: TokenRequest): Single<TokenResponse>
     fun getDiaries(from : Date, to : Date) : Single<List<AlcoholDiary>>
+    fun getDiaryById(id : Long) : Single<AlcoholDiary>
 }

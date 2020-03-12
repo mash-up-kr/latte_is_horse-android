@@ -1,5 +1,7 @@
 package com.mashup.latte.ui.main
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +12,8 @@ import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ext.e
 import com.mashup.latte.ext.startActivity
+import com.mashup.latte.ext.startActivityResult
+import com.mashup.latte.ui.base.BaseActivity
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,10 +24,9 @@ import org.koin.android.ext.android.inject
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var viewPagerFragment: ArrayList<Fragment>
-    private lateinit var compositeDisposable: CompositeDisposable
     private val repository: ApiRepository by inject()
     private lateinit var fromDate: Date
     private lateinit var toDate: Date
@@ -34,13 +37,7 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
-    }
-
     private fun init() {
-        compositeDisposable = CompositeDisposable()
         initEvent()
         initDate()
         initViewPager()
@@ -49,12 +46,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initEvent() {
         btnMainRecord.setOnClickListener {
-            startActivity<RecordActivity>()
+            startActivityResult<RecordActivity>(REQ_RECORD)
         }
     }
 
     private fun initViewPager() {
-        compositeDisposable.add(
+        disposable.add(
             repository.getDiaries(fromDate, toDate)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -97,11 +94,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQ_RECORD) {
+                initViewPager()
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 
     companion object {
         const val PAGE_LIMIT = 1
         const val PAGE_MARGIN = 50
         const val PAGE_INITIAL_ITEM = 0
+        const val REQ_RECORD = 100
         const val DATA_DIARY = "data_diary"
     }
 }

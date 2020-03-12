@@ -10,7 +10,7 @@ import com.mashup.latte.ui.main_detail.viewholder.MainDetailViewHolder
 
 class MainDetailRecyclerViewAdapter(onImageClickListener: OnImageClickListener) :
     RecyclerView.Adapter<MainDetailViewHolder>() {
-    private val images: MutableList<MainDetailImages> = arrayListOf()
+    private val images: MutableList<String> = arrayListOf()
     private val mOnImageClickListener: OnImageClickListener = onImageClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainDetailViewHolder {
@@ -20,15 +20,11 @@ class MainDetailRecyclerViewAdapter(onImageClickListener: OnImageClickListener) 
         return MainDetailViewHolder(view, mOnImageClickListener)
     }
 
-    fun addImages(image: MainDetailImages) {
-        images.add(image)
+    fun addImages(image: List<String>) {
+        images.addAll(image)
         notifyDataSetChanged()
     }
 
-    fun deleteImages(position: Int) {
-        images.removeAt(position)
-        notifyDataSetChanged()
-    }
 
     override fun getItemCount(): Int = images.size
 

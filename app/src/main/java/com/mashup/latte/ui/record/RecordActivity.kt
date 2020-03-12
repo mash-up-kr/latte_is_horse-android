@@ -1,7 +1,9 @@
 package com.mashup.latte.ui.record
 
 import android.Manifest
+import android.animation.Animator
 import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.opengl.Visibility
 import android.os.Bundle
@@ -66,7 +68,6 @@ class RecordActivity : AppCompatActivity() {
                 viewPagerRecord.currentItem = currentCount - 1
             }
         }
-        lottieLoading.visibility = View.VISIBLE
 
         txtRecordNext.setOnClickListener {
             val currentCount = viewPagerRecord.currentItem
@@ -74,6 +75,7 @@ class RecordActivity : AppCompatActivity() {
                 //TODO 완료처리
 
                 lottieLoading.visibility = View.VISIBLE
+                lottieLoading.playAnimation()
                 frameLoading.visibility = View.VISIBLE
                 Handler().postDelayed({
                     onComplete()
@@ -96,17 +98,18 @@ class RecordActivity : AppCompatActivity() {
                 val timestamp = simpleDateFormat.parse(detailData.date)
 
                 val alcoholDiary = AlcoholDiary(
-                    null,
-                    detailData.date,
-                    detailData.drunkenStatus,
-                    detailData.hanoverStatus,
-                    detailData.drunkenAmounts,
-                    drunkenData.drunkenActionType,
-                    drunkenData.review,
-                    imageData?.imagePath,
-                    timestamp
+                    id = null,
+                    date = detailData.date,
+                    drunkenStatus = detailData.drunkenStatus,
+                    hanoverStatus = detailData.hanoverStatus,
+                    drunkenAmounts = detailData.drunkenAmounts,
+                    review = drunkenData.review,
+                    drunkenActionType = drunkenData.drunkenActionType,
+                    imagePath = imageData?.imagePath,
+                    timeStamp = timestamp
                 )
                 repository.insertAlcoholDiary(alcoholDiary)
+                setResult(Activity.RESULT_OK)
                 finish()
             }
         }

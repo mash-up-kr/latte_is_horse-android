@@ -75,14 +75,15 @@
 
     <TextView
         android:id="@+id/txtMainDrunkBottleCount"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ellipsize="marquee"
-        android:maxLines="3"
+        android:singleLine="true"
         android:text="소주 2병"
         android:textColor="@color/textYear"
         android:textSize="14sp"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtMainDrunkBottleCountComment"
         app:layout_constraintTop_toTopOf="@+id/txtMainDrunkBottleCountComment"
         tools:text="소주 2병" />

@@ -32,5 +32,10 @@ class ApiRepositoryImpl(
         }
     }
 
-    override fun getDiaries(from : Date, to : Date): Single<List<AlcoholDiary>> = apiLocalDataSource.getDiaries(from ,to)
+    override fun getDiaries(from: Date, to: Date): Single<List<AlcoholDiary>> =
+        apiLocalDataSource.getDiaries(from, to)
+
+    override fun getDiaryById(id: Long): Single<AlcoholDiary> =
+        apiLocalDataSource.getDiaryById(id)
+
 }

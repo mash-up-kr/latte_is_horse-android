@@ -16,11 +16,15 @@ class ApiLocalDataSource(private val appDao: AppDao) : ApiRepository {
     override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) =
         appDao.insertAlcoholDiary(alcoholDiary)
 
-    override fun getDiaries(from: Date, to: Date): Single<List<AlcoholDiary>> {
-        return appDao.selectAlcoholDiary(from, to)
-    }
+    override fun getDiaries(from: Date, to: Date): Single<List<AlcoholDiary>> =
+        appDao.selectAlcoholDiary(from, to)
+
 
     override fun getLoginToken(tokenRequest: TokenRequest): Single<TokenResponse> {
         throw IllegalAccessException("local api not supported")
     }
+
+    override fun getDiaryById(id: Long): Single<AlcoholDiary> =
+        appDao.selectAlcoholDiaryById(id)
+
 }

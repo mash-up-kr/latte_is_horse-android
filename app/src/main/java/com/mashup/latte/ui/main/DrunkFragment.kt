@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import coil.api.load
 import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.dto.response.Diary
@@ -18,21 +19,7 @@ import java.lang.StringBuilder
  * Created by Namget on 2019.11.23.
  */
 class DrunkFragment : Fragment() {
-
-    companion object {
-        private lateinit var drunkFragment: DrunkFragment
-
-        fun newInstance(args: Bundle?): DrunkFragment {
-            synchronized(DrunkFragment::class) {
-                drunkFragment = DrunkFragment()
-                if (args != null) {
-                    drunkFragment.arguments = args
-                }
-                return drunkFragment
-            }
-        }
-    }
-
+    lateinit var alcoholDiary: AlcoholDiary
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +30,7 @@ class DrunkFragment : Fragment() {
 
         view.setOnClickListener {
             val intent = Intent(activity, MainDetailActivity::class.java)
+            intent.putExtra(DATA_DIARY_ID, alcoholDiary.id)
             startActivity(intent)
         }
 
@@ -57,7 +45,7 @@ class DrunkFragment : Fragment() {
     }
 
     private fun initUI(diary: AlcoholDiary) {
-        diary.apply {
+        alcoholDiary = diary.apply {
             val diaryDate = date.split(".")
             txtMainYear.text = diaryDate[0]
             txtMainDate.text = "${diaryDate[1]}.${diaryDate[2]}"
@@ -69,10 +57,60 @@ class DrunkFragment : Fragment() {
                 if (index != diary.drunkenAmounts.size)
                     countBuilder.append("\n")
             }
+            txtMainDrunkBottleCount.isSelected = true
+            ImgMainDrunkImage.load(getFrameImage(diary.drunkenActionType))
             txtMainDrunkBottleCount.text = countBuilder.toString()
             txtMainDrunkHangover.text = diary.hanoverStatus
             txtMainDrunkAmount.text = diary.drunkenStatus
+        }
+    }
 
+    private fun getFrameImage(actionType: String): Int {
+        when (actionType) {
+            "완전멀쩡" -> {
+                return R.drawable.ic_drunken_mulggyung_n
+            }
+            "살짝알딸딸" -> {
+                return R.drawable.ic_drunken_alddalddal_n
+            }
+            "음주가무" -> {
+                return R.drawable.ic_drunken_eumjugamu_n
+            }
+            "무지개토" -> {
+                return R.drawable.ic_drunken_rainbow_vomit_n
+            }
+            "눈물줄줄" -> {
+                return R.drawable.ic_drunken_crying_n
+            }
+            "스킨십귀신" -> {
+                return R.drawable.ic_drunken_skinship_n
+            }
+            "필름끊김" -> {
+                return R.drawable.ic_drunken_blackout_n
+            }
+            "꿀잠쿨쿨" -> {
+                return R.drawable.ic_drunken_honey_sleep_n
+            }
+            "귀가요정" -> {
+                return R.drawable.ic_drunken_go_home_fairy_n
+            }
+            else -> {
+                return R.drawable.ic_drunken_mulggyung_n
+            }
+        }
+    }
+
+    companion object {
+        const val DATA_DIARY_ID = "data_diary_id"
+        private lateinit var drunkFragment: DrunkFragment
+        fun newInstance(args: Bundle?): DrunkFragment {
+            synchronized(DrunkFragment::class) {
+                drunkFragment = DrunkFragment()
+                if (args != null) {
+                    drunkFragment.arguments = args
+                }
+                return drunkFragment
+            }
         }
     }
 

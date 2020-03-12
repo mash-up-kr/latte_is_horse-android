@@ -30,7 +30,7 @@ class ApiRemoteDataSource(
 
 
     override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) {
-        throw IllegalAccessException("local api not supported")
+        throw IllegalAccessException("remote api not supported")
 //        val paths = alcoholDiary.imagePath
 //        e("test", "paths${paths!![0]}")
 //        val files: MutableList<File> = mutableListOf()
@@ -45,6 +45,10 @@ class ApiRemoteDataSource(
     }
 
     override fun getDiaries(from : Date, to : Date): Single<List<AlcoholDiary>> {
-        throw IllegalAccessException("local api not supported")
+        throw IllegalAccessException("remote api not supported")
+    }
+
+    override fun getDiaryById(id: Long): Single<AlcoholDiary> {
+        throw IllegalAccessException("remote api not supported")
     }
 }

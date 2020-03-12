@@ -18,5 +18,8 @@ interface AppDao {
     fun insertAlcoholDiary(alcoholDiary: AlcoholDiary)
 
     @Query("SELECT * FROM alcoholDiary WHERE timestamp BETWEEN :from AND :to ORDER BY timeStamp DESC")
-    fun selectAlcoholDiary(from : Date = Date(), to : Date = Date()): Single<List<AlcoholDiary>>
+    fun selectAlcoholDiary(from: Date = Date(), to: Date = Date()): Single<List<AlcoholDiary>>
+
+    @Query("SELECT * FROM alcoholDiary WHERE id = :id")
+    fun selectAlcoholDiaryById(id: Long): Single<AlcoholDiary>
 }
