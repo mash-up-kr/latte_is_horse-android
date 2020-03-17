@@ -18,6 +18,9 @@ import com.mashup.latte.ext.toastMakeToast
 import com.mashup.latte.ui.record.adapter.RecordImageRecyclerViewAdapter
 import com.mashup.latte.ui.record.data.result.ImageResult
 import kotlinx.android.synthetic.main.fragment_record_image.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 
@@ -75,7 +78,7 @@ class RecordImageFragment : Fragment() {
         }
     }
 
-    fun onReload(){
+    fun onReload() {
         initRecyclerView()
     }
 
@@ -110,7 +113,6 @@ class RecordImageFragment : Fragment() {
 
     private fun saveImage(finalBitmap: Bitmap, index: Int): String {
         val file = File(context?.filesDir, "image_${System.currentTimeMillis()}_${index}.jpg")
-
         try {
             val out = FileOutputStream(file)
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 50, out)

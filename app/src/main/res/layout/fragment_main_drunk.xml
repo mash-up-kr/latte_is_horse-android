@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="33dp"
+        android:fontFamily="sans-serif-light"
         android:text="2020"
         android:textColor="@color/textYear"
         android:textSize="14sp"
-        android:fontFamily="sans-serif-light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="2020" />
@@ -26,11 +26,11 @@
         android:id="@+id/txtMainDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
         android:text="12.03"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:fontFamily="sans-serif-light"
         app:layout_constraintStart_toStartOf="@id/txtMainYear"
         app:layout_constraintTop_toBottomOf="@id/txtMainYear"
         tools:text="12.03" />
@@ -42,10 +42,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/img_card_dancing_enabled"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:background="@drawable/img_card_dancing_enabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtMainDate"
@@ -67,24 +67,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2.5dp"
         android:text="주량"
-        android:textSize="14sp"
         android:textColor="@color/colorPrimary"
-        tools:text="주량"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imgMainCheckDrunkBottleCount"
-        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkBottleCount"/>
+        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkBottleCount"
+        tools:text="주량" />
 
     <TextView
         android:id="@+id/txtMainDrunkBottleCount"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
         android:text="소주 2병"
-        android:textSize="14sp"
         android:textColor="@color/textYear"
-        tools:text="소주 2병"
+        android:textSize="14sp"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtMainDrunkBottleCountComment"
         app:layout_constraintTop_toTopOf="@+id/txtMainDrunkBottleCountComment"
-        />
+        tools:text="소주 2병" />
 
 
     <ImageView
@@ -103,11 +105,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2.5dp"
         android:text="숙취"
-        android:textSize="14sp"
         android:textColor="@color/colorPrimary"
-        tools:text="숙취"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imgMainCheckDrunkHangover"
-        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkHangover"/>
+        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkHangover"
+        tools:text="숙취" />
 
     <TextView
         android:id="@+id/txtMainDrunkHangover"
@@ -115,12 +117,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="상쾌"
-        android:textSize="14sp"
         android:textColor="@color/textYear"
-        tools:text="상쾌"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtMainDrunkHangoverComment"
         app:layout_constraintTop_toTopOf="@+id/txtMainDrunkHangoverComment"
-        />
+        tools:text="상쾌" />
 
     <ImageView
         android:id="@+id/imgMainCheckDrunkAmount"
@@ -139,11 +140,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2.5dp"
         android:text="취함"
-        android:textSize="14sp"
         android:textColor="@color/colorPrimary"
-        tools:text="취함"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imgMainCheckDrunkAmount"
-        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkAmount"/>
+        app:layout_constraintTop_toTopOf="@+id/imgMainCheckDrunkAmount"
+        tools:text="취함" />
 
     <TextView
         android:id="@+id/txtMainDrunkAmount"
@@ -151,11 +152,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="많이 취함"
-        android:textSize="14sp"
         android:textColor="@color/textYear"
-        tools:text="많이 취함"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtMainDrunkAmountComment"
         app:layout_constraintTop_toTopOf="@+id/txtMainDrunkAmountComment"
-        />
+        tools:text="많이 취함" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

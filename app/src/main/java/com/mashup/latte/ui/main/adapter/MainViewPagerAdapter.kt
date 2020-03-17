@@ -15,10 +15,11 @@ class MainViewPagerAdapter(
     override fun getItem(position: Int): Fragment = fragmentList[position]
     override fun getCount(): Int = fragmentList.size
     override fun getPageWidth(position: Int): Float {
-        return pageWidth
+        return if (fragmentList.size == 1) 1.0f else pageWidth
     }
 
     companion object {
+
         const val pageWidth = 0.8f
     }
 }

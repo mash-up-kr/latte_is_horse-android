@@ -10,7 +10,7 @@ import com.mashup.latte.R
 import com.mashup.latte.ui.main_detail.data.MainDetailImages
 import kotlinx.android.synthetic.main.fragment_main_detail_image.view.*
 
-class MainDetailViewPagerAdapter(context: Context, private val imageList: ArrayList<String>) : PagerAdapter() {
+class MainDetailViewPagerAdapter(context: Context, private val imageList: MutableList<String>) : PagerAdapter() {
     private val mContext = context
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {

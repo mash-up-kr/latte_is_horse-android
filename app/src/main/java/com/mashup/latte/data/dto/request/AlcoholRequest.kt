@@ -1,6 +1,9 @@
 package com.mashup.latte.data.dto.request
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.http.Part
+import retrofit2.http.PartMap
+import java.io.File
 import java.io.Serializable
 
 /**
@@ -23,9 +26,7 @@ data class AlcoholRequest(
     @SerializedName("alcohol_records")
     val alcoholRecords: List<AlcoholRecord>,
     @SerializedName("action_type_img")
-    val actionTypeImg: String,
-    @SerializedName("image_set")
-    val imageSet: List<ImageSet>
+    val actionTypeImg: String
 )
 
 data class AlcoholRecord(
@@ -38,6 +39,7 @@ data class AlcoholRecord(
 ) : Serializable
 
 data class ImageSet(
+    @Part
     @SerializedName("main_image")
-    val mainImage: String
+    val mainImage: List<File>
 )

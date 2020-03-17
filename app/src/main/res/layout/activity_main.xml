@@ -11,8 +11,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnCalendar"
@@ -42,30 +41,30 @@
         android:layout_height="72dp"
         android:layout_marginTop="99dp"
         android:layout_marginEnd="20dp"
+        android:background="@color/colorWhite"
         android:gravity="center"
         android:src="@drawable/img_add_diary"
-        android:background="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/txtMainRecord"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_marginTop="118dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:background="@drawable/shape_corner_circle_s"-->
-<!--        android:drawableEnd="@drawable/ic_add_white_24dp"-->
-<!--        android:fontFamily="@font/gmarket_sans_ttf_medium"-->
-<!--        android:gravity="center"-->
-<!--        android:paddingStart="15dp"-->
-<!--        android:paddingEnd="10dp"-->
-<!--        android:textColor="#ffffff"-->
-<!--        android:textSize="18sp"-->
-<!--        android:text="@string/main_record"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:text="@string/main_record" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/txtMainRecord"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_marginTop="118dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:background="@drawable/shape_corner_circle_s"-->
+    <!--        android:drawableEnd="@drawable/ic_add_white_24dp"-->
+    <!--        android:fontFamily="@font/gmarket_sans_ttf_medium"-->
+    <!--        android:gravity="center"-->
+    <!--        android:paddingStart="15dp"-->
+    <!--        android:paddingEnd="10dp"-->
+    <!--        android:textColor="#ffffff"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:text="@string/main_record"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:text="@string/main_record" />-->
 
 
     <TextView
@@ -94,13 +93,54 @@
         app:layout_constraintTop_toBottomOf="@id/txtMainTitle"
         tools:text="@string/app_title_drunk_count" />
 
+    <ImageView
+        android:id="@+id/imgMainNone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:visibility="gone"
+        android:background="@drawable/ic_corner_arrow"
+        app:layout_constraintBottom_toTopOf="@id/frameMainNone"
+        app:layout_constraintLeft_toLeftOf="@id/frameMainNone"
+        app:layout_constraintRight_toLeftOf="@id/btnMainRecord"
+        app:layout_constraintTop_toTopOf="@id/btnMainRecord" />
+
+
+    <FrameLayout
+        android:id="@+id/frameMainNone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imgNoneSketchbook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_sketchbook_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/gmarket_sans_ttf_medium"
+            android:text="작성된 일기가 없어요"
+            android:textColor="@color/black" />
+
+    </FrameLayout>
+
+
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPagerMain"
         android:layout_width="match_parent"
         android:layout_height="390dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

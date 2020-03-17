@@ -94,6 +94,7 @@ class RecordDetailFragment : Fragment() {
             list.add(DrunkenAmount(name, type, cup, bottle))
         }
         detailData.drunkenAmounts = list
+        detailData.date = btnDetailDateSelector.text.toString()
 
         return detailData
     }

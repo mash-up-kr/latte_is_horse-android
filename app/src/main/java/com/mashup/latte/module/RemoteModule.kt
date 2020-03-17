@@ -90,6 +90,6 @@ val remoteModule = module {
     }
 
     single {
-        ApiRemoteDataSource(get(named("ApiService")))
+        ApiRemoteDataSource(get(named("ApiService")), get(), get())
     }
 }
