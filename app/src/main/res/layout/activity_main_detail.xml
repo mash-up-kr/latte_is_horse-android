@@ -313,7 +313,6 @@
                 android:layout_height="134dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="#ffffff"
                 app:layout_constraintTop_toBottomOf="@id/recyclerViewMainDetail" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
