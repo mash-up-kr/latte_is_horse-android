@@ -2,18 +2,15 @@ package com.mashup.latte.ui.main_detail
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import coil.api.load
 import com.mashup.latte.R
 import com.mashup.latte.data.repository.ApiRepository
-import com.mashup.latte.ext.e
 import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ext.withScheduler
 import com.mashup.latte.ui.base.BaseActivity
 import com.mashup.latte.ui.main.MainActivity
 import com.mashup.latte.ui.main_detail.adapter.MainDetailRecyclerViewAdapter
 import com.mashup.latte.ui.main_detail.adapter.MainDetailViewPagerAdapter
-import com.mashup.latte.ui.main_detail.data.MainDetailImages
 import com.mashup.latte.ui.record.RecordActivity
 import com.mashup.latte.ui.record.decoration.RecyclerViewDivWidthDecoration
 import kotlinx.android.synthetic.main.activity_main_detail.*
@@ -33,7 +30,7 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
     }
 
     private val mainDetailViewPagerAdapter: MainDetailViewPagerAdapter by lazy {
-        MainDetailViewPagerAdapter(this, imageList)
+        MainDetailViewPagerAdapter(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,8 +57,6 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
             addItemDecoration(RecyclerViewDivWidthDecoration(20))
             setHasFixedSize(true)
         }
-
-
     }
 
     override fun onImageClick(position: Int) {
@@ -93,7 +88,6 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
     }
 
     private fun getData() {
-        //TODO id 동일하게 가져오는것 변경 필요
         disposable.add(
             repository.getDiaryById(id)
                 .withScheduler()
@@ -126,6 +120,8 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
                         if (imageList.size > 0) {
                             mainDetailRecyclerViewAdapter.addImages(imageList)
                             mainDetailRecyclerViewAdapter.notifyDataSetChanged()
+                            mainDetailViewPagerAdapter.addImages(imageList)
+                            mainDetailViewPagerAdapter.notifyDataSetChanged()
                         }
                     }
                 }, {

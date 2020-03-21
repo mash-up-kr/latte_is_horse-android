@@ -9,10 +9,8 @@ import androidx.fragment.app.Fragment
 import coil.api.load
 import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
-import com.mashup.latte.data.dto.response.Diary
 import com.mashup.latte.ui.main_detail.MainDetailActivity
 import kotlinx.android.synthetic.main.fragment_main_drunk.*
-import org.koin.core.logger.MESSAGE
 import java.lang.StringBuilder
 
 /**
@@ -30,7 +28,7 @@ class DrunkFragment : Fragment() {
 
         view.setOnClickListener {
             val intent = Intent(activity, MainDetailActivity::class.java)
-            intent.putExtra(DATA_DIARY_ID, alcoholDiary.id)
+            intent.putExtra(MainActivity.DATA_DIARY, alcoholDiary.id)
             startActivity(intent)
         }
 
