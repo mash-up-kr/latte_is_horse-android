@@ -89,7 +89,7 @@ class RecordImageRecyclerViewAdapter(
                 context.toastMakeToast(
                     String.format(
                         context.getString(R.string.record_image_max_count1),
-                        1
+                        3
                     )
                 )
             }
