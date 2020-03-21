@@ -30,7 +30,7 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
     }
 
     private val mainDetailViewPagerAdapter: MainDetailViewPagerAdapter by lazy {
-        MainDetailViewPagerAdapter(this, imageList)
+        MainDetailViewPagerAdapter(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +88,6 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
     }
 
     private fun getData() {
-        //TODO id 동일하게 가져오는것 변경 필요
         disposable.add(
             repository.getDiaryById(id)
                 .withScheduler()
@@ -121,6 +120,8 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
                         if (imageList.size > 0) {
                             mainDetailRecyclerViewAdapter.addImages(imageList)
                             mainDetailRecyclerViewAdapter.notifyDataSetChanged()
+                            mainDetailViewPagerAdapter.addImages(imageList)
+                            mainDetailViewPagerAdapter.notifyDataSetChanged()
                         }
                     }
                 }, {
