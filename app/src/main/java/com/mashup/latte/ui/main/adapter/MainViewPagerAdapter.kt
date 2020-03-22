@@ -15,7 +15,7 @@ class MainViewPagerAdapter(
     override fun getItem(position: Int): Fragment = fragmentList[position]
     override fun getCount(): Int = fragmentList.size
     override fun getPageWidth(position: Int): Float {
-        return if (fragmentList.size == 1) 1.0f else pageWidth
+        return if (fragmentList.size == 1) 0.8f else pageWidth
     }
 
     companion object {

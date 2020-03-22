@@ -134,15 +134,36 @@
 
 
 
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPagerMain"
+    <LinearLayout
+        android:id="@+id/viewPagerMainLayout"
         android:layout_width="match_parent"
         android:layout_height="390dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="28dp"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/viewPagerMain"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="390dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginBottom="64dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

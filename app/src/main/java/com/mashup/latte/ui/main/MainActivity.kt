@@ -1,23 +1,22 @@
 package com.mashup.latte.ui.main
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
+import android.util.DisplayMetrics
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ext.e
-import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ext.startActivityResult
 import com.mashup.latte.ui.base.BaseActivity
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
@@ -78,6 +77,10 @@ class MainActivity : BaseActivity() {
             frameMainNone.visibility = View.VISIBLE
             viewPagerMain.visibility = View.GONE
             return
+        } else if (imgMainNone.visibility == View.VISIBLE){
+            imgMainNone.visibility = View.GONE
+            frameMainNone.visibility = View.GONE
+            viewPagerMain.visibility = View.VISIBLE
         }
 
         val fragmentList = ArrayList<Fragment>()
@@ -88,9 +91,20 @@ class MainActivity : BaseActivity() {
         }
 
         viewPagerMain.apply {
+            if (diaries.size == 1) {
+                val displayMetrics = DisplayMetrics()
+                windowManager.defaultDisplay.getMetrics(displayMetrics)
+                val screenWidth = convertPixelsToDp(displayMetrics.widthPixels*1.0f, context)
+                val viewPagerWidth = convertPixelsToDp(viewPagerMain.width*1.0f, context)
+                val itemWidth = viewPagerWidth * 0.8f
+                viewPagerMainLayout.x = convertDpToPixel((screenWidth - itemWidth)*0.5f, context)
+            } else {
+                viewPagerMainLayout.x = convertDpToPixel(28f, context)
+            }
             adapter = MainViewPagerAdapter(supportFragmentManager, fragmentList)
             currentItem = PAGE_INITIAL_ITEM
             pageMargin = PAGE_MARGIN
+
         }
     }
 
@@ -102,6 +116,28 @@ class MainActivity : BaseActivity() {
         }
 
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun convertDpToPixel(dp: Float, context: Context?): Float {
+        return if (context != null) {
+            val resources = context.resources
+            val metrics = resources.displayMetrics
+            dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        } else {
+            val metrics = Resources.getSystem().displayMetrics
+            dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        }
+    }
+
+    private fun convertPixelsToDp(px: Float, context: Context?): Float {
+        return if (context != null) {
+            val resources = context.resources
+            val metrics = resources.displayMetrics
+            px / (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        } else {
+            val metrics = Resources.getSystem().displayMetrics
+            px / (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        }
     }
 
     companion object {
