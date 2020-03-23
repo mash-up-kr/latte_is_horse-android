@@ -1,11 +1,12 @@
 package com.mashup.latte.ui.main_detail
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import coil.api.load
 import com.mashup.latte.R
 import com.mashup.latte.data.repository.ApiRepository
-import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ext.withScheduler
 import com.mashup.latte.ui.base.BaseActivity
 import com.mashup.latte.ui.main.MainActivity
@@ -19,11 +20,10 @@ import java.lang.StringBuilder
 
 class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImageClickListener {
 
+    private val MODIFY_REQUEST_CODE = 999
     private var isViewPagerOn = false
-    private val imageList: MutableList<String> = mutableListOf()
     private val repository: ApiRepository by inject()
     private var id: Long = 1
-
 
     private val mainDetailRecyclerViewAdapter: MainDetailRecyclerViewAdapter by lazy {
         MainDetailRecyclerViewAdapter(this)
@@ -40,14 +40,14 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
     }
 
     private fun init() {
-        getExta()
+        getExtra()
         getData()
         initEvent()
         initRecyclerView()
         initViewPager()
     }
 
-    private fun getExta() {
+    private fun getExtra() {
         id = intent.getLongExtra(MainActivity.DATA_DIARY, 1)
     }
 
@@ -83,11 +83,14 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
         }
 
         txtMainDetailModify.setOnClickListener {
-            startActivity<RecordActivity>()
+            val intent = Intent(this, RecordActivity::class.java)
+            intent.putExtra(DIARY_ID, id)
+            startActivityForResult(intent, MODIFY_REQUEST_CODE)
         }
     }
 
     private fun getData() {
+        val imageList: MutableList<String> = mutableListOf()
         disposable.add(
             repository.getDiaryById(id)
                 .withScheduler()
@@ -134,34 +137,34 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
     private fun getFrameImage(actionType: String): Int {
         when (actionType) {
             "완전멀쩡" -> {
-                return R.drawable.ic_drunken_mulggyung_n
+                return R.drawable.img_drunken_mulggyung
             }
             "살짝알딸딸" -> {
-                return R.drawable.ic_drunken_alddalddal_n
+                return R.drawable.img_drunken_alddalddal
             }
             "음주가무" -> {
-                return R.drawable.ic_drunken_eumjugamu_n
+                return R.drawable.img_drunken_eumjugamu
             }
             "무지개토" -> {
-                return R.drawable.ic_drunken_rainbow_vomit_n
+                return R.drawable.img_drunken_rainbow_vomit
             }
             "눈물줄줄" -> {
-                return R.drawable.ic_drunken_crying_n
+                return R.drawable.img_drunken_crying
             }
             "스킨십귀신" -> {
-                return R.drawable.ic_drunken_skinship_n
+                return R.drawable.img_drunken_skinship
             }
             "필름끊김" -> {
-                return R.drawable.ic_drunken_blackout_n
+                return R.drawable.img_drunken_blackout
             }
             "꿀잠쿨쿨" -> {
-                return R.drawable.ic_drunken_honey_sleep_n
+                return R.drawable.img_drunken_honey_sleep
             }
             "귀가요정" -> {
-                return R.drawable.ic_drunken_go_home_fairy_n
+                return R.drawable.img_drunken_go_home_fairy
             }
             else -> {
-                return R.drawable.ic_drunken_mulggyung_n
+                return R.drawable.img_drunken_mulggyung
             }
         }
     }
@@ -172,5 +175,16 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
             isViewPagerOn = false
         } else
             finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == MODIFY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            getData()
+        }
+    }
+
+    companion object {
+        const val DIARY_ID = "DIARY_ID"
     }
 }
