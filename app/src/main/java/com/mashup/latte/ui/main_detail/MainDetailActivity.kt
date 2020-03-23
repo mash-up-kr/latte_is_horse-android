@@ -137,34 +137,34 @@ class MainDetailActivity : BaseActivity(), MainDetailRecyclerViewAdapter.OnImage
     private fun getFrameImage(actionType: String): Int {
         when (actionType) {
             "완전멀쩡" -> {
-                return R.drawable.ic_drunken_mulggyung_n
+                return R.drawable.img_drunken_mulggyung
             }
             "살짝알딸딸" -> {
-                return R.drawable.ic_drunken_alddalddal_n
+                return R.drawable.img_drunken_alddalddal
             }
             "음주가무" -> {
-                return R.drawable.ic_drunken_eumjugamu_n
+                return R.drawable.img_drunken_eumjugamu
             }
             "무지개토" -> {
-                return R.drawable.ic_drunken_rainbow_vomit_n
+                return R.drawable.img_drunken_rainbow_vomit
             }
             "눈물줄줄" -> {
-                return R.drawable.ic_drunken_crying_n
+                return R.drawable.img_drunken_crying
             }
             "스킨십귀신" -> {
-                return R.drawable.ic_drunken_skinship_n
+                return R.drawable.img_drunken_skinship
             }
             "필름끊김" -> {
-                return R.drawable.ic_drunken_blackout_n
+                return R.drawable.img_drunken_blackout
             }
             "꿀잠쿨쿨" -> {
-                return R.drawable.ic_drunken_honey_sleep_n
+                return R.drawable.img_drunken_honey_sleep
             }
             "귀가요정" -> {
-                return R.drawable.ic_drunken_go_home_fairy_n
+                return R.drawable.img_drunken_go_home_fairy
             }
             else -> {
-                return R.drawable.ic_drunken_mulggyung_n
+                return R.drawable.img_drunken_mulggyung
             }
         }
     }
