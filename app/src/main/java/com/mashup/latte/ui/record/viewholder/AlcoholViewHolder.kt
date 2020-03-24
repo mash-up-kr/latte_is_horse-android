@@ -25,6 +25,7 @@ class AlcoholViewHolder(view: View) : BaseViewHolder<Alcohol>(view) {
         with(data) {
             alcoholImg.load(imageResource)
             alcoholTitle.text = name
+
             if (typeList.isNullOrEmpty()) {
                 alcoholSpinner.visibility = View.GONE
                 alcoholEtcLinearlayout.visibility = View.VISIBLE

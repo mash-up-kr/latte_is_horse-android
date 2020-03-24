@@ -22,19 +22,19 @@ class RecordDetailRecyclerViewAdapter : RecyclerView.Adapter<AlcoholViewHolder>(
 
     fun addAlcohol(alcohol: Alcohol) {
         alcohols.add(alcohol)
-
-        notifyDataSetChanged()
+        notifyItemInserted(alcohols.size - 1)
     }
 
     fun deleteAlcohol(position: Int) {
         alcohols.removeAt(position)
-        notifyDataSetChanged()
+        notifyItemRemoved(position)
     }
 
     override fun getItemCount(): Int = alcohols.size
 
     override fun onBindViewHolder(holder: AlcoholViewHolder, position: Int) {
         holder.bind(alcohols[position])
+
         holder.close.setOnClickListener {
             deleteAlcohol(position)
         }

@@ -172,6 +172,7 @@ class RecordDetailFragment : Fragment() {
 
     private fun initAlcoholImageView() {
         imgDetailSoju.setOnClickListener {
+
             recordDetailRecyclerViewAdapter.addAlcohol(Soju())
         }
         imgDetailBeer.setOnClickListener {
@@ -196,7 +197,6 @@ class RecordDetailFragment : Fragment() {
         )
         recyclerViewDetailAlcohol.layoutParams = params
     }
-
 
     companion object {
         private lateinit var recordDetailFragment: RecordDetailFragment

@@ -12,5 +12,6 @@ data class AlcoholEtc(
     override val typeList: MutableList<String> = arrayListOf(),
     override val name: String = "기타",
     override val cup: Int = 0,
-    override val bottle: Int = 0
+    override val bottle: Int = 0,
+    val etcString : String = ""
 ) : Alcohol
