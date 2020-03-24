@@ -62,7 +62,7 @@ class RecordDetailFragment : Fragment() {
         recyclerViewDetailAlcohol.apply {
             adapter = recordDetailRecyclerViewAdapter
             addItemDecoration(RecyclerViewDivHeightDecoration(20))
-            setHasFixedSize(true)
+            setHasFixedSize(false)
         }
     }
 
@@ -172,7 +172,6 @@ class RecordDetailFragment : Fragment() {
 
     private fun initAlcoholImageView() {
         imgDetailSoju.setOnClickListener {
-
             recordDetailRecyclerViewAdapter.addAlcohol(Soju())
         }
         imgDetailBeer.setOnClickListener {

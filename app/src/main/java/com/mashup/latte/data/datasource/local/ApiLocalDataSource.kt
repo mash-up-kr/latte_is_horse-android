@@ -16,7 +16,7 @@ class ApiLocalDataSource(private val appDao: AppDao) : ApiRepository {
     override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) =
         appDao.insertAlcoholDiary(alcoholDiary)
 
-    override fun getDiaries(from: Date, to: Date): Single<List<AlcoholDiary>> =
+    override fun getDiariesByDate(from: Date, to: Date): Single<List<AlcoholDiary>> =
         appDao.selectAlcoholDiary(from, to)
 
 
@@ -27,4 +27,22 @@ class ApiLocalDataSource(private val appDao: AppDao) : ApiRepository {
     override fun getDiaryById(id: Long): Single<AlcoholDiary> =
         appDao.selectAlcoholDiaryById(id)
 
+    override fun getDiariesAll(): Single<List<AlcoholDiary>> =
+        appDao.selectAlcoholAll()
+
+
+    override fun getDiariesThisMonth(monthDate: Date): Single<List<AlcoholDiary>> {
+        val calendarStart = Calendar.getInstance()
+        calendarStart.time = monthDate
+        calendarStart.set(Calendar.DATE, 1)
+        calendarStart.set(Calendar.AM, calendarStart.getActualMaximum(Calendar.AM))
+
+
+        val calendarEnd = Calendar.getInstance()
+        calendarEnd.time = monthDate
+        calendarEnd.set(Calendar.DATE, calendarEnd.getActualMaximum(Calendar.DATE))
+        calendarEnd.set(Calendar.PM, calendarEnd.getActualMaximum(Calendar.PM))
+
+        return appDao.selectAlcoholMonth(calendarStart.time,calendarEnd.time)
+    }
 }

@@ -27,7 +27,7 @@ class MainActivity : BaseActivity() {
 
     private lateinit var viewPagerFragment: ArrayList<Fragment>
     private val repository: ApiRepository by inject()
-    private lateinit var fromDate: Date
+    private lateinit var thisMonth: Date
     private lateinit var toDate: Date
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class MainActivity : BaseActivity() {
 
     private fun initViewPager() {
         disposable.add(
-            repository.getDiaries(fromDate, toDate)
+            repository.getDiariesThisMonth(thisMonth)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({ alcoholDiaries ->
@@ -63,11 +63,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initDate() {
-        val calendar = Calendar.getInstance().also {
-            it.set(Calendar.YEAR, 1970)
-        }
-        fromDate = calendar.time
-        toDate = Date()
+        val calendar = Calendar.getInstance()
+        thisMonth = calendar.time
     }
 
     private fun updateUI(diaries: List<AlcoholDiary>) {

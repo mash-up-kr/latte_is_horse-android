@@ -17,15 +17,15 @@ import com.mashup.latte.ui.record.viewholder.DrunkenAfterViewHolder
  */
 class RecordDrunkenRecyclerViewAdapter : RecyclerView.Adapter<DrunkenAfterViewHolder>() {
     private val drunkenAfters: MutableList<DrunkenAfter> = arrayListOf(
-        DrunkenAfter(R.drawable.ic_drunken_mulggyung, "완전멀쩡", true,11),
-        DrunkenAfter(R.drawable.ic_drunken_alddalddal, "살짝알딸딸", false,22),
-        DrunkenAfter(R.drawable.ic_drunken_eumjugamu, "음주가무", false,33),
-        DrunkenAfter(R.drawable.ic_drunken_rainbow_vomit, "무지개토", false,44),
-        DrunkenAfter(R.drawable.ic_drunken_crying, "눈물줄줄", false,55),
-        DrunkenAfter(R.drawable.ic_drunken_skinship, "스킨십귀신", false,66),
-        DrunkenAfter(R.drawable.ic_drunken_blackout, "필름끊김", false,77),
-        DrunkenAfter(R.drawable.ic_drunken_honey_sleep, "꿀잠쿨쿨", false,88),
-        DrunkenAfter(R.drawable.ic_drunken_go_home_fairy, "귀가요정", false,99)
+        DrunkenAfter(R.drawable.ic_drunken_mulggyung, "완전멀쩡", true, 11),
+        DrunkenAfter(R.drawable.ic_drunken_alddalddal, "살짝알딸딸", false, 22),
+        DrunkenAfter(R.drawable.ic_drunken_eumjugamu, "음주가무", false, 33),
+        DrunkenAfter(R.drawable.ic_drunken_rainbow_vomit, "무지개토", false, 44),
+        DrunkenAfter(R.drawable.ic_drunken_crying, "눈물줄줄", false, 55),
+        DrunkenAfter(R.drawable.ic_drunken_skinship, "스킨십귀신", false, 66),
+        DrunkenAfter(R.drawable.ic_drunken_blackout, "필름끊김", false, 77),
+        DrunkenAfter(R.drawable.ic_drunken_honey_sleep, "꿀잠쿨쿨", false, 88),
+        DrunkenAfter(R.drawable.ic_drunken_go_home_fairy, "귀가요정", false, 99)
     )
     private var beforeSelectedPosition: Int = 0
 
@@ -48,7 +48,6 @@ class RecordDrunkenRecyclerViewAdapter : RecyclerView.Adapter<DrunkenAfterViewHo
     }
 
 
-
     override fun getItemId(position: Int): Long {
         return drunkenAfters[position].id
     }
@@ -61,8 +60,8 @@ class RecordDrunkenRecyclerViewAdapter : RecyclerView.Adapter<DrunkenAfterViewHo
 
         drunkenAfters[selectedPosition].isChecked = true
         drunkenAfters[beforeSelectedPosition].isChecked = false
-        notifyDataSetChanged()
-
+        notifyItemChanged(selectedPosition)
+        notifyItemChanged(beforeSelectedPosition)
         beforeSelectedPosition = selectedPosition
     }
 

@@ -25,17 +25,20 @@ class ApiRepositoryImpl(
 
 
     override fun insertAlcoholDiary(alcoholDiary: AlcoholDiary) {
-        if (userPref.isSNSLogin()) {
-            apiRemoteDataSource.insertAlcoholDiary(alcoholDiary)
-        } else {
-            apiLocalDataSource.insertAlcoholDiary(alcoholDiary)
-        }
+        apiLocalDataSource.insertAlcoholDiary(alcoholDiary)
     }
 
-    override fun getDiaries(from: Date, to: Date): Single<List<AlcoholDiary>> =
-        apiLocalDataSource.getDiaries(from, to)
+    override fun getDiariesByDate(from: Date, to: Date): Single<List<AlcoholDiary>> =
+        apiLocalDataSource.getDiariesByDate(from, to)
 
     override fun getDiaryById(id: Long): Single<AlcoholDiary> =
         apiLocalDataSource.getDiaryById(id)
 
+    override fun getDiariesAll(): Single<List<AlcoholDiary>> {
+        return apiLocalDataSource.getDiariesAll()
+    }
+
+    override fun getDiariesThisMonth(monthDate: Date): Single<List<AlcoholDiary>> {
+        return apiLocalDataSource.getDiariesThisMonth(monthDate)
+    }
 }

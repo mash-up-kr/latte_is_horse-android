@@ -4,6 +4,7 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
+import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -55,7 +56,6 @@ class RecordImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
-        initMultipleSelectable()
     }
 
     private fun initRecyclerView() {
@@ -72,21 +72,13 @@ class RecordImageFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageUri = data?.extras?.get("data") as Bitmap // bitmap에 대한 처리 필요
-//            imageSelected(imageUri)
+            val imageUri = data?.extras?.get("data") as Bitmap
             txtUploadImageSelect.load(imageUri)
         }
     }
 
     fun onReload() {
         initRecyclerView()
-    }
-
-    private fun initMultipleSelectable() {
-//        imgMultiSelcectEnabled.setOnClickListener {
-//            it.isSelected = !it.isSelected
-//            recordImageRecyclerViewAdapter.clearSelectedUri()
-//        }
     }
 
     fun giveImageData(): ImageResult? {
@@ -104,7 +96,9 @@ class RecordImageFragment : Fragment() {
             } else {
                 MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uriList[i])
             }
-            pathArray[i] = saveImage(bitmap, i)
+            val thumbnail = ThumbnailUtils.extractThumbnail(bitmap,DEFAULT_THUMBNAIL_SIZE,DEFAULT_THUMBNAIL_SIZE)
+
+            pathArray[i] = saveImage(thumbnail, i)
         }
 
         imageResult.imagePath = pathArray
@@ -137,8 +131,7 @@ class RecordImageFragment : Fragment() {
                 return recordImageFragment
             }
         }
-
-        var MAX_IMAGE_SELECTABLE = 1
+        const val DEFAULT_THUMBNAIL_SIZE = 1200
     }
 
 

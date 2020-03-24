@@ -44,11 +44,19 @@ class ApiRemoteDataSource(
         apiService.postDiary(alcoholDiary.toAlcoholRequest()).execute()
     }
 
-    override fun getDiaries(from : Date, to : Date): Single<List<AlcoholDiary>> {
+    override fun getDiariesByDate(from : Date, to : Date): Single<List<AlcoholDiary>> {
         throw IllegalAccessException("remote api not supported")
     }
 
     override fun getDiaryById(id: Long): Single<AlcoholDiary> {
+        throw IllegalAccessException("remote api not supported")
+    }
+
+    override fun getDiariesAll(): Single<List<AlcoholDiary>> {
+        throw IllegalAccessException("remote api not supported")
+    }
+
+    override fun getDiariesThisMonth(monthDate: Date): Single<List<AlcoholDiary>> {
         throw IllegalAccessException("remote api not supported")
     }
 }

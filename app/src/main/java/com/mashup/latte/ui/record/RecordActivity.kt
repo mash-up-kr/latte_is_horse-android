@@ -12,12 +12,14 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.pref.UserPref
+import com.mashup.latte.ui.main_detail.MainDetailActivity
 import com.mashup.latte.ui.record.adapter.RecordViewPagerAdapter
 import com.mashup.latte.ui.record.data.result.DetailResult
 import com.mashup.latte.ui.record.data.result.DrunkenResult
@@ -33,9 +35,9 @@ import java.util.*
 
 
 class RecordActivity : AppCompatActivity() {
-
     private var progressCurrentPage = 1
     private val repository: ApiRepository by inject()
+    private var id : Long = 0
     private val fragmentList = ArrayList<Fragment>().apply {
         add(RecordImageFragment.newInstance())
         add(RecordDetailFragment.newInstance())
@@ -48,11 +50,15 @@ class RecordActivity : AppCompatActivity() {
         init()
     }
 
-
     private fun init() {
+        getExtra()
         initPermissionCheck()
         initEvent()
         initViewPager()
+    }
+
+    private fun getExtra(){
+        id = intent.getLongExtra(MainDetailActivity.DIARY_ID,0)
     }
 
     private fun initPermissionCheck() {
@@ -73,13 +79,10 @@ class RecordActivity : AppCompatActivity() {
             val currentCount = viewPagerRecord.currentItem
             if ((currentCount + 1) == PROGRESS_PAGE_COUNT) {
                 //TODO 완료처리
-
                 lottieLoading.visibility = View.VISIBLE
                 lottieLoading.playAnimation()
                 frameLoading.visibility = View.VISIBLE
-                Handler().postDelayed({
-                    onComplete()
-                }, 300)
+                onComplete()
             } else {
                 viewPagerRecord.currentItem = currentCount + 1
             }
@@ -126,10 +129,8 @@ class RecordActivity : AppCompatActivity() {
     private fun bringDrunkenData(): DrunkenResult? =
         (fragmentList[2] as RecordDrunkenFragment).giveDrunkenData()
 
-
     private fun initViewPager() {
         //서버로 부터 받아온 페이지수 추가
-
         viewPagerRecord.apply {
             adapter = RecordViewPagerAdapter(supportFragmentManager, fragmentList)
             offscreenPageLimit = PROGRESS_PAGE_COUNT
@@ -175,13 +176,6 @@ class RecordActivity : AppCompatActivity() {
         progressCurrentPage = (position + 1)
     }
 
-    companion object {
-        const val PROGRESS_PAGE_COUNT = 3
-        const val PROGRESS_WEIGHT_STEP = 0.1f
-        const val PROGRESS_DURATION = 200L
-    }
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -200,4 +194,9 @@ class RecordActivity : AppCompatActivity() {
         }
     }
 
+    companion object {
+        const val PROGRESS_PAGE_COUNT = 3
+        const val PROGRESS_WEIGHT_STEP = 0.1f
+        const val PROGRESS_DURATION = 200L
+    }
 }

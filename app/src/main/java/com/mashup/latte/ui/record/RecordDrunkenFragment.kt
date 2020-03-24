@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView.ItemAnimator
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mashup.latte.R
 import com.mashup.latte.ui.record.adapter.RecordDrunkenRecyclerViewAdapter
 import com.mashup.latte.ui.record.data.result.DrunkenResult
@@ -87,10 +88,11 @@ class RecordDrunkenFragment : Fragment() {
 
         recordDrunkenRecyclerViewAdapter.setHasStableIds(true)
         recyclerViewDrunken.apply {
-
+            setHasFixedSize(true)
             adapter = recordDrunkenRecyclerViewAdapter
             addItemDecoration(RecyclerViewDivWidthDecoration(20))
         }
+        (recyclerViewDrunken.itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
     }
 
 

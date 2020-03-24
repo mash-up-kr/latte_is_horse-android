@@ -13,6 +13,8 @@ import java.util.*
 interface ApiRepository{
     fun insertAlcoholDiary(alcoholDiary: AlcoholDiary)
     fun getLoginToken(tokenRequest: TokenRequest): Single<TokenResponse>
-    fun getDiaries(from : Date, to : Date) : Single<List<AlcoholDiary>>
+    fun getDiariesByDate(from : Date, to : Date) : Single<List<AlcoholDiary>>
+    fun getDiariesAll() : Single<List<AlcoholDiary>>
+    fun getDiariesThisMonth(monthDate : Date) : Single<List<AlcoholDiary>>
     fun getDiaryById(id : Long) : Single<AlcoholDiary>
 }

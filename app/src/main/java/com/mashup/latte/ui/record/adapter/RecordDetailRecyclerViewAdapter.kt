@@ -22,7 +22,7 @@ class RecordDetailRecyclerViewAdapter : RecyclerView.Adapter<AlcoholViewHolder>(
 
     fun addAlcohol(alcohol: Alcohol) {
         alcohols.add(alcohol)
-        notifyItemInserted(alcohols.size - 1)
+        notifyItemInserted(alcohols.size -1)
     }
 
     fun deleteAlcohol(position: Int) {
