@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="#f9f9f9">
 
     <ImageView
         android:layout_width="300dp"

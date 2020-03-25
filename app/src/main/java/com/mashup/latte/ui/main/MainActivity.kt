@@ -12,8 +12,10 @@ import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ext.e
+import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ext.startActivityResult
 import com.mashup.latte.ui.base.BaseActivity
+import com.mashup.latte.ui.calendar.CalendarActivity
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -46,6 +48,9 @@ class MainActivity : BaseActivity() {
     private fun initEvent() {
         btnMainRecord.setOnClickListener {
             startActivityResult<RecordActivity>(REQ_RECORD)
+        }
+        btnCalendar.setOnClickListener {
+            startActivity<CalendarActivity>()
         }
     }
 

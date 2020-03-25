@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.calendar.CalendarActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCalendarActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ImgCalendarBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back_arrow_white_24dp" />
+
+        <TextView
+            android:id="@+id/txtMainDetailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gmarket_sans_ttf_medium"
+            android:text="@string/calendar_title"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/ImgCalendarBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ImgCalendarBack"
+            tools:text="@string/calendar_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/calendar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/layoutCalendarActionBar">
+
+        <ImageView
+            android:id="@+id/calendar_prev_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back_arrow_calendar"/>
+
+        <TextView
+            android:id="@+id/txtCalendarDate"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gmarket_sans_ttf_medium"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_toEndOf="@id/calendar_prev_button"
+            tools:text="2020 . 02" />
+
+        <ImageView
+            android:id="@+id/calendar_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/txtCalendarDate"
+            android:src="@drawable/ic_next_arrow_calendar"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/calendar_header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintTop_toBottomOf="@id/calendar_title">
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendarSun"
+            android:textSize="12sp"
+            android:text="S" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendarWeek"
+            android:textSize="12sp"
+            android:text="M" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendarWeek"
+            android:textSize="12sp"
+            android:text="T" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendarWeek"
+            android:textSize="12sp"
+            android:text="W" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendarWeek"
+            android:textSize="12sp"
+            android:text="T" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendarWeek"
+            android:textSize="12sp"
+            android:text="F" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendarWeek"
+            android:textSize="12sp"
+            android:text="S" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintTop_toBottomOf="@id/calendar_header"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="7"
+        tools:listitem="@layout/item_calendar_check_row" />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_line"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/recyclerCalendar"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/showDataLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp">
+
+        <ImageView
+            android:id="@+id/dataImage"
+            android:layout_width="124dp"
+            android:layout_height="124dp"
+            android:src="@drawable/img_drunken_mulggyung"
+            android:layout_marginStart="26dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/dataImage"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/check_no_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/main_detail_amount"
+                    android:textSize="14sp"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/gmarket_sans_ttf_medium"/>
+                <TextView
+                    android:id="@+id/text_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="소주 1병"
+                    android:textSize="14sp"
+                    android:textColor="@color/textYear"
+                    android:fontFamily="@font/gmarket_sans_ttf_medium"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/check_no_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/main_detail_clean"
+                    android:textSize="14sp"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/gmarket_sans_ttf_medium"/>
+                <TextView
+                    android:id="@+id/text_clean"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="상쾌"
+                    android:textSize="14sp"
+                    android:textColor="@color/textYear"
+                    android:fontFamily="@font/gmarket_sans_ttf_medium"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/check_no_circle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/main_detail_drunk"
+                    android:textSize="14sp"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/gmarket_sans_ttf_medium"/>
+                <TextView
+                    android:id="@+id/text_drunk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="멀쩡함"
+                    android:textSize="14sp"
+                    android:textColor="@color/textYear"
+                    android:fontFamily="@font/gmarket_sans_ttf_medium"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_date_box"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/dataImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dotInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp">
+
+        <TextView
+            android:id="@+id/dotInfoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/record_detail_drunken_hint"
+            android:textColor="@color/gray979797"
+            android:textSize="14sp"
+            android:fontFamily="@font/gmarket_sans_ttf_medium"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/dotInfoTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/img_drunken_guide_dot_level1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/record_detail_drunken_nothing"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginStart="8dp"/>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/img_drunken_guide_dot_level2"
+                android:layout_marginStart="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/record_detail_drunken_little"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginStart="8dp"/>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/img_drunken_guide_dot_level3"
+                android:layout_marginStart="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/record_detail_drunken_much"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginStart="8dp"/>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/img_drunken_guide_dot_level4"
+                android:layout_marginStart="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/record_detail_drunken_dog"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

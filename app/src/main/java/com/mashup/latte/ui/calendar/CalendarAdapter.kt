@@ -1,30 +1,31 @@
-package com.mashup.latte.ui.record.adapter
+package com.mashup.latte.ui.calendar
 
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.mashup.latte.R
 import com.mashup.latte.ui.base.BaseViewHolder
-import com.mashup.latte.ui.record.CalendarManager
-import com.mashup.latte.ui.record.data.CalendarRow
-import kotlinx.android.synthetic.main.item_calendar_row.view.*
+import kotlinx.android.synthetic.main.item_calendar_check_row.view.*
 
 /**
- * Created by Namget on 2020.03.02.
+ * Created by Arim on 2020.03.24.
  */
 class CalendarAdapter(private val calendarManager: CalendarManager) :
     RecyclerView.Adapter<CalendarAdapter.CalenderViewHolder>() {
     private val calendarRows: MutableList<CalendarRow> = mutableListOf()
     private val selectedDate get() = calendarManager.selectedDate
 
+    private val calendarActivity = CalendarActivity()
+    private var dot: Boolean = false
+
     init {
         replaceData(calendarManager.buildCalendar())
     }
-
-    //TODO row 클릭시 click 한 날 동그라미로
 
     private fun replaceData(list: List<CalendarRow>) {
         calendarRows.clear()
@@ -43,12 +44,13 @@ class CalendarAdapter(private val calendarManager: CalendarManager) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalenderViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_calendar_row, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_calendar_check_row, parent, false)
         view.setOnClickListener {
             if(view.textCalenderRow.text != "") {
                 calendarManager.selectedDate =
                     view.findViewById<TextView>(R.id.textCalenderRow).text.toString()
                 notifyDataSetChanged()
+                calendarActivity.showDairyData(dot)
             }
         }
 
@@ -63,7 +65,7 @@ class CalendarAdapter(private val calendarManager: CalendarManager) :
 
     inner class CalenderViewHolder(private val view: View) : BaseViewHolder<CalendarRow>(view) {
         private val calendarText = view.findViewById<TextView>(R.id.textCalenderRow)
-
+        private val calendarDot = view.findViewById<ImageView>(R.id.dotCalendarRow)
 
         override fun bind(data: CalendarRow) {
             calendarText.text = data.text
@@ -79,6 +81,13 @@ class CalendarAdapter(private val calendarManager: CalendarManager) :
                 calendarText.setTextColor(view.context.resources.getColor(R.color.white))
             } else {
                 calendarText.background = null
+            }
+
+            dot = data.dot
+            if(dot){
+                calendarDot.visibility = View.VISIBLE
+            } else{
+                calendarDot.visibility = View.INVISIBLE
             }
 
         }
