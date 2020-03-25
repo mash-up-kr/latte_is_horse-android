@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.mashup.latte.R
 import com.mashup.latte.ui.base.BaseViewHolder
@@ -15,13 +16,11 @@ import kotlinx.android.synthetic.main.item_calendar_check_row.view.*
 /**
  * Created by Arim on 2020.03.24.
  */
-class CalendarAdapter(private val calendarManager: CalendarManager) :
+class CalendarAdapter(private val calendarManager: CalendarManager, private val calendarActivity: CalendarActivity) :
     RecyclerView.Adapter<CalendarAdapter.CalenderViewHolder>() {
     private val calendarRows: MutableList<CalendarRow> = mutableListOf()
     private val selectedDate get() = calendarManager.selectedDate
 
-    private val calendarActivity = CalendarActivity()
-    private var dot: Boolean = false
 
     init {
         replaceData(calendarManager.buildCalendar())
@@ -50,7 +49,8 @@ class CalendarAdapter(private val calendarManager: CalendarManager) :
                 calendarManager.selectedDate =
                     view.findViewById<TextView>(R.id.textCalenderRow).text.toString()
                 notifyDataSetChanged()
-                calendarActivity.showDairyData(dot)
+                val date = calendarManager.selectedDate
+                calendarActivity.showDiaryData(view.dotCalendarRow.isVisible, date)
             }
         }
 
@@ -83,8 +83,8 @@ class CalendarAdapter(private val calendarManager: CalendarManager) :
                 calendarText.background = null
             }
 
-            dot = data.dot
-            if(dot){
+            if(data.dot){
+                calendarDot.setImageResource(data.drunkDot)
                 calendarDot.visibility = View.VISIBLE
             } else{
                 calendarDot.visibility = View.INVISIBLE

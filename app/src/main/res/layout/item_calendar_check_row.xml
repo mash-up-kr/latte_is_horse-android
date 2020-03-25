@@ -24,8 +24,8 @@
 
         <ImageView
             android:id="@+id/dotCalendarRow"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:src="@drawable/img_drunken_guide_dot_level1"
             android:layout_marginTop="3dp"/>
 

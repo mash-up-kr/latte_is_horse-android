@@ -1,20 +1,22 @@
 package com.mashup.latte.ui.calendar
 
 import com.mashup.latte.R
+import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import java.text.SimpleDateFormat
 import java.util.*
 
 /**
  * Created by Arim on 2020.03.24.
  */
-class CalendarManager {
+class CalendarManager(private val diaryData: ArrayList<AlcoholDiary>) {
+    private var drunkenStatus: String = ""
+
     private val calendarRows = mutableListOf<CalendarRow>()
     private val firstDate = GregorianCalendar(Locale.KOREA).also {
         it.set(Calendar.DATE, 1)
     }
     private val formatForCalendarSelect = SimpleDateFormat("yyyy.MM", Locale.KOREA)
     val nowDate: String get() = formatForCalendarSelect.format(Date(firstDate.timeInMillis))
-
 
     private val selectdDate = GregorianCalendar(Locale.KOREA)
     private val formatForResult = SimpleDateFormat("yyyy.MM.dd", Locale.KOREA)
@@ -66,10 +68,40 @@ class CalendarManager {
                             R.color.black
                         }
                     },
-                    dot = true,
-                    drunkDot = R.drawable.img_drunken_guide_dot_level1
+                    dot = checkData(String.format("${nowDate}.%02d", i)),
+                    drunkDot = checkDrunk()
                 )
             )
+        }
+    }
+
+    private fun checkData(day: String): Boolean{
+        for(diary in diaryData){
+            if(diary.date == day){
+                drunkenStatus = diary.drunkenStatus
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun checkDrunk(): Int{
+        when(drunkenStatus){
+            "멀쩡함" -> {
+                return R.drawable.img_drunken_guide_dot_level1
+            }
+            "조금취함" -> {
+                return R.drawable.img_drunken_guide_dot_level2
+            }
+            "많이취함" -> {
+                return R.drawable.img_drunken_guide_dot_level3
+            }
+            "댕댕이" -> {
+                return R.drawable.img_drunken_guide_dot_level4
+            }
+            else -> {
+                return R.drawable.img_drunken_guide_dot_level1
+            }
         }
     }
 

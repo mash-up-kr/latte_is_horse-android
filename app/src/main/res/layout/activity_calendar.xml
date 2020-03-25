@@ -84,8 +84,8 @@
         android:layout_height="40dp"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintTop_toBottomOf="@id/calendar_title">
         
         <TextView
@@ -151,8 +151,8 @@
         android:id="@+id/recyclerCalendar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintTop_toBottomOf="@id/calendar_header"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="7"
@@ -213,9 +213,11 @@
                     android:fontFamily="@font/gmarket_sans_ttf_medium"/>
                 <TextView
                     android:id="@+id/text_amount"
-                    android:layout_width="wrap_content"
+                    android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="소주 1병"
                     android:textSize="14sp"
                     android:textColor="@color/textYear"

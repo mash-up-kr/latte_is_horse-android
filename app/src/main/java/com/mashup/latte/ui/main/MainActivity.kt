@@ -12,7 +12,6 @@ import com.mashup.latte.R
 import com.mashup.latte.data.datasource.local.entity.AlcoholDiary
 import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ext.e
-import com.mashup.latte.ext.startActivity
 import com.mashup.latte.ext.startActivityResult
 import com.mashup.latte.ui.base.BaseActivity
 import com.mashup.latte.ui.calendar.CalendarActivity
@@ -31,6 +30,7 @@ class MainActivity : BaseActivity() {
     private val repository: ApiRepository by inject()
     private lateinit var fromDate: Date
     private lateinit var toDate: Date
+    private val diaryData = ArrayList<AlcoholDiary>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +50,9 @@ class MainActivity : BaseActivity() {
             startActivityResult<RecordActivity>(REQ_RECORD)
         }
         btnCalendar.setOnClickListener {
-            startActivity<CalendarActivity>()
+            val intent = Intent(this, CalendarActivity::class.java)
+            intent.putExtra(DATA_DIARY, diaryData)
+            startActivity(intent)
         }
     }
 
@@ -62,6 +64,7 @@ class MainActivity : BaseActivity() {
                 .subscribe({ alcoholDiaries ->
                     e("getDiaries", alcoholDiaries.toString())
                     updateUI(alcoholDiaries)
+                    makeDiaryDataList(alcoholDiaries)
                 }, {
                 })
         )
@@ -73,6 +76,12 @@ class MainActivity : BaseActivity() {
         }
         fromDate = calendar.time
         toDate = Date()
+    }
+
+    private fun makeDiaryDataList(diaries: List<AlcoholDiary>){
+        for (diary in diaries) {
+            diaryData.add(diary)
+        }
     }
 
     private fun updateUI(diaries: List<AlcoholDiary>) {
