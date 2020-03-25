@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mashup.latte.ui.record.view.RecordFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="55dp"
+    android:layout_height="55dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/textCalenderRow"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:background="@drawable/shape_corner_circle_s"
+            tools:text="w" />
+
+        <ImageView
+            android:id="@+id/dotCalendarRow"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/img_drunken_guide_dot_level1"
+            android:layout_marginTop="3dp"/>
+
+    </LinearLayout>
+
+
+
+</com.mashup.latte.ui.record.view.RecordFrameLayout>

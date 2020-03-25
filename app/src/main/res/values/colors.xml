@@ -27,7 +27,8 @@
     <color name="darkgreen">#6aa7a8</color>
     <color name="darkpurple">#8182ba</color>
 
-
+    <color name="calendarSun">#aaff7676</color>
+    <color name="calendarWeek">#66000000</color>
 
 
 </resources>

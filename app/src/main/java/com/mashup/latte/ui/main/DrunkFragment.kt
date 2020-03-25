@@ -32,7 +32,6 @@ class DrunkFragment : Fragment() {
             startActivity(intent)
         }
 
-
         return view
     }
 
