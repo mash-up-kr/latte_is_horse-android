@@ -1,7 +1,7 @@
 <resources>
     <string name="kakao_app_key">560ac09a791a3e65b22adcbdd05880ad</string>
 
-    <string name="app_name">latte</string>
+    <string name="app_name">오늘의 술,셈</string>
     <string name="app_title_today">오늘의</string>
     <string name="app_title_drunk_count">술,셈</string>
     <string name="bottom_action_home">홈</string>
