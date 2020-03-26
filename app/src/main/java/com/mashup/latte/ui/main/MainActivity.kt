@@ -14,6 +14,7 @@ import com.mashup.latte.data.repository.ApiRepository
 import com.mashup.latte.ext.e
 import com.mashup.latte.ext.startActivityResult
 import com.mashup.latte.ui.base.BaseActivity
+import com.mashup.latte.ui.calendar.CalendarActivity
 import com.mashup.latte.ui.main.adapter.MainViewPagerAdapter
 import com.mashup.latte.ui.record.RecordActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,6 +30,7 @@ class MainActivity : BaseActivity() {
     private val repository: ApiRepository by inject()
     private lateinit var thisMonth: Date
     private lateinit var toDate: Date
+    private val diaryData = ArrayList<AlcoholDiary>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,11 @@ class MainActivity : BaseActivity() {
         btnMainRecord.setOnClickListener {
             startActivityResult<RecordActivity>(REQ_RECORD)
         }
+        btnCalendar.setOnClickListener {
+            val intent = Intent(this, CalendarActivity::class.java)
+            intent.putExtra(DATA_DIARY, diaryData)
+            startActivity(intent)
+        }
     }
 
     private fun initViewPager() {
@@ -57,6 +64,7 @@ class MainActivity : BaseActivity() {
                 .subscribe({ alcoholDiaries ->
                     e("getDiaries", alcoholDiaries.toString())
                     updateUI(alcoholDiaries)
+                    makeDiaryDataList(alcoholDiaries)
                 }, {
                 })
         )
@@ -65,6 +73,12 @@ class MainActivity : BaseActivity() {
     private fun initDate() {
         val calendar = Calendar.getInstance()
         thisMonth = calendar.time
+    }
+
+    private fun makeDiaryDataList(diaries: List<AlcoholDiary>){
+        for (diary in diaries) {
+            diaryData.add(diary)
+        }
     }
 
     private fun updateUI(diaries: List<AlcoholDiary>) {
