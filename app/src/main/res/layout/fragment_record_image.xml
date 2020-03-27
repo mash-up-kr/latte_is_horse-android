@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/gmarket_sans_ttf_light"
+        android:fontFamily="@font/noto_sans_display_medium"
         android:text="@string/record_image_mood"
         android:textColor="@color/black"
         android:textSize="16sp"
